@@ -1,5 +1,8 @@
 # Memory Controller – Backend Architecture
 
+## Architecture Diagram
+<img width="1051" height="687" alt="image" src="https://github.com/user-attachments/assets/a2794179-c9d0-4941-98a7-88db08870040" />
+
 ## Overview
 
 The backend is responsible for DRAM command generation, Channel mode scheduling
