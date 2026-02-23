@@ -43,7 +43,7 @@ The controller is structured hierarchically:
   - DDR DQ Bus Arbiter
   - PHY Read/Write mode separation
 
-The design enforces DRAM timing constraints at command level and models bank-level parallelism explicitly.
+The design enforces DRAM timing constraints at coommand-level and models bank-level parallelism explicitly.
 
 ---
 
