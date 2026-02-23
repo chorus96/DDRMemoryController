@@ -8,7 +8,7 @@ This project implements a hierarchical DDR4 controller architecture with per-cha
 
 
 ## 🏗 Architecture Overview
-<img width="1218" height="675" alt="image" src="https://github.com/user-attachments/assets/7442ac50-9274-45b3-95a3-ddd9d8d7cda4" />
+<img width="1211" height="673" alt="image" src="https://github.com/user-attachments/assets/ae5b32b5-d760-4a13-b5ea-fc45f5a8f82c" />
 
 ### Key Architectural Features
 
@@ -29,6 +29,7 @@ The controller is structured hierarchically:
 - **Frontend**
   - Cache Request Arbiter
   - Cache Response Arbiter
+  - Cache Response Scheduler
   - Address Translation Unit
   - MC Request Arbiter
 
