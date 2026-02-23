@@ -1,8 +1,8 @@
 ![RTL-LINT](https://github.com/sjo99-kr/DDR_based_Memory_Controller/actions/workflows/ci.yml/badge.svg)
 # DDR Multi-Channel Memory Controller (SystemVerilog)
-A timing-aware, **multi-channel DDR4 Memory Controller** designed and verified in SystemVerilog.
+A timing-aware, **multi-channel DDR Memory Controller** designed and verified in SystemVerilog.
 
-This project implements a hierarchical DDR4 controller architecture with per-channel, per-rank, and per-bank scheduling, along with a custom DDR4 Bus Functional Model (BFM) and a verification infrastructure including driver, monitor, and scoreboard.
+This project implements a hierarchical DDR controller architecture with per-channel, per-rank, and per-bank scheduling, along with a custom DDR4 Bus Functional Model (BFM) and a verification infrastructure including driver, monitor, and scoreboard.
 
 ---
 
@@ -13,7 +13,7 @@ This project implements a hierarchical DDR4 controller architecture with per-cha
 
 ### Key Architectural Features
 
-- Dual-channel DDR4 backend
+- Dual-channel DDR backend
 - Per-rank FR-FCFS request scheduler and execution unit
 - Bank-level FSM with timing enforcement
 - AXI-based frontend interface
@@ -116,7 +116,7 @@ This project supports automated linting, synthesis, and simulation.
 
 2. ananthbhat94,  
    *“DDR4MemoryController”* (GitHub repository).  
-   – Reference for DDR4 interface signal definitions.
+   – Reference for DDR interface signal definitions.
 
 3. H. Luo et al.,  
    *“Ramulator 2.0: A Modern, Modular, and Extensible DRAM Simulator,”*  
