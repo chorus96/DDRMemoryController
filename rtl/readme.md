@@ -48,7 +48,7 @@ rtl/
 **Bank Grant Scheduling** 
   - FR-FCFS with Bank Group-level parallelism, prioritizing Page-Hits based on timing constraints (Short/Long).
 
-**Open page List **
+**Open page List**
   - Forced page precharge triggered by a starvation threshold to ensure request fairness.
 
 **Auto-precharge CMD Window**
