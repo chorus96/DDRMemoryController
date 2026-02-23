@@ -15,12 +15,13 @@ The architecture is hierarchically partitioned into:
 
 ## Directory Structure
 
+```text
 rtl/
  ├── frontend/   → AXI handling, request arbitration, response scheduling
  ├── backend/    → Rank/Bank scheduling, timing enforcement, FSM, data burst control
  ├── common/     → Shared definitions and interfaces
  ├── MemoryController.sv → Top-level multi-channel controller
-
+```
 
  ## Management policy & DRAM Timing Constraints
 
