@@ -30,7 +30,7 @@
 //
 //////////////////////////////////////////////////////////////////////////////////////////
 
-module APTimingCounter#(
+module APTimingScheduler#(
     parameter int NUMBANK       = 4,
     parameter int NUMBANKGROUP  = 4,
     parameter int TOTALBANKS    = NUMBANK * NUMBANKGROUP,

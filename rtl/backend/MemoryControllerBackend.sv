@@ -265,7 +265,7 @@ module MemoryControllerBackend #(
                     ChannelRDWRTransReady <= 0;
                     ChannelRDWRMode <= 1;
                 end
-            end else if(ChannelRDWRMode == 1 && (NumWrReq << CHMODETHRESHOLD)) begin
+            end else if(ChannelRDWRMode == 1 && (NumWrReq < CHMODETHRESHOLD)) begin
                 if(!issuable) begin
                     ChannelRDWRTransReady <= 1;
                 end

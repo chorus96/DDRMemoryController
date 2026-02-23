@@ -260,12 +260,12 @@ module RankExecutionUnit #(
     //  - Prevents command issue when target bank is busy.
     //
     //------------------------------------------------------------------------------
-    APTimingCounter #(
+    APTimingScheduler #(
         .NUMBANK(NUMBANK),
         .NUMBANKGROUP(NUMBANKGROUP),
         .tRP(tRP),
         .tWR(tWR)
-    ) APTimingCounter_Instance (
+    ) APTimingScheduler_instance (
         .clk(clk), .rst(rst), .mode(chMode), 
         .apSetup(apSetup), .apACk(autoPrechargeACK), 
         .BGBKfromFSM(BGBKfromFSM), 
