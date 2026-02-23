@@ -38,12 +38,13 @@ The controller is structured hierarchically:
   - Channel Controller
   - Rank Scheduler
   - Rank Execution Unit
-  - Bank FSM (per bank)
+  - Bank FSMs
   - DDR CMD/ADDR Bus Arbiter
   - DDR DQ Bus Arbiter
   - PHY Read/Write mode separation
+  - Read/Write Buffer Controller
 
-The design enforces DRAM timing constraints at coommand-level and models bank-level parallelism explicitly.
+The design enforces DRAM timing constraints at coommand-level and models channel/rank/bank-level parallelism explicitly.
 
 ---
 
