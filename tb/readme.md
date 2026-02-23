@@ -89,7 +89,7 @@ The DUT is validated against:
 - AXI protocol correctness
 - DRAM timing constraints
 - Scheduling fairness
-- Data consistency
+- Data validation 
 - Starvation handling
 
 ---
