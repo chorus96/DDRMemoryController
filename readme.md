@@ -8,7 +8,8 @@ This project implements a hierarchical DDR4 controller architecture with per-cha
 
 
 ## 🏗 Architecture Overview
-<img width="1211" height="673" alt="image" src="https://github.com/user-attachments/assets/ae5b32b5-d760-4a13-b5ea-fc45f5a8f82c" />
+<img width="1213" height="672" alt="image" src="https://github.com/user-attachments/assets/f93a4d25-b2bc-4200-8718-d41b12eb4995" />
+
 
 ### Key Architectural Features
 
