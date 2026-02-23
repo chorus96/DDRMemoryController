@@ -1,7 +1,3 @@
-
-## Memory Controller Frontend
-<img width="942" height="654" alt="image" src="https://github.com/user-attachments/assets/ef0a6276-4374-4758-9dec-298d1308d882" />
-
 # Memory Controller – Frontend Architecture
 
 ## Overview
