@@ -63,9 +63,9 @@ The frontend applies a queue-based scheduling mechanism for **Memory Controller 
   - Backend readiness
   - Write Assembly availability
 
-Priority behavior:
-- Highest priority for assembled write request.
-- If there is no assembled write request yet, then serving read request to backend
+### Priority behavior:
+  - Highest priority for assembled write request.
+  - If there is no assembled write request yet, then serving read request to backend
 
 
 ### Write Response Handling
