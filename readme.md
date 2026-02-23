@@ -70,18 +70,6 @@ The scoreboard validates:
 - Data burst timing validation
 - Command-to-data consistency
 
----
-
-## 📌 Highlights
-
-- Fully parameterized design
-- Multi-ID AXI-style frontend
-- Multi-channel backend architecture
-- Bank-group aware timing modeling
-- Hierarchical controller structure
-- Timing-accurate verification model
-- Automated regression-ready structure
-
 ---  
 
 ## 🛠 Tool Flow
