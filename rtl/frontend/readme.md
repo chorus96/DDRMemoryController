@@ -63,7 +63,7 @@ The frontend applies a queue-based scheduling mechanism for **Memory Controller 
   - Backend readiness
   - Write Assembly availability
 
-** Priority Behavior **
+**Priority Behavior**
   - Highest priority for assembled write request.
   - If there is no assembled write request yet, then serving read request to backend
 
@@ -84,7 +84,7 @@ Read responses are selected based on:
   - The number of consecutively served read responses for the current channel is tracked.
   - If the serving count reaches a predefined threshold, the scheduler switches to the other channel to prevent starvation.
 
-** Priority Behavior **
+**Priority Behavior**
 
 - There is no fixed priority between Write ACK and Read responses (seperate channels for AXI-B bus and AXI-R bus).
 - Fairness across channels is enforced using the serving-count-based aging mechanism.
