@@ -2,10 +2,10 @@
 
 The RTL directory contains the synthesizable implementation of a multi-channel DDR4 Memory Controller.
 
-The design is hierarchically structured into:
+The architecture is hierarchically partitioned into:
 
-- Frontend (Request/Repsonse arbitration + scheduling)
-- Backend (Rank/Bank-level parallelism + RD/WR Data serving/receiving)
+- **Frontend** – Request/Response arbitration and scheduling
+- **Backend** – Rank/Bank-level parallelism and timing-aware command execution
 
 
 ## Architecture Diagram
@@ -16,10 +16,10 @@ The design is hierarchically structured into:
 ## Directory Structure
 
 rtl/
- ├── frontend/   → AXI handling, request arbitration, response scheduling..
- ├── backend/    → Rank/Bank scheduling, timing enforcement, FSM, data burst management..
- ├── common/     → Shared definitions and interfaces..
- ├── MemoryController.sv → Multi-channel DDR Memory Controller
+ ├── frontend/   → AXI handling, request arbitration, response scheduling
+ ├── backend/    → Rank/Bank scheduling, timing enforcement, FSM, data burst control
+ ├── common/     → Shared definitions and interfaces
+ ├── MemoryController.sv → Top-level multi-channel controller
 
 
  ## Management policy & DRAM Timing Constraints
