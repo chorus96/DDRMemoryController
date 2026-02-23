@@ -62,11 +62,14 @@ Nangate Open Cell Library (45nm).
 
 8. **Area Statistics**
    - Report generated via `stat -liberty`
-  
-**Results**
+
+---
+
+## 📊 Synthesis Results
+
 Total Cells: 449K
 
-Total Area: 1.27M
+Total Area: 1.27M (Nangate45 units)
 
 Sequential Ratio: 64%
 
