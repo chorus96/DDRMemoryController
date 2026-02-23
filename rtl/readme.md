@@ -2,9 +2,9 @@
 
 ## Overview
 
-The frontend is responsible for handling AXI-based cache requests,
+**The frontend is responsible for handling AXI-based cache requests, AXI-based cache response, 
 performing address translation, request classification, and arbitration
-before forwarding memory transactions to the backend execution units.
+before forwarding memory transactions to the backend execution units.**
 
 It separates read and write traffic, manages request queues,
 and ensures fair and deterministic arbitration across channels.
