@@ -166,8 +166,26 @@ module MemoryController#(
 
     // Memory Controller-side
     mc_side_request mc_req;
-    mc_side_response mc_resp;
 
+
+    //          Memory Request Arbitration Based on Channel Address             //
+    /* verilator lint_off UNUSEDSIGNAL */
+    /* verilator lint_off UNDRIVEN */
+    mc_side_request ch0_MCReq, ch1_MCReq;
+    mc_side_response ch0_MCResp, ch1_MCResp;
+    logic MCRespStateBackend;
+    logic [$clog2(READBUFFERDEPTH)-1:0] Ch0_NumOfReadBufferEntry, Ch1_NumOfReadBufferEntry;
+
+    logic Ch0_ReadBufferFull, Ch0_WriteBufferFull;
+    logic Ch1_ReadBufferFull, Ch1_WriteBufferFull;
+
+
+    logic [NUMRANK-1 : 0] Ch0_RankFSMReadReady, Ch1_RankFSMReadReady;
+    logic [NUMRANK-1 : 0] Ch0_RankFSMReadReady_r, Ch1_RankFSMReadReady_r;
+    logic [NUMRANK-1 : 0] Ch0_RankFSMWriteReady, Ch1_RankFSMWriteReady;
+    logic [NUMRANK-1 : 0] Ch0_RankFSMWriteReady_r, Ch1_RankFSMWriteReady_r;
+
+    /* verilator lint_on UNUSEDSIGNAL */
     //------------------------------------------------------------------------------
     //      Memory Controller Frontend
     //
@@ -182,25 +200,29 @@ module MemoryController#(
         .CHWIDTH(CHWIDTH), .RKWIDTH(RKWIDTH),
         .NUM_RANKEXECUTION_UNIT(NUM_RANKEXECUTION_UNIT), .BURST_LENGTH(BURST_LENGTH),
         .ASSEMBLER_DEPTH(ASSEMBLER_DEPTH),
+        .NUMRANK(NUMRANK), .RESPSCHEDULINGCNT(RESPSCHEDULINGCNT),
+        .READBUFFERDEPTH(READBUFFERDEPTH), .WRITEBUFFERDEPTH(WRITEBUFFERDEPTH),
         .WrAddrEntry(WrAddrEntry), .axi_aw_chan_t(axi_aw_chan_t),
         .CacheResp(cache_side_response), .CacheReq(cache_side_request),
         .MCResp(mc_side_response), .MCReq(mc_side_request),
         .MemoryAddress(mem_addr_t)
     ) MemoryControllerFrontEnd_Instance(
         .clk(clk), .rst_n(rst_n),
-        .noc_req(cache_req), .noc_resp(cache_resp),
-        .mc_req(mc_req), .mc_resp(mc_resp)
+        .noc_req(cache_req), 
+        .Ch0_NumOfReadBufferEntry(Ch0_NumOfReadBufferEntry), 
+        .Ch1_NumOfReadBufferEntry(Ch1_NumOfReadBufferEntry),
+        .ch0_MCResp(ch0_MCResp), .ch1_MCResp(ch1_MCResp),
+        .MCRespStateBackend(MCRespStateBackend),
+        .Ch0_ReadBufferFull(Ch0_ReadBufferFull), .Ch1_ReadBufferFull(Ch1_ReadBufferFull),
+        .Ch0_WriteBufferFull(Ch0_WriteBufferFull), .Ch1_WriteBufferFull(Ch1_WriteBufferFull),
+        .Ch0_RankFSMRdReady(Ch0_RankFSMReadReady_r), .Ch1_RankFSMRdReady(Ch1_RankFSMReadReady_r),
+        .Ch0_RankFSMWrReady(Ch0_RankFSMWriteReady_r), .Ch1_RankFSMWrReady(Ch1_RankFSMWriteReady_r),
+        .noc_resp(cache_resp), .mc_req(mc_req)
     );
 
-    logic Ch0_ReadBufferFull, Ch0_WriteBufferFull;
-    logic Ch1_ReadBufferFull, Ch1_WriteBufferFull;
 
-    logic [NUMRANK-1 : 0] Ch0_RankFSMReadReady, Ch1_RankFSMReadReady;
-    logic [NUMRANK-1 : 0] Ch0_RankFSMReadReady_r, Ch1_RankFSMReadReady_r;
-    logic [NUMRANK-1 : 0] Ch0_RankFSMWriteReady, Ch1_RankFSMWriteReady;
-    logic [NUMRANK-1 : 0] Ch0_RankFSMWriteReady_r, Ch1_RankFSMWriteReady_r;
 
-    logic [$clog2(READBUFFERDEPTH)-1:0] Ch0_NumOfReadBufferEntry, Ch1_NumOfReadBufferEntry;
+
 
     always_ff @(posedge clk or negedge rst_n) begin
         if(!rst_n) begin
@@ -216,11 +238,6 @@ module MemoryController#(
         end
     end
 
-    //          Memory Request Arbitration Based on Channel Address             //
-    /* verilator lint_off UNUSEDSIGNAL */
-    mc_side_request ch0_MCReq, ch1_MCReq;
-    mc_side_response ch0_MCResp, ch1_MCResp;
-    /* verilator lint_on UNUSEDSIGNAL */
 
     //------------------------------------------------------------------------------
     //      Channel Dispatch Logic
@@ -262,128 +279,9 @@ module MemoryController#(
     assign ch1_MCReq.AckReady       =  mc_req.AckReady;
 
 
-    //      But Response need a arbitration Scheduling , because both response from channels comes together.
-    //      (TODO) Current Arbitration Scheduling Method -> Queue-depth-aware fairness arbitration
-    //              - For prevent starvation, we do count the serving response numbers to dominant channel.
-    
-    //  Arbitration state machine:
-    //      - SERVE_CH0 / SERVE_CH1 indicates which channel is currently served.
-    //      - SwitchWait ensures channel switching occurs only after burst completion.
-    typedef enum logic {SERVE_CH0, SERVE_CH1} RespArbitrationState_t;
-    RespArbitrationState_t MCRespState;
-    logic  SwitchWait;
-    logic [$clog2(RESPSCHEDULINGCNT) - 1:0] ServingCnt;
 
-    //------------------------------------------------------------------------------
-    //      MC Response Arbitration
-    //
-    //      Problem:
-    //          - CH0 and CH1 backends may return read responses concurrently.
-    //          - Frontend can consume only one response stream at a time.
-    //
-    //      Solution:
-    //          - Queue-depth-aware arbitration between channel responses.
-    //          - Dominant channel is periodically throttled to prevent starvation.
-    //          - Channel switch is aligned with burst boundaries (last signal).
-    //------------------------------------------------------------------------------
-    always_ff@(posedge clk or negedge rst_n) begin : MCResponseArbitration
-        if(!rst_n) begin
-            MCRespState <= SERVE_CH0; 
-            SwitchWait <= 0;
-        end else begin
-             if(SwitchWait) begin
-                if(MCRespState) begin
-                    if(ch1_MCResp.last) begin
-                        SwitchWait <= 0;
-                        MCRespState <= SERVE_CH0;
-                    end 
-                end else if(!MCRespState) begin
-                    if(ch0_MCResp.last)begin
-                        SwitchWait <= 0;
-                        MCRespState <= SERVE_CH1;
-                    end
-                end
-             end
-             else if(ServingCnt == RESPSCHEDULINGCNT -1) begin
-                if(MCRespState && (Ch0_NumOfReadBufferEntry != 0)) begin
-                    if(!ch1_MCResp.r_valid) begin
-                        MCRespState <= SERVE_CH0;
-                    end else begin
-                        if(ch1_MCResp.r_valid && ch1_MCResp.last) begin
-                            MCRespState <= SERVE_CH0;
-                        end else begin
-                            SwitchWait <= 1;
-                        end
-                    end
-                end else if(!MCRespState && (Ch1_NumOfReadBufferEntry != 0)) begin
-                    if(!ch0_MCResp.r_valid) begin
-                        MCRespState <= SERVE_CH1;
-                    end else begin
-                        if(ch0_MCResp.r_valid && ch0_MCResp.last) begin
-                            MCRespState <= SERVE_CH1;
-                        end else begin
-                            SwitchWait <= 1;
-                        end
-                    end
-                end
-             end else if(Ch0_NumOfReadBufferEntry > Ch1_NumOfReadBufferEntry) begin
-                if(MCRespState) begin
-                    if(ch1_MCResp.r_valid) begin
-                        SwitchWait <= 1;
-                        if(ch1_MCResp.r_valid && ch1_MCResp.last) begin
-                            MCRespState <= SERVE_CH0;
-                        end
-                    end else begin
-                        MCRespState <= SERVE_CH0;
-                    end
-                end
-             end else if(Ch1_NumOfReadBufferEntry > Ch0_NumOfReadBufferEntry) begin
-                if(!MCRespState) begin
-                    if(ch0_MCResp.r_valid) begin
-                        SwitchWait <= 1;
-                        if(ch0_MCResp.r_valid && ch0_MCResp.last) begin
-                            MCRespState <= SERVE_CH1;
-                        end
-                    end else begin
-                        MCRespState <= SERVE_CH1;
-                    end
-                end
-             end
-        end
-    end : MCResponseArbitration
-    
 
-    //------------------------------------------------------------------------------
-    //      Starvation Avoidance Mechanism
-    //
-    //      - Counts consecutive responses served for the same channel.
-    //      - Forces channel switch when SERVINGCNT threshold is reached,
-    //          if the other channel has pending responses.
-    //------------------------------------------------------------------------------
-    always_ff@(posedge clk or negedge rst_n) begin : AvoidingRespStarvation
-        if(!rst_n) begin
-            ServingCnt <= 0;
-        end else begin
-            if(MCRespState) begin : ResponseForCH1
-                if(Ch0_NumOfReadBufferEntry > Ch1_NumOfReadBufferEntry) begin 
-                    ServingCnt <= 0;
-                end else begin
-                    if(ch1_MCResp.last)begin
-                        ServingCnt <= ServingCnt + 1;
-                    end 
-                end
-            end : ResponseForCH1 
-            else if(!MCRespState) begin : ResponseForCH0
-                if(Ch1_NumOfReadBufferEntry > Ch0_NumOfReadBufferEntry) begin
-                    ServingCnt <= 0;
-                end else begin
-                    if(ch0_MCResp.last)begin
-                        ServingCnt <= ServingCnt + 1;
-                    end
-                end
-            end : ResponseForCH0
-        end
-    end : AvoidingRespStarvation
+
 
     //------------------------------------------------------------------------------
     //      Memory Controller Backend (Per-Channel)
@@ -423,7 +321,7 @@ module MemoryController#(
         .RankReqValid(|(ch0_MCReq.req_valid)), 
         .RankData(ch0_MCReq.write_data), .RankDataStrb(ch0_MCReq.write_strb), 
         .RankDataLast(ch0_MCReq.last), .RankDataValid(ch0_MCReq.req_data_valid),
-        .CacheReadDataReady(ch0_MCReq.readReady && !MCRespState), .CacheWriteDataACKReady(ch0_MCReq.AckReady),
+        .CacheReadDataReady(ch0_MCReq.readReady && !MCRespStateBackend), .CacheWriteDataACKReady(ch0_MCReq.AckReady),
         //                          OUTPUT  TO Memory Controller Frontend                //
         .CacheReadData(ch0_MCResp.read_data), 
         .CacheReadDataUser(ch0_MCResp.mem_read_user), .CacheReadDataId(ch0_MCResp.mem_read_id),
@@ -472,7 +370,7 @@ module MemoryController#(
         .RankReqValid(|(ch1_MCReq.req_valid)), 
         .RankData(ch1_MCReq.write_data), .RankDataStrb(ch1_MCReq.write_strb), 
         .RankDataLast(ch1_MCReq.last), .RankDataValid(ch1_MCReq.req_data_valid),
-        .CacheReadDataReady(ch1_MCReq.readReady && MCRespState), 
+        .CacheReadDataReady(ch1_MCReq.readReady && MCRespStateBackend), 
         .CacheWriteDataACKReady(ch1_MCReq.AckReady),
         //                          OUTPUT  TO Memory Controller Frontend                //
         .CacheReadData(ch1_MCResp.read_data), 
@@ -489,24 +387,5 @@ module MemoryController#(
         .ddr4_cmd_bus(DDR4_CH1_IF)
     );
 
-    //------------------------------------------------------------------------------
-    //      Final Response Multiplexing
-    //
-    //          - Selected channel response is forwarded to frontend.
-    //          - Controlled by MCRespState FSM.
-    //------------------------------------------------------------------------------
-    assign mc_resp.read_data      =  MCRespState ? ch1_MCResp.read_data : ch0_MCResp.read_data;
-    assign mc_resp.mem_read_id    =  MCRespState ? ch1_MCResp.mem_read_id : ch0_MCResp.mem_read_id;
-    assign mc_resp.mem_read_user  =  MCRespState ? ch1_MCResp.mem_read_user : ch0_MCResp.mem_read_user;
-    assign mc_resp.last           =  MCRespState ? ch1_MCResp.last : ch0_MCResp.last;
-    assign mc_resp.r_valid        =  MCRespState ? ch1_MCResp.r_valid : ch0_MCResp.r_valid;
-    
-    assign mc_resp.mem_ack_id     =  ch1_MCResp.b_valid ? ch1_MCResp.mem_ack_id   : ch0_MCResp.b_valid ? ch0_MCResp.mem_ack_id : 0;
-    assign mc_resp.mem_ack_user   =  ch1_MCResp.b_valid ? ch1_MCResp.mem_ack_user : ch0_MCResp.b_valid ? ch0_MCResp.mem_ack_user : 0;
-    assign mc_resp.b_valid        =  ch1_MCResp.b_valid || ch0_MCResp.b_valid;
-    
-
-    assign mc_resp.ar_ready = { {NUMRANK{~Ch1_ReadBufferFull}} & Ch1_RankFSMReadReady_r,   {NUMRANK{~Ch0_ReadBufferFull}} & Ch0_RankFSMReadReady_r   };
-    assign mc_resp.w_ready  = { {NUMRANK{~Ch1_WriteBufferFull}} & Ch1_RankFSMWriteReady_r, {NUMRANK{~Ch0_WriteBufferFull}} & Ch0_RankFSMWriteReady_r};
-    assign mc_resp.aw_ready = { {NUMRANK{~Ch1_WriteBufferFull}} & Ch1_RankFSMWriteReady_r, {NUMRANK{~Ch0_WriteBufferFull}} & Ch0_RankFSMWriteReady_r};
 endmodule
+
