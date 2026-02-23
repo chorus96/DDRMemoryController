@@ -41,10 +41,10 @@ opt
 
 
 ## Map internal register types to the ones from the cell library
-dfflibmap -liberty NangateOpenCellLibrary_typical.lib
+dfflibmap -liberty ../syn/NangateOpenCellLibrary_typical.lib
 
 ## Map combinational logic
-abc -D 1000 -liberty NangateOpenCellLibrary_typical.lib
+abc -D 1000 -liberty ../syn/NangateOpenCellLibrary_typical.lib
 
 ## Cleanup
 opt
@@ -54,4 +54,5 @@ opt_clean
 ## Write synthsized design
 write_verilog -noattr -noexpr MemoryController_gate_nangate45.v
 
-stat -liberty NangateOpenCellLibrary_typical.lib
+stat -liberty ../syn/NangateOpenCellLibrary_typical.lib
+

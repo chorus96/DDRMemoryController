@@ -16,7 +16,7 @@
 # ===============================
 # Backend
 # ===============================
-../rtl/backend/APTimingCounter.sv
+../rtl/backend/APTimingScheduler.sv
 ../rtl/backend/CMDGrantScheduler.sv
 ../rtl/backend/CMDTurnaroundGrant.sv
 ../rtl/backend/DQRdWrCCDGrant.sv

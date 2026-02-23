@@ -11,7 +11,7 @@ common/PriorityEncoder_LSB.sv
 # ===============================
 # Backend
 # ===============================
-backend/APTimingCounter.sv
+backend/APTimingScheduler.sv
 backend/CMDGrantScheduler.sv
 backend/CMDTurnaroundGrant.sv
 backend/DQRdWrCCDGrant.sv
