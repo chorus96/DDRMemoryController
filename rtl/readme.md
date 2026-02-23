@@ -31,15 +31,15 @@ rtl/
     - The system synchronizes the AXI-AW and AXI-W channels by matching their respective ID and User signals.
 
 **Cache Response**
-- Read Response (AXI-R Bus): Depth-based priority selection with an Aging scheme.
-  - Write Response (AXI-B Bus): Transparent pass-through with no additional scheduling
+ - Read Response (AXI-R Bus): Depth-based priority selection with an Aging scheme.
+ - Write Response (AXI-B Bus): Transparent pass-through with no additional scheduling
 
 **Memory controller Request**
-- Read Request: Transparent pass-through when no assembled write requests are pending.
+  - Read Request: Transparent pass-through when no assembled write requests are pending.
   - Write Request: Preemptive serving once AXI-AW and AXI-W channels are successfully assembled (matched via ID/User).
 
 **CMD/ADDR, DQ Bus Channel**
-- Read-priority scheduling with a threshold-based transition for pending write requests.
+ - Read-priority scheduling with a threshold-based transition for pending write requests.
 
 **Rank Grant Scheduling**
   - Depth-based priority selection with LFSR-based tie-breaking and LSB-priority fallback.
