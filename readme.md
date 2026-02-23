@@ -4,3 +4,4 @@
 
 
 ### Verification Overview (UVM-like + RTL + BFM)
+<img width="1191" height="667" alt="image" src="https://github.com/user-attachments/assets/9b5a96e1-11db-4499-86ee-abc5416957fb" />
