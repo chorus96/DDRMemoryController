@@ -10,7 +10,7 @@ and DRAM timing behavior.
 
 ## Verification Overview
 
-<img src="verification_overview.png" width="100%">
+<img width="1169" height="666" alt="image" src="https://github.com/user-attachments/assets/8defb08a-27c1-41ee-afb2-d4366f0fbc88" />
 
 ---
 
