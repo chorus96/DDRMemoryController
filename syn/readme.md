@@ -62,6 +62,17 @@ Nangate Open Cell Library (45nm).
 
 8. **Area Statistics**
    - Report generated via `stat -liberty`
+  
+**Results**
+Total Cells: 449K
+
+Total Area: 1.27M
+
+Sequential Ratio: 64%
+
+DFF Count: 152K
+
+Largest Block: ReadBufferController
 
 ---
 
