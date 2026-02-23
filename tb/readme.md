@@ -99,4 +99,5 @@ The DUT is validated against:
 Run using:
 
 ```bash
-./scripts/run_sim_xsim.sh
+./scripts/xsim_uvm.sh
+
