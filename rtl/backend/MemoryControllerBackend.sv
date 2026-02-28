@@ -47,6 +47,60 @@
 //      Author  : Seongwon Jo
 //      Created : 2026.02
 //////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////
+//      MemoryControllerBackend
+//
+//      역할(Role):
+//          메모리 컨트롤러의 채널별(Per-channel) 백엔드.
+//          다음과 같은 모든 채널 로컬 자원을 소유함:
+//              - 채널 스케줄링 (명령/CMD 및 데이터/DQ)
+//              - 읽기/쓰기 버퍼링
+//              - DDR 타이밍 제약 적용
+//              - PHY 인터페이싱 (추상화된 DDR 인터페이스)
+//
+//      아키텍처 개요(Architectural Overview):
+//
+//          MemoryController (Top)
+//                |      ∧
+//                V      |
+//      +---------------------------+
+//      |   MemoryControllerBackend |
+//      |   (본 모듈)               |
+//      +---------------------------+
+//          |         ∧        |
+//          |         |        V
+//          |      ReadBuf   WriteBuf
+//       Channel    Ctrl      Ctrl
+//        Ctrl        ∧        |
+//          |         |        V
+//          |        PHYController
+//          |         |        |
+//          V         V        V
+//  DDR IF CMD BUS   DDR4 IF DQ BUS
+//
+//      주요 책임(Responsibilities):
+//          1) 읽기/쓰기 요청 개수와
+//             Channel Controller 및 PHY Controller의 상태를 기반으로
+//             READ / WRITE 채널 모드를 결정.
+//          2) ChannelController를 통해 DRAM 명령을 스케줄링.
+//          3) Read/Write 버퍼를 관리하고 PHY와의 상호작용을 제어.
+//          4) DDR 타이밍 제약을 적용
+//             (tRP, tWR, tRTR, tWTR 등).
+//          5) Channel Controller 및 PHY Controller와 연동하여
+//             DDR4 CMD 버스와 DQ 버스를 인터페이싱.
+//
+//      설계 참고 사항(Design Notes):
+//          - 본 모듈은 철저히 채널 로컬임 (채널 간 로직 없음).
+//          - 채널 전체에 대한 중재는
+//            MemoryController (Top)에서 처리.
+//          - Bank/Rank 레벨 타이밍 결정은
+//            ChannelController에 위임됨.
+//          - PHYController는 DDR 버스트 타이밍과
+//            데이터 정렬을 추상화함.
+//
+//      작성자  : 조성원
+//      작성일  : 2026.02
+//////////////////////////////////////////////////////////////////////////////////////////
 
 module MemoryControllerBackend #( 
     parameter int DEVICE_CHANNEL        = 0,
