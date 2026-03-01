@@ -29,6 +29,42 @@
 //      Author  : Seongwon Jo
 //      Created : 2026.02
 //------------------------------------------------------------------------------
+////////////////////////////////////////////////////////////////////////////////
+//      RankSched
+//
+//      역할(Role):
+//          DDR 메모리 시스템에서
+//          랭크 레벨 요청 스케줄러.
+//
+//      주요 책임(Responsibilities):
+//          - MC Frontend로부터 들어오는
+//            읽기/쓰기 요청을 버퍼링.
+//          - Open-page 상태를 고려한
+//            FR-FCFS 정책 적용.
+//          - 리프레시 스케줄링 관리 (tREFI).
+//          - BankFSM으로 발행할
+//            다음 요청을 선택.
+//          - Open row 상태 및
+//            요청 aging 정보 추적.
+//
+//      스케줄링 정책(Scheduling Policy):
+//          - FR-FCFS (First-Ready, First-Come-First-Serve)
+//          - 우선순위 순서:
+//              1) Aging 임계치를 초과한 요청
+//              2) 짧은 tCCD가 적용되는 Row-hit 요청
+//              3) 긴 tCCD가 적용되는 Row-hit 요청
+//              4) 가장 오래된 요청 (aging 기반)
+//
+//      범위 및 참고 사항(Scope & Notes):
+//          - 랭크 단위(granularity)로 동작.
+//          - 명령 레벨 타이밍은 처리하지 않음
+//            (RankExecutionUnit에서 담당).
+//          - 한 번에 하나의 요청만
+//            RankExecutionUnit으로 발행.
+//
+//      작성자  : 조성원
+//      작성일  : 2026.02
+//------------------------------------------------------------------------------
 
 module RankSched #(
     parameter int FSM_CHANNEL        = 0,
