@@ -50,6 +50,56 @@
 //      Author  : Seongwon Jo
 //      Created : 2026.02
 //------------------------------------------------------------------------------
+//------------------------------------------------------------------------------
+//      PHYController
+//
+//      역할(Role):
+//          메모리 컨트롤러 내부에 위치한 동작(behavioral) 수준의 PHY 계층 컨트롤러.
+//          논리적인 DRAM 명령/데이터와 랭크 수준의
+//          DDR4 DQ/DQS 신호 사이를 연결하는 역할을 수행함.
+//
+//      아키텍처 개요(Architecture Overview):
+//
+//          MemoryControllerBackend
+//                  ∧       |
+//                  |       V
+//            +------------------+
+//            |  PHYController   |   <-- 본 모듈
+//            +------------------+
+//               ∧          |
+//               |          V
+//        PHYReadMode   PHYWriteMode
+//               ∧          |
+//               |          V
+//              DDR4 IF DQ BUS
+//
+//      주요 책임(Responsibilities):
+//          - PHY 추상화 레벨에서 READ / WRITE 데이터 경로 관리.
+//          - 버스트 단위 타이밍 제약(tCL, tCWL) 적용.
+//          - DQ/DQS 방향 제어 및 트라이스테이트(tri-state) 격리 처리.
+//          - PHY 내부 FIFO에서 진행 중(in-flight)인 READ/WRITE 데이터 추적.
+//          - 버퍼 및 스케줄러에 FIFO 백프레셔(backpressure) 신호 제공.
+//          - RankFSM 동기화를 위한 Auto-Precharge ACK 생성.
+//          - 채널 모드 전환(Read ↔ Write)이 가능한 시점을 안전하게 표시.
+//
+//      이 모듈이 하는 일(What this module DOES):
+//          - DDR4 DQ 동작에 대한 사이클 정확도 모델링.
+//          - 버스트 길이를 인식한 데이터 이동 처리.
+//          - 명령 발행과 데이터 전송 간의 타이밍 인지 기반 협조.
+//
+//      이 모듈이 하지 않는 일(What this module DOES NOT do):
+//          - DRAM 명령 스케줄링 또는 중재(arbitration).
+//          - Bank / Rank 수준의 타이밍 결정 로직.
+//          - 전기적(electrical) 수준의 PHY 모델링.
+//
+//      참고 사항(Notes):
+//          - 모든 DDR DQ/DQS 추상화는 이 모듈에 격리되어 있음.
+//          - ChannelController가 명령 발행 시점을 제어함.
+//          - 본 모듈은 발행된 명령에 반응하여 데이터 타이밍을 관리함.
+//
+//      작성자  : Seongwon Jo
+//      작성일  : 2026.02
+//------------------------------------------------------------------------------
 
 module PHYController #(
     parameter int PHY_CHANNEL           = 0,
