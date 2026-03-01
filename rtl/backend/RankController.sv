@@ -81,7 +81,107 @@
 //      Author  : Seongwon Jo
 //      Created : 2026.02
 //------------------------------------------------------------------------------
-
+////////////////////////////////////////////////////////////////////////////////
+//      RankController
+//
+//      역할(Role):
+//          메모리 컨트롤러 백엔드 내부의
+//          랭크(rank) 레벨 제어 블록.
+//          단일 DRAM 랭크에 대해 요청 스케줄링,
+//          DRAM 명령 생성,
+//          버퍼 레벨 핸드셰이킹을 조율함.
+//
+//      아키텍처 내 위치(Position in Architecture):
+//
+//          MemoryController Backend
+//                      |
+//                      V
+//        +---------------------------+
+//        |     RankController        |
+//        |  (채널별, 랭크별 1개)     |
+//        +---------------------------+
+//                      |
+//                      V
+//        +-------------------------------------+
+//        |   RankSched  |  RankExecutionUnit   |
+//        |              | (Bank FSM들)         |
+//        +-------------------------------------+
+//                      |
+//                      V
+//               DDR IF CMD BUS
+//
+//      상위 수준 책임(High-level Responsibilities):
+//          1) MC Frontend로부터
+//             읽기/쓰기 요청을 수신.
+//          2) 랭크 레벨 메모리 요청을
+//             큐잉하고, aging을 적용하여 중재.
+//          3) CMD / DQ grant를 위해
+//             Channel Scheduler와 협조.
+//          4) 랭크 레벨 DRAM 타이밍 제약을 관리.
+//          5) DRAM 명령 발행
+//             (ACT / RD / WR / PRE / REF).
+//          6) Auto-Precharge와
+//             데이터 버퍼 완료 시점을 조율.
+//          7) Read/Write 데이터 버퍼와 인터페이스.
+//
+//      내부 구조(Internal Structure):
+//          - RankSched:
+//              * 요청 큐 관리 및 중재.
+//              * Open-page 상태 인지 및
+//                aging 기반 우선순위 결정.
+//              * 다음에 발행할 요청을 결정.
+//          - RankExecutionUnit:
+//              * DRAM 타이밍 제약 강제
+//                (tRCD, tRP, tWR, tRFC).
+//              * DDR 명령/주소 신호 생성.
+//              * Row/Bank 상태와 Refresh 상태 추적.
+//
+//      요청 흐름(Request Flow):
+//          Frontend → RankController → RankSched
+//                   → RankExecutionUnit → DRAM
+//
+//      버퍼 연동(Buffer Interaction):
+//          - Read/Write 버퍼는
+//            명시적인 ACK 신호로 분리됨.
+//          - RankExecutionUnit은
+//            명령이 수락되었을 때
+//            버퍼 레벨 ACK를 발행.
+//          - Auto-Precharge 완료는
+//            버퍼 ACK와 동기화됨.
+//
+//      스케줄링 가정(Scheduling Assumptions):
+//          - Channel Scheduler가
+//            CMD / CMDDQ 기회를 부여.
+//          - RankController는
+//            채널 레벨 중재를 수행하지 않음.
+//          - 랭크당 사이클당 하나의 요청만 발행.
+//
+//      타이밍 모델(Timing Model):
+//          - 사이클 정확(cycle-accurate) DRAM 타이밍 추상화.
+//          - 전기적/PHY 타이밍은
+//            외부(PHYController)에서 처리.
+//
+//      이 모듈이 하는 것(What this module DOES):
+//          - 랭크 레벨 요청 조율.
+//          - 타이밍 인지 명령 발행.
+//          - 버퍼와 스케줄러 동기화.
+//
+//      이 모듈이 하지 않는 것(What this module DOES NOT do):
+//          - PHY 레벨 DQ/DQS 생성.
+//          - 랭크 간 채널 레벨 중재.
+//          - 전역 메모리 재정렬.
+//
+//      설계 참고 사항(Design Notes):
+//          - 성능에 매우 중요한,
+//            타이밍 민감한 모듈.
+//          - RankSched와 RankExecutionUnit 분리는
+//            가독성과 재사용성을 향상.
+//          - NUMBANK / NUMBANKGROUP 파라미터에 따라
+//            확장 가능하도록 설계됨.
+//
+//      작성자  : 조성원
+//      작성일  : 2026.02
+//------------------------------------------------------------------------------
 
 module RankController #(
     parameter int FSM_CHANNEL        = 0,
