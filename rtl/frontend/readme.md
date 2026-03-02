@@ -90,10 +90,6 @@ Read responses are selected based on:
 - Fairness across channels is enforced using the serving-count-based aging mechanism.
 - This ensures balanced throughput while avoiding long-term starvation.
 
-아래는 요청하신 Memory Controller – Frontend Architecture 문서의 한국어 해석입니다.
-원문의 구조(제목, 목록, 강조)를 유지하면서 기술적 의미를 정확히 옮겼습니다.
-
-
 ---
 
 메모리 컨트롤러 – 프론트엔드 아키텍처
