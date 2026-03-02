@@ -68,16 +68,16 @@ module DRAMTimingCounter(
     logic       countEnd;
     
     always_ff @(posedge clk or negedge rst) begin
-        if(!rst)begin
+        if (!rst) begin
             countLoad <= 0;
             countEnd  <= 0;
         end else begin
-            if(setup) begin
+            if (setup) begin
                 countLoad <= load;
             end else begin
-                if(countLoad != 0) begin
+                if (countLoad != 0) begin
                     countLoad <= countLoad - 1;
-                    if(countLoad == 1) begin
+                    if (countLoad == 1) begin
                         countEnd <= 1;
                     end
                 end else begin
