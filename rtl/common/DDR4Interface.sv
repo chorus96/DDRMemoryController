@@ -22,6 +22,35 @@
 //      Author  : Seongwon Jo
 //      Created : 2026.02
 //////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////
+//      DDR4Interface
+//
+//      설명(Description):
+//          DDR4의 명령/주소(Command/Address), 데이터(Data),
+//          그리고 사이드밴드(sideband) 신호를 모델링한
+//          SystemVerilog 인터페이스.
+//
+//      목적(Purpose):
+//          - 다음 구성 요소들 사이의
+//            통합된(unified) 연결 지점을 제공함:
+//              * 메모리 컨트롤러(Memory Controller, MC)
+//              * DDR PHY / 메모리 모델
+//          - modport를 사용하여
+//            CA(Command/Address), DQ(Data), 사이드밴드 신호를
+//            논리적으로 분리함.
+//
+//  참고(NOTE):
+//      본 DDR4 인터페이스 정의는
+//      GitHub에 공개된 DDR4 인터페이스 예제들을 참고하여 작성되었음.
+//      (https://github.com/ananthbhat94/DDR4MemoryController/blob/master/DDR4Interface.sv)
+//
+//      인터페이스의 전체 구조와 신호 그룹 구성은
+//      본 프로젝트의 메모리 컨트롤러 및 메모리 모델 아키텍처에
+//      맞도록 수정 및 단순화되었음.
+//
+//      작성자  : Seongwon Jo
+//      작성일  : 2026.02
+//////////////////////////////////////////////////////////////////////////////////////////
 
 interface DDR4Interface #(
 	parameter int COMMAND_WIDTH = 18,
