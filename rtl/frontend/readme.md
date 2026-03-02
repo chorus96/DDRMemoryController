@@ -243,16 +243,3 @@ Write ACK와 Read 응답 간에 고정 우선순위는 없음
 
 이를 통해 처리량 균형을 유지하면서 장기적인 starvation을 방지함
 
-
-
----
-
-원하시면 다음 주제도 이어서 설명해 드릴 수 있습니다:
-
-왜 Write는 “조립 완료 후 선점(preemptive)” 구조인지
-
-Read 응답에서 buffer-depth 기반 우선순위가 필요한 이유
-
-Frontend ↔ Backend 인터페이스 신호 정의
-
-AXI ID/User 기반 Write Assembly의 정확성 보장 방식
