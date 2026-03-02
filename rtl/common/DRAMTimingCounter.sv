@@ -82,7 +82,7 @@ module DRAMTimingCounter(
                     end
                 end else begin
                     countLoad <= 0;
-                    countEnd <= 0;
+                    countEnd  <= 0;
                 end
             end
         end
