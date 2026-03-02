@@ -57,32 +57,30 @@
 //////////////////////////////////////////////////////////////////////////////////////////
 
 module DRAMTimingCounter(
-    input logic clk, 
-    input logic rst,
-    input logic setup,
-    input logic[5:0] load,
+    input  logic clk, 
+    input  logic rst,
+    input  logic setup,
+    input  logic [5:0] load,
     output logic timeUp
     );
 
     logic [5:0] countLoad;
     logic       countEnd;
     
-    always_ff@(posedge clk or negedge rst) begin
+    always_ff @(posedge clk or negedge rst) begin
         if(!rst)begin
             countLoad <= 0;
             countEnd  <= 0;
         end else begin
             if(setup) begin
                 countLoad <= load;
-            end
-            else begin
+            end else begin
                 if(countLoad != 0) begin
                     countLoad <= countLoad - 1;
                     if(countLoad == 1) begin
                         countEnd <= 1;
                     end
-                end
-                else begin
+                end else begin
                     countLoad <= 0;
                     countEnd <= 0;
                 end
@@ -99,6 +97,5 @@ module DRAMTimingCounter(
     ) else
         $error("DRAMTimingCounter: setup and countEnd asserted together");
 `endif
-
 
 endmodule
