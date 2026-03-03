@@ -100,6 +100,7 @@ Run using:
 
 ```bash
 ./scripts/xsim_uvm.sh
+```
 ---
 # 검증 아키텍처 (Verification Architecture)
 
@@ -203,3 +204,4 @@ DUT는 다음 항목에 대해 검증됩니다:
 
 ```bash
 ./scripts/xsim_uvm.sh
+```
