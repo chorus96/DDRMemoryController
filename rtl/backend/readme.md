@@ -426,17 +426,3 @@ AP-WRITE: tWR + tRP
 > Frontend가 “무엇을 할지” 결정한다면,
 Backend는 “언제 DRAM이 허용하는 방식으로 실행할지”를 책임진다.
 
-
-
-
----
-
-원하시면 다음도 이어서 설명할 수 있습니다:
-
-Channel Mode 전환 히스테리시스 설계
-
-RankExecutionUnit 내부 FSM 상세
-
-FR-FCFS에서 Page Hit Short/Long의 실제 성능 차이
-
-PHY ACK 신호가 필요한 정확한 이유
