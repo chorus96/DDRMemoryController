@@ -195,7 +195,6 @@ This project supports automated linting, synthesis, and simulation.
 | 단계       | 도구                    | 설명                                   |
 |------------|--------------------------|-----------------------------------------------|
 | 린트       | Verilator 5.045          | SystemVerilog 린트 및 정적 분석          |
-| 합성  | Yosys 0.62+0             | RTL 합성 (Nangate45 기술 매핑)  |
 | 시뮬레이션 | Vivado 2024.2 (XSIM)     | 기능 시뮬레이션 및 파형 분석     |
 
 ### 실행 예제
@@ -204,9 +203,6 @@ This project supports automated linting, synthesis, and simulation.
 # 린트 (RTL & BFM)
 ./scripts/lint_rtl.sh
 ./scripts/lint_bfm.sh
-
-# 합성
-./scripts/syn_nangate45.sh
 
 # 시뮬레이션 (UVM 유사 테스트벤치, XSIM)
 ./scripts/xsim_uvm.sh
