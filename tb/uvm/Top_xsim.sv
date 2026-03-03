@@ -37,6 +37,7 @@ module Top_xsim;
     ) DDR4Interface_CH0(
         .clk(clk), .rst(rst_n)
     );
+
     DDR4Interface #(
         .COMMAND_WIDTH(COMMAND_WIDTH),
         .MEM_DATAWIDTH(MEM_DATAWIDTH),

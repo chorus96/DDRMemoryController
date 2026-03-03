@@ -111,7 +111,7 @@ import MemoryController_Definitions::*;
 import MemoryController_Definitions::cache_side_request;
 import MemoryController_Definitions::cache_side_response;
 `endif
-module MemoryController#(
+module MemoryController #(
     parameter int AXI_DATAWIDTH     = 64,
     parameter int AXI_ADDRWIDTH     = 32,
     parameter int AXI_IDWIDTH       = 4,
