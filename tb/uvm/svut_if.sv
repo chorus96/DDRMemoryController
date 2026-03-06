@@ -2,8 +2,8 @@
 
 `define TESTBENCH
 
+// SystemVerilog Unit Test Interface
 package svut_if;
-
     parameter int ERRORCNTWIDTH = 10;
     parameter int DEADLOCKCNT = 1024;
     parameter int TBREADREQWIDTH = 10;
