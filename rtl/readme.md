@@ -153,3 +153,218 @@ starvation 방지, 공정성(fairness),deterministic fallback
 
 **읽기/쓰기 데이터 버스트 요청 윈도우(Read/Write Data Burst Request Window)**  
   - PHY가 관리하는 데이터 버스트 윈도우로서, 결정적 메타데이터(예: 읽기/쓰기 데이터의 주소) 동기화를 수행하며, 익명 DRAM 버스트를 특정 읽기/쓰기 버퍼 요청에 매핑합니다.
+
+아래 내용은 chatgpt해석으로 오류가 있을 수 있습니다. ^^
+이 문장은 DDR 메모리 컨트롤러에서 Read/Write 데이터가 실제 DRAM 버스트와 어떻게 매칭되는지 설명하는 부분입니다. 핵심은 **“DRAM 버스트는 익명(anonymous)으로 나오기 때문에, 이를 어떤 요청에 해당하는 데이터인지 식별해야 한다”**는 것입니다.
+
+아래 순서로 이해하면 쉽습니다.
+
+
+---
+
+1️⃣ 문제: DRAM 데이터 버스트는 “익명”으로 나온다
+
+DDR에서는 명령과 데이터가 시간적으로 분리됩니다.
+
+예시
+
+t0 : READ command issued
+t1~tCL : DRAM 내부 동작
+tCL 이후 : 데이터 burst 출력
+
+하지만 실제 PHY 관점에서는
+
+DQ bus → 데이터만 나옴
+
+여기에는
+
+이 데이터가 어떤 READ 요청의 것인지
+
+정보가 없습니다.
+
+즉
+
+DRAM data burst = anonymous
+
+입니다.
+
+
+---
+
+2️⃣ 해결 방법: Data Burst Request Window
+
+그래서 PHY가 “데이터가 나올 시간 창(window)”을 관리합니다.
+
+이것이 바로
+
+Read/Write Data Burst Request Window
+
+입니다.
+
+개념
+
+READ command issued
+      ↓
+PHY가 예상 데이터 도착 시간 계산
+      ↓
+"read data window" 생성
+      ↓
+해당 시간에 들어오는 데이터
+→ 특정 request에 매핑
+
+
+---
+
+3️⃣ Read 경로 동작
+
+예시
+
+Cycle 0  : READ bank1 rowA
+Cycle 1  : READ bank2 rowB
+Cycle 12 : burst data #1
+Cycle 13 : burst data #2
+
+PHY 내부
+
+Read Buffer Request Queue
+
+Req0 → bank1,rowA
+Req1 → bank2,rowB
+
+그리고 PHY는 timing을 알고 있습니다.
+
+예
+
+tCL = 12 cycles
+
+그래서
+
+Cycle 12 → Req0 데이터
+Cycle 13 → Req1 데이터
+
+로 자동 매핑합니다.
+
+이때 사용하는 것이
+
+Read Data Burst Window
+
+입니다.
+
+
+---
+
+4️⃣ Write 경로 동작
+
+Write도 비슷합니다.
+
+WRITE 명령 이후
+
+tCWL 이후
+DQ bus에 data burst 전송
+
+PHY는
+
+Write Buffer Request
+
+를 가지고 있습니다.
+
+Write Req0
+Write Req1
+Write Req2
+
+그리고
+
+Write Data Burst Window
+
+동안
+
+Write Buffer → DQ bus
+
+를 수행합니다.
+
+즉
+
+버스트 데이터
+→ 특정 write request
+
+로 연결됩니다.
+
+
+---
+
+5️⃣ "결정적 메타데이터 동기화" 의미
+
+문장에 나온
+
+> 결정적 메타데이터(예: 주소)
+
+
+
+의 의미는
+
+어떤 요청인지 식별하는 정보
+
+입니다.
+
+예
+
+Request metadata
+- AXI ID
+- Address
+- Burst length
+- Buffer pointer
+
+이 정보는 컨트롤러 내부에 있고
+
+DQ bus에는 존재하지 않습니다
+
+그래서 PHY는
+
+Command timing
++
+Data window
+
+를 이용해
+
+metadata ↔ data burst
+
+를 동기화합니다.
+
+
+---
+
+6️⃣ 그래서 문장의 의미
+
+원문
+
+> 익명 DRAM 버스트를 특정 읽기/쓰기 버퍼 요청에 매핑합니다.
+
+
+
+의 의미는
+
+DQ bus에 나타난 burst 데이터가
+어떤 Read/Write 요청의 것인지
+PHY가 timing window를 이용해 연결한다
+
+입니다.
+
+
+---
+
+7️⃣ 한 문장 정리
+
+Read/Write Data Burst Request Window
+
+→ PHY가 DRAM burst가 발생하는 시간 구간을 관리하여,
+DQ 버스의 익명 데이터 버스트를 특정 Read/Write 요청과 매칭시키는 메커니즘
+
+
+---
+
+원하시면 다음도 설명해 드리겠습니다 (DDR 컨트롤러 설계에서 매우 중요합니다)
+
+1️⃣ 왜 DRAM 데이터는 주소 없이 나오는가
+2️⃣ PHY Read FIFO / Write FIFO 구조
+3️⃣ tCL / tCWL 기반 data return scheduling
+4️⃣ 왜 DDR 컨트롤러에서 Data Window tracking logic이 반드시 필요한가
