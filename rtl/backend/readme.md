@@ -177,7 +177,7 @@ The timing for Auto-Precharge operations is managed by the APTimingScheduler wit
 
 - **기본 우선순위**: 시스템은 기본적으로 Read Mode를 유지하여 Read 요청을 우선 처리합니다.  
 - **Write Mode 진입 조건**: 쓰기 요청이 특정 임계 범위에 도달하면 시스템은 Write Mode로 전환합니다.  
-  - 조건: ( Min_{bound} < \text{Write Requests 수} < Max_{bound} )
+  - 조건: ( Min_bound < Write Requests 수 < Max_bound )
   - 위 조건을 만족하거나 모든 랭크에 Read 요청이 없을 경우, 컨트롤러는 Write Mode로 전환되어 누적된 Write 트래픽을 처리합니다.  
 
 
