@@ -250,6 +250,14 @@ module MemoryController #(
     //      - Performs Write Request assembly for AXI-AW channel and AXI-W channel.
     //      - Ensures a single in-flight request semantics at controller entry.
     //------------------------------------------------------------------------------
+    //------------------------------------------------------------------------------
+    //      메모리 컨트롤러 프론트엔드
+    //
+    //      - 캐시 측(AXI와 유사한 인터페이스)의 요청을 내부 메모리 컨트롤러(MC) 요청으로 변환합니다.
+    //      - AXI-AW 채널과 AXI-W 채널에 대해 Write 요청 조립(assembly)을 수행합니다.
+    //      - 컨트롤러 진입 지점에서는 동시에 하나의 요청만 처리되는
+    //        단일 인플라이트 요청(single in-flight request) 의미론을 보장합니다.
+    //------------------------------------------------------------------------------
     MemoryControllerFrontend #(
         .AXI_ADDRWIDTH(AXI_ADDRWIDTH), .AXI_USERWIDTH(AXI_USERWIDTH),
         .AXI_IDWIDTH(AXI_IDWIDTH), .AXI_DATAWIDTH(AXI_DATAWIDTH),
@@ -288,8 +296,8 @@ module MemoryController #(
             Ch0_RankFSMWriteReady_r <= '0;
             Ch1_RankFSMWriteReady_r <= '0;
         end else begin
-            Ch0_RankFSMReadReady_r <= Ch0_RankFSMReadReady;
-            Ch1_RankFSMReadReady_r <= Ch1_RankFSMReadReady;
+            Ch0_RankFSMReadReady_r  <= Ch0_RankFSMReadReady;
+            Ch1_RankFSMReadReady_r  <= Ch1_RankFSMReadReady;
             Ch0_RankFSMWriteReady_r <= Ch0_RankFSMWriteReady;
             Ch1_RankFSMWriteReady_r <= Ch1_RankFSMWriteReady;
         end
@@ -302,6 +310,13 @@ module MemoryController #(
     //      - Routes MC request to channel backend based on channel address bit.
     //      - No arbitration is required since frontend issues only one request at a time.
     //              (Response can come concurrently from each backends)
+    //------------------------------------------------------------------------------
+    //------------------------------------------------------------------------------
+    //      채널 디스패치 로직
+    //
+    //      - 채널 주소 비트(channel address bit)를 기반으로 MC 요청을 해당 채널의 백엔드로 전달합니다.
+    //      - 프론트엔드는 한 번에 하나의 요청만 발행하므로 별도의 중재(arbitration)는 필요하지 않습니다.
+    //        (단, 응답은 각 백엔드에서 동시에(concurrently) 도착할 수 있습니다.)
     //------------------------------------------------------------------------------
 
     assign ch0_MCReq.mem_addr       = (mc_req.mem_addr.channel == 0)  ? mc_req.mem_addr   : 0;
@@ -346,6 +361,12 @@ module MemoryController #(
     //      - Handles rank/bank-level scheduling and DDR timing.
     //      - Owns read/write data buffers and PHY FIFO.
     //------------------------------------------------------------------------------
+    //------------------------------------------------------------------------------
+    //      메모리 컨트롤러 백엔드 (채널별)
+    //
+    //      - 랭크(rank) 및 뱅크(bank) 수준의 스케줄링과 DDR 타이밍을 처리합니다.
+    //      - 읽기/쓰기 데이터 버퍼와 PHY FIFO를 자체적으로 관리합니다.
+    //------------------------------------------------------------------------------    
     MemoryControllerBackend #(
         .DEVICE_CHANNEL(0),
         .MEM_DATAWIDTH(MEM_DATAWIDTH), .MEM_IDWIDTH(MEM_IDWIDTH),
