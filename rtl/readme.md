@@ -153,9 +153,10 @@ starvation 방지, 공정성(fairness),deterministic fallback
 
 **읽기/쓰기 데이터 버스트 요청 윈도우(Read/Write Data Burst Request Window)**  
   - PHY가 관리하는 데이터 버스트 윈도우로서, 결정적 메타데이터(예: 읽기/쓰기 데이터의 주소) 동기화를 수행하며, 익명 DRAM 버스트를 특정 읽기/쓰기 버퍼 요청에 매핑합니다.
-
+---
 아래 내용은 chatgpt해석으로 오류가 있을 수 있습니다. ^^
-이 문장은 DDR 메모리 컨트롤러에서 Read/Write 데이터가 실제 DRAM 버스트와 어떻게 매칭되는지 설명하는 부분입니다. 핵심은 **“DRAM 버스트는 익명(anonymous)으로 나오기 때문에, 이를 어떤 요청에 해당하는 데이터인지 식별해야 한다”**는 것입니다.
+
+위 문장은 DDR 메모리 컨트롤러에서 Read/Write 데이터가 실제 DRAM 버스트와 어떻게 매칭되는지 설명하는 부분입니다. 핵심은 **“DRAM 버스트는 익명(anonymous)으로 나오기 때문에, 이를 어떤 요청에 해당하는 데이터인지 식별해야 한다”**는 것입니다.
 
 아래 순서로 이해하면 쉽습니다.
 
@@ -358,13 +359,3 @@ Read/Write Data Burst Request Window
 
 → PHY가 DRAM burst가 발생하는 시간 구간을 관리하여,
 DQ 버스의 익명 데이터 버스트를 특정 Read/Write 요청과 매칭시키는 메커니즘
-
-
----
-
-원하시면 다음도 설명해 드리겠습니다 (DDR 컨트롤러 설계에서 매우 중요합니다)
-
-1️⃣ 왜 DRAM 데이터는 주소 없이 나오는가
-2️⃣ PHY Read FIFO / Write FIFO 구조
-3️⃣ tCL / tCWL 기반 data return scheduling
-4️⃣ 왜 DDR 컨트롤러에서 Data Window tracking logic이 반드시 필요한가
