@@ -22,8 +22,6 @@ module Top_xsim;
     always #1 clk2x = ~clk2x;
 
     `ifndef VERILATOR
-
-
     DDR4Interface #(
         .COMMAND_WIDTH(COMMAND_WIDTH),
         .MEM_DATAWIDTH(MEM_DATAWIDTH),
