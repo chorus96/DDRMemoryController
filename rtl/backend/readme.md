@@ -202,10 +202,8 @@ The timing for Auto-Precharge operations is managed by the APTimingScheduler wit
 
 LFSR 결과가 Zero-vector(선택 없음)인 경우, LSB 우선순위에 따라 사용 가능한 랭크를 선택합니다.  
 
-```
 **폴백 메커니즘(Fallback Mechanism)**은
 원래 사용하려던 방법이 실패하거나 유효하지 않을 때, 시스템이 안정적으로 동작하도록 대체 방법을 사용하는 구조를 의미합니다.
-```
 
 ## 뱅크 그랜트 스케줄링 정책 (Bank Grant Scheduling Policy – Bank-level Parallelism 극대화)
 
