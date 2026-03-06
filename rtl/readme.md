@@ -105,21 +105,22 @@ rtl/
 **랭크 그랜트 스케줄링(Rank Grant Scheduling)**  
   - 깊이 기반 우선순위를 적용하며, LFSR 기반 타이브레이킹(tie-breaking)과 LSB 우선순위(LSB-priority) 폴백을 사용합니다.
 ```
-문장의 의미를 자연스럽게 풀면 다음과 같습니다.
-
-해석
-
 > 깊이(depth) 기반 우선순위를 적용하며, 동일한 조건일 경우 LFSR 기반 타이브레이킹(tie-breaking)을 사용하고, 그마저 결정되지 않을 경우 LSB 우선순위 방식으로 최종 선택합니다.
 
-
-
 용어 설명
-
 깊이 기반 우선순위 (Depth-based priority)
 → 큐(queue)에 쌓인 요청의 개수(깊이)가 많은 대상을 우선 선택하는 방식
 
 타이브레이킹 (Tie-breaking)
 → 우선순위가 동일할 때 누구를 먼저 선택할지 결정하는 추가 규칙
+
+Tie의 기본 의미
+→ 묶다, 동점이 되다
+스포츠나 경쟁에서 점수가 같은 상태를 의미합니다.
+의미: 묶다(bind), 연결하다(fasten)
+“묶여 있다 → 서로 떨어지지 않는다 → 승부가 나지 않는다”
+라는 의미 확장이 일어났습니다.
+그래서 tie = 동점 / 무승부가 됩니다.
 
 LFSR 기반 타이브레이킹
 → Linear Feedback Shift Register 기반의 의사난수(pseudo-random) 값을 사용하여 공정하게 선택
@@ -128,9 +129,7 @@ LSB 우선순위 폴백 (LSB-priority fallback)
 → 마지막 단계의 결정 규칙
 → 가장 낮은 비트(Least Significant Bit)가 1인 항목을 선택
 
-
 즉 구조적으로 보면
-
 1️⃣ Depth 비교
    ↓
 2️⃣ 동일 depth → LFSR 랜덤 선택
@@ -138,17 +137,8 @@ LSB 우선순위 폴백 (LSB-priority fallback)
 3️⃣ 그래도 결정 안되면 → LSB priority
 
 이 구조는 메모리 컨트롤러 스케줄러에서
-
-starvation 방지
-
-공정성(fairness)
-
-deterministic fallback
-
-
+starvation 방지, 공정성(fairness),deterministic fallback
 을 동시에 만족시키기 위해 자주 사용하는 방식입니다.
-
-원하시면 **왜 Rank Scheduler에서 LFSR tie-breaking을 넣는지 (실제 DRAM controller 설계 관점)**도 설명드리겠습니다.
 ```
 
 **뱅크 그랜트 스케줄링(Bank Grant Scheduling)**  
