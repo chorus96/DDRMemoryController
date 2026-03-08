@@ -36,6 +36,5 @@ B. 대상 FSM 선택 로직
 > 현재 코드에서 targetFSMIndex를 계산할 때 readAddr의 최상위 비트를 사용(readAddr[MEM_ADDRWIDTH-1 -: FSM_WIDTH])하는 부분과, readReady 비트를 체크할 때 {channel, rank}를 사용하는 부분 사이의 논리적 일관성을 확인해야 합니다. 만약 주소의 상위 비트 구성이 {channel, rank} 순서와 다르다면 잘못된 FSM을 가리킬 수 있습니다.
 > 2. 조합 논리(Combinational Logic) 루프
 > always_comb 블록을 사용하므로, 입력 신호에 따른 즉각적인 반응이 가능합니다. 다만, requestMemAddr의 할당이 조건문(if(readValid)) 내부와 외부에서 혼재될 경우 의도치 않은 래치(Latch)가 발생하지 않도록 초기값('0) 할당이 적절히 이루어져 있습니다.
-> 
-추가로 분석이 필요하시거나, 특정 주소 매핑 알고리즘(XOR 등)의 구현 방법이 궁금하시면 말씀해 주세요!
+>
 
