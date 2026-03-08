@@ -32,6 +32,39 @@
 //      Author  : Seongwon Jo
 //      Created : 2026.02
 //////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////
+//      CMDGrantScheduler
+//
+//      역할:
+//          채널 수준(Channel-level)에서 CMD 버스 중재(arbitration)를 수행하는 로직이다.
+//          요청 가능 상태와 요청 큐 깊이를 기반으로 DDR 명령을 발행할
+//          RankController를 정확히 하나 선택한다.
+//
+//      스케줄링 정책:
+//          - 큐 깊이 기반 우선순위(Queue-depth-aware priority):
+//              * 요청 큐가 가장 깊은 Rank를 우선적으로 선택한다.
+//          - 랜덤 타이브레이킹(Random tie-breaking):
+//              * 여러 Rank가 동일한 큐 깊이를 가질 경우
+//                LFSR을 이용한 의사 난수 방식으로 하나를 선택한다.
+//
+//      제약 조건:
+//          - 한 사이클에 오직 하나의 RankController만 grant를 받을 수 있다.
+//          - 내부 타이밍 제약(tRCD, tRP, tRFC 등)으로 대기 중인 RankController는
+//            선택 대상에서 제외된다.
+//          - READ 모드와 WRITE 모드를 분리하여 처리한다.
+//
+//      출력:
+//          - CMDGrantVector : 각 Rank에 대한 원-핫(one-hot) 방식의 grant 신호
+//          - rankTransition : CMD grant가 한 Rank에서 다른 Rank로 변경될 때
+//                             활성화되는 신호 (tRTR 타이밍 제약 적용에 사용)
+//
+//      참고:
+//          - 이 모듈은 중재(arbitration) 기능만 수행한다.
+//          - DDR 타이밍 제약은 외부의 turnaround 로직에서 처리된다.
+//
+//      작성자 : Seongwon Jo
+//      작성일 : 2026년 2월
+//////////////////////////////////////////////////////////////////////////////////////////
 
 module CMDGrantScheduler#(
     parameter int NUMRANK = 4,
