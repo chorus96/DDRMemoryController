@@ -2,13 +2,13 @@
 즉 모든 RTL 모듈(Frontend, Backend, Rank FSM, Buffer, PHY 등)이 공유하는 파라미터, 타입, 구조체, 타이밍 정의를 모아놓은 SystemVerilog package입니다.
 
 패키지 이름:
-
+```
 package MemoryController_Definitions;
-
+```
 이 패키지를 각 모듈에서
-
+```
 import MemoryController_Definitions::*;
-
+```
 로 불러 사용합니다.
 
 아래에서 설계 관점으로 구조를 단계별로 분석하겠습니다.
@@ -17,10 +17,10 @@ import MemoryController_Definitions::*;
 ---
 
 1️⃣ Verilator lint 제어
-
+```
 /* verilator lint_off TIMESCALEMOD */
 `timescale  1ns / 1ps
-
+```
 의미
 
 TIMESCALEMOD 경고를 끔
@@ -29,21 +29,21 @@ package에 timescale이 있어도 Verilator가 경고하지 않도록 함
 
 
 마지막에 다시 켭니다.
-
+```
 /* verilator lint_on TIMESCALEMOD */
-
+```
 
 ---
 
 2️⃣ Memory Controller 기본 파라미터
-
+```
 parameter int MEM_ADDRWIDTH = 32;
 parameter int MEM_DATAWIDTH = 64;
 parameter int MEM_IDWIDTH   = 4;
 parameter int MEM_USERWIDTH = 1;
 parameter int COMMAND_WIDTH = 18;
 parameter int BURST_LENGTH  = 8;
-
+```
 설계 의미
 
 파라미터	의미
