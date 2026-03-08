@@ -11,20 +11,20 @@ common/PriorityEncoder_LSB.sv
 # ===============================
 # Backend
 # ===============================
-backend/APTimingScheduler.sv
-backend/CMDGrantScheduler.sv
-backend/CMDTurnaroundGrant.sv
-backend/DQRdWrCCDGrant.sv
-backend/DQTurnaroundGrant.sv
-backend/PHYController.sv
-backend/PHYReadMode.sv
-backend/PHYWriteMode.sv
-backend/RankExecutionUnit.sv
-backend/RankSched.sv
-backend/RankController.sv
-backend/ReadBufferController.sv
-backend/WriteBufferController.sv
-backend/ChannelController.sv
+backend/RankController/APTimingScheduler.sv
+backend/ChannelController/CMDGrantScheduler.sv
+backend/ChannelController/CMDTurnaroundGrant.sv
+backend/ChannelController/DQRdWrCCDGrant.sv
+backend/ChannelController/DQTurnaroundGrant.sv
+backend/PHYController/PHYController.sv
+backend/PHYController/PHYReadMode.sv
+backend/PHYController/PHYWriteMode.sv
+backend/RankController/RankExecutionUnit.sv
+backend/RankController/RankSched.sv
+backend/RankController/RankController.sv
+backend/RWBufferController/ReadBufferController.sv
+backend/RWBufferController/WriteBufferController.sv
+backend/ChannelController/ChannelController.sv
 backend/MemoryControllerBackend.sv
 
 # ===============================
