@@ -57,47 +57,47 @@ parameter int BURST_LENGTH  = 8;
 
 
 예
-
+```
 DDR4 BL8
-
+```
 이 컨트롤러도 BL8 burst 구조입니다.
 
 
 ---
 
 3️⃣ DRAM 주소 구조 정의
-
+```
 CH-RK-BG-BK-ROW-COL
-
+```
 각 필드
-
+```
 parameter int RWIDTH  = 15;
 parameter int CWIDTH  = 10;
 parameter int BGWIDTH = 2;
 parameter int BKWIDTH = 2;
 parameter int RKWIDTH = 2;
 parameter int CHWIDTH = 1;
-
+```
 주소 구조
-
+```
 | Channel | Rank | BankGroup | Bank | Row | Column |
-
+```
 비트 수
 
 필드	비트
-
+```
 Channel	1
 Rank	2
 BankGroup	2
 Bank	2
 Row	15
 Column	10
-
+```
 
 합계
-
+```
 1 + 2 + 2 + 2 + 15 + 10 = 32bit
-
+```
 → AXI 주소와 정확히 매핑
 
 
@@ -108,31 +108,31 @@ Column	10
 parameter int DEVICEPERRANK = 8;
 
 의미
-
+```
 x8 DRAM chip 8개
-
+```
 즉
-
+```
 64bit data bus
-
+```
 구조
-
+```
 8 chips × 8bit = 64bit
-
+```
 
 ---
 
 5️⃣ Buffer 및 Queue 구조
-
+```
 READCMDQUEUEDEPTH  = 8
 WRITECMDQUEUEDEPTH = 8
 READBUFFERDEPTH    = 128
 WRITEBUFFERDEPTH   = 128
-
+```
 의미
 
 구조	깊이
-
+```
 Read command queue	8
 Write command queue	8
 Read data buffer	128
@@ -142,45 +142,45 @@ Write data buffer	128
 Read/Write buffer entry
 
 64 Byte per entry
-
+```
 즉
-
+```
 128 × 64B = 8KB
-
+```
 버퍼 크기.
 
 
 ---
 
 6️⃣ Open Page List
-
+```
 OPENPAGELISTDEPTH = 1 << (BKWIDTH+BGWIDTH);
-
+```
 계산
-
+```
 BKWIDTH = 2
 BGWIDTH = 2
 
 2^(2+2) = 16
-
+```
 즉
-
+```
 16 banks
-
+```
 → 각 bank의 open row tracking.
 
 
 ---
 
 7️⃣ Memory 구조 규모
-
+```
 NUMCHANNEL   = 2
 NUMRANK      = 4
 NUMBANKGROUP = 4
 NUMBANK      = 4
-
+```
 전체 bank 수
-
+```
 2 channels
 4 ranks
 4 bankgroups
@@ -189,27 +189,27 @@ NUMBANK      = 4
 총 bank
 
 2 × 4 × 4 × 4 = 128 banks
-
+```
 
 ---
 
 8️⃣ Rank Execution Unit
-
+```
 NUM_RANKEXECUTION_UNIT = 1 << (RKWIDTH + CHWIDTH)
-
+```
 계산
-
+```
 RKWIDTH = 2
 CHWIDTH = 1
 
 2^(3) = 8
-
+```
 즉
-
+```
 8 Rank Execution Units
-
+```
 구조
-
+```
 Channel0 Rank0
 Channel0 Rank1
 Channel0 Rank2
@@ -219,50 +219,50 @@ Channel1 Rank0
 Channel1 Rank1
 Channel1 Rank2
 Channel1 Rank3
-
+```
 
 ---
 
 9️⃣ PHY FIFO 구조
-
+```
 PHYFIFOMAXENTRY = 4
 PHYFIFODEPTH = PHYFIFOMAXENTRY * BURST_LENGTH
-
+```
 계산
-
+```
 4 × 8 = 32
-
+```
 즉
-
+```
 32 data entries
 
 PHY에서 burst data buffering.
-
+```
 
 ---
 
 🔟 Scheduling 정책 파라미터
-
+```
 THRESHOLD = 512
 AGINGWIDTH = 10
 CHMODETHRESHOLD = 16
 RESPSCHEDULINGCNT = 4
-
+```
 설계 의미
 
-파라미터	의미
-
-THRESHOLD	starvation 방지
-AGINGWIDTH	aging counter width
-CHMODETHRESHOLD	read/write mode switching
-RESPSCHEDULINGCNT	response scheduler fairness
+|파라미터|	의미|
+|---|---|
+|THRESHOLD|	starvation 방지|
+|AGINGWIDTH|	aging counter width|
+|CHMODETHRESHOLD	|read/write mode switching|
+|RESPSCHEDULINGCNT	|response scheduler fairness|
 
 
 
 ---
 
 11️⃣ DRAM 주소 구조체
-
+```
 typedef struct packed {
     logic channel;
     logic rank;
@@ -271,19 +271,19 @@ typedef struct packed {
     logic row;
     logic col;
 } mem_addr_t;
-
+```
 이 구조는
-
+```
 AXI address
 → DRAM address
-
+```
 변환 후 저장됩니다.
 
 
 ---
 
 12️⃣ Buffer Directory Entry
-
+```
 Read buffer entry
 
 typedef struct packed {
@@ -303,22 +303,22 @@ typedef struct packed {
     issued
     valid
 }
-
+```
 추가 필드
 
-필드	의미
-
-ptr	write buffer pointer
-strb	byte mask
-issued	command issued
-valid	entry valid
+|필드|	의미|
+|---|---|
+|ptr	|write buffer pointer|
+|strb	|byte mask|
+|issued	|command issued|
+|valid	|entry valid|
 
 
 
 ---
 
 13️⃣ FSM Request 구조
-
+```
 typedef struct packed {
     mem_addr_t mem_addr;
     logic [2:0] PageHit;
@@ -329,16 +329,16 @@ typedef struct packed {
     logic req_user;
     logic req_id;
 }
-
+```
 Rank Scheduler가 FSM에 전달하는 요청.
 
 Page 상태
 
-필드	의미
-
-PageHit	row hit
-PageMiss	row conflict
-PageEmpty	row closed
+|필드	|의미|
+|---|---|
+|PageHit	|row hit|
+|PageMiss	|row conflict|
+|PageEmpty	|row closed|
 
 
 
@@ -349,14 +349,14 @@ PageEmpty	row closed
 여기서 중요한 부분.
 
 예
-
+```
 tRCD  = 16
 tRP   = 16
 tCL   = 16
 tCWL  = 12
 tWR   = 18
 tRFC  = 256
-
+```
 이 값들은
 
 논문
@@ -379,30 +379,30 @@ WRITE → PRE timing
 15️⃣ AXI 인터페이스 정의
 
 AXI channel 구조
-
+```
 AW
 W
 AR
 R
 B
-
+```
 각각 struct로 정의
 
 예
-
+```
 axi_aw_chan_t
 axi_w_chan_t
 axi_ar_chan_t
 axi_r_chan_t
 axi_b_chan_t
-
+```
 이 구조는 AXI bus modeling에 사용됩니다.
 
 
 ---
 
 16️⃣ Cache side interface
-
+```
 typedef struct packed{
     aw
     w
@@ -410,21 +410,21 @@ typedef struct packed{
     r_ready
     b_ready
 }
-
+```
 즉
-
+```
 CPU cache → memory controller
-
+```
 요청.
 
 
 ---
 
 17️⃣ Memory controller side interface
-
+```
 mc_side_request
 mc_side_response
-
+```
 Frontend → Backend 인터페이스.
 
 
@@ -471,7 +471,7 @@ MC side
 ---
 
 📌 전체 아키텍처에서 위치
-
+```
 CPU
                  │
              AXI Bus
@@ -490,7 +490,7 @@ CPU
         │ Rank Scheduler  │
         │ Bank FSM        │
         └─────────────────┘
-
+```
 이 모든 모듈이
 
 MemoryController_Definitions
