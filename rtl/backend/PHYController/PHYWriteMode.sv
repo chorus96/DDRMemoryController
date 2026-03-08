@@ -206,11 +206,7 @@ module PHYWriteMode #(
 
     //-----------  Burst Data FIFO POP Process  (POP) ---------//
     assign outdata = (outflag) ? writeModeFIFO[burst_cnt_dram] : 'z; 
-    `ifdef VERILATOR_LINT
-        assign outDM = outflag ? ~writeModeDMFIFO[burst_cnt_dram] : '0;
-    `else
-        assign outDM = outflag ? ~writeModeDMFIFO[burst_cnt_dram] : 'z;
-    `endif
+    assign outDM = outflag ? ~writeModeDMFIFO[burst_cnt_dram] : 'z;
     /////////////////////////////////////////////////////////////
 
     //-----------  Burst Data FIFO PUSH Process  (PUSH) ---------//

@@ -119,14 +119,8 @@ module MemoryChannel#(
                 .tRP(tRP)
             ) MemoryRank_ins(
                 .clk(clk), .rst_n(rst_n), .clk2x(clk2x),
-                `ifndef VERILATOR_LINT
                 .rankDQS_t(ddr4_dq_if.dqs_t),
                 .rankDQS_c(ddr4_dq_if.dqs_c),
-                `endif
-                `ifdef VERILATOR_LINT
-                .rankDQS_t(channelDQS_t),
-                .rankDQS_c(channelDQS_c),                
-                `endif
                 .rankRdData(rankRdDQ[i]),
                 .rankWrData(rankWrDQ[i]),
                 .rankDataStrb(ddr4_dq_if.dm_n),
@@ -168,15 +162,9 @@ module MemoryChannel#(
         end
     end : ChannelDQS
 
-    `ifndef VERILATOR_LINT
     assign ddr4_dq_if.dqs_t = (channelDQRdValid) ?  channelDQS_t : 'z;
     assign ddr4_dq_if.dqs_c = (channelDQRdValid) ?  channelDQS_c : 'z;
-    `endif
 
-    `ifdef VERILATOR_LINT
-    assign ddr4_dq_if.dqs_t = (channelDQRdValid) ? channelDQS_t : '0;
-    assign ddr4_dq_if.dqs_c = (channelDQRdValid) ? channelDQS_c : '0;
-    `endif
     //-------------------------------------------------------------------------
     //  Read data arbitration (Rank → Channel)
     //
@@ -201,29 +189,13 @@ module MemoryChannel#(
     //-------------------------------------------------------------------------
 
 
-    `ifndef VERILATOR_LINT
     genvar j;
     generate
     for (j = 0; j < NUMRANK; j++) begin : genDQWrite
         assign rankWrDQ[j] = rankDQWrValid[j] ? ddr4_dq_if.pin_dq : 'z;
     end
     endgenerate
-    `endif
-
-    `ifdef VERILATOR_LINT
-    genvar k;
-    generate 
-        for(k = 0; k < NUMRANK; k++) begin : genDQWrite
-            assign rankWrDQ[k] = rankDQWrValid[k] ? ddr4_dq_if.pin_dq : 0; 
-        end
-    endgenerate
-    `endif
     
-    `ifndef VERILATOR_LINT
     assign ddr4_dq_if.pin_dq = channelDQRdValid ? rankDQValue : 'z;
-    `endif
 
-    `ifdef VERILATOR_LINT
-    assign ddr4_dq_if.pin_dq = channelDQRdValid ? rankDQValue : 0;
-    `endif
 endmodule

@@ -65,44 +65,9 @@ module MemoryBFM#(
     parameter int tRFC          = 256
 )(
     input logic clk, rst_n, clk2x
-    `ifndef VERILATOR_LINT
     ,DDR4Interface DDR4_CH0_IF,
     DDR4Interface DDR4_CH1_IF
-    `endif
 );
-    `ifdef VERILATOR_LINT
-        import MemoryController_Definitions::*;
-    `endif
-
-
-    `ifdef VERILATOR_LINT
-    DDR4Interface #(
-        .COMMAND_WIDTH(COMMAND_WIDTH),
-        .MEM_DATAWIDTH(MEM_DATAWIDTH),
-        .BURST_LENGTH(BURST_LENGTH),
-        .BGWIDTH(BGWIDTH),
-        .BKWIDTH(BKWIDTH),
-        .RWIDTH(RWIDTH),
-        .RKWIDTH(RKWIDTH),
-        .CWIDTH(CWIDTH),
-        .NUMRANK(NUMRANK)
-    ) DDR4_CH0_IF(
-        .clk(clk), .rst(rst_n)
-    );
-    DDR4Interface #(
-        .COMMAND_WIDTH(COMMAND_WIDTH),
-        .MEM_DATAWIDTH(MEM_DATAWIDTH),
-        .BURST_LENGTH(BURST_LENGTH),
-        .BGWIDTH(BGWIDTH),
-        .BKWIDTH(BKWIDTH),
-        .RWIDTH(RWIDTH),
-        .RKWIDTH(RKWIDTH),
-        .CWIDTH(CWIDTH),
-        .NUMRANK(NUMRANK)
-    ) DDR4_CH1_IF(
-        .clk(clk), .rst(rst_n)
-    );
-    `endif
 
     //-------------------------------------------------------------------------
     //  Channel 0 Memory BFM

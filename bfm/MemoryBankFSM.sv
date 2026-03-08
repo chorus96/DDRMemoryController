@@ -66,12 +66,7 @@ module MemoryBankFSM#(
     //          INOUT  TO/FROM  Memory RANK (For DQ)        //
     input  logic [MEM_DATAWIDTH-1:0] bankWrDQ,                  
     output logic [MEM_DATAWIDTH-1:0] bankRdDQ,
-    `ifndef VERILATOR_LINT
     inout  wire bankDQS_t, bankDQS_c,                          
-    `endif 
-    `ifdef VERILATOR_LINT
-    input wire bankDQS_t, bankDQS_c,
-    `endif
 
      //          OUTPUT  TO  Memory RANK (For READ DATA)     //
     output logic ReadBurstValid,                                

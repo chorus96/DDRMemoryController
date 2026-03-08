@@ -21,7 +21,6 @@ module Top_xsim;
     always #2 clk = ~clk;
     always #1 clk2x = ~clk2x;
 
-    `ifndef VERILATOR_LINT
     DDR4Interface #(
         .COMMAND_WIDTH(COMMAND_WIDTH),
         .MEM_DATAWIDTH(MEM_DATAWIDTH),
@@ -49,7 +48,6 @@ module Top_xsim;
     ) DDR4Interface_CH1(
         .clk(clk), .rst(rst_n)
     );
-    `endif
 
     MemoryController #(
         .AXI_DATAWIDTH(AXI_DATAWIDTH), .AXI_ADDRWIDTH(AXI_ADDRWIDTH), 

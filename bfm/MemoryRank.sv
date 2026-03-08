@@ -69,12 +69,7 @@ module MemoryRank#(
 )(
     input logic clk, rst_n, clk2x,
 
-    `ifndef VERILATOR_LINT
     inout wire rankDQS_t, rankDQS_c,
-    `endif
-    `ifdef VERILATOR_LINT
-    input wire rankDQS_t, rankDQS_c,
-    `endif
     output logic [MEM_DATAWIDTH-1:0] rankRdData,
     input logic [MEM_DATAWIDTH-1:0] rankWrData,
 
