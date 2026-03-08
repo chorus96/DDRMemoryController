@@ -13,9 +13,12 @@
 - AXI 기반 Frontend와 DDR PHY 사이 데이터 경로 관리
 
 즉 전체 구조에서
-
-CPU / Cache │ ▼ MemoryController Frontend │ ▼ MemoryControllerBackend (이 모듈) │ ▼ DDR PHY │ ▼ DDR4 DRAM
-
+```
+CPU / Cache
+│ ▼ MemoryController Frontend
+│ ▼ MemoryControllerBackend (이 모듈) │ ▼ DDR PHY
+│ ▼ DDR4 DRAM
+```
 에서 **채널 내부의 모든 실행 로직을 담당하는 핵심 블록**이다.
 
 ---
@@ -129,9 +132,13 @@ Frontend에서 Backend로 전달되는 요청은 다음과 같다.
 # 5. 내부 구조
 
 Backend는 크게 **4개의 주요 서브 모듈**로 구성된다.
-
-MemoryControllerBackend ├─ ChannelController ├─ ReadBufferController ├─ WriteBufferController └─ PHYController
-
+```
+MemoryControllerBackend
+ ├─ ChannelController
+ ├─ ReadBufferController
+ ├─ WriteBufferController
+ └─ PHYController
+```
 각 모듈은 서로 handshake 인터페이스로 연결된다.
 
 ---
