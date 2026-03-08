@@ -512,8 +512,3 @@ MemoryController_Definitions
 
 컨트롤러의 전체 아키텍처 사양(specification)을 코드로 표현한 파일입니다.
 
-
----
-
-원하시면 제가 이 코드에서 DDR 컨트롤러 설계자가 보면 바로 눈에 들어오는 중요한 설계 포인트 10가지도 분석해 드릴 수 있습니다.
-(특히 OpenPageList, RankExecutionUnit, PHY request window 설계가 꽤 고급 구조입니다.)
