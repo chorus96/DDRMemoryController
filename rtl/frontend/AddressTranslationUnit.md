@@ -1,4 +1,4 @@
-제시해주신 SystemVerilog 코드를 한 단어로 요약하면 다음과 같습니다.
+본 SystemVerilog 코드를 한 단어로 요약하면 다음과 같습니다.
 Decoder (또는 Router)
 이 모듈은 입력된 주소(Address) 정보를 해석(Decoding)하여, 해당 요청이 어느 FSM(Finite State Machine) 유닛으로 가야 할지를 결정하고 경로를 할당하는 전형적인 디코더/라우터의 역할을 수행하고 있습니다.
 분석 결과 보고서
@@ -16,4 +16,3 @@ Decoder (또는 Router)
    * targetFSMVector: 해당 인덱스만 1로 만드는 One-hot 인코딩 방식 적용
  * 핸드셰이크 확인 (Ready Check):
    단순히 주소만 바꾸는 것이 아니라, 대상 유닛의 Ready 신호를 확인하여 유효한 요청일 때만 타겟 신호를 활성화하는 제어 로직이 포함되어 있습니다.
-추가로 궁금하신 점이 있나요? 예를 들어, 특정 파라미터(FSM_WIDTH)의 계산 방식이나 구조체(MemoryAddress)의 세부 구현에 대해 더 알고 싶으시면 말씀해 주세요.
