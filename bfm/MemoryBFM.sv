@@ -65,17 +65,17 @@ module MemoryBFM#(
     parameter int tRFC          = 256
 )(
     input logic clk, rst_n, clk2x
-    `ifndef VERILATOR
+    `ifndef VERILATOR_LINT
     ,DDR4Interface DDR4_CH0_IF,
     DDR4Interface DDR4_CH1_IF
     `endif
 );
-    `ifdef VERILATOR
+    `ifdef VERILATOR_LINT
         import MemoryController_Definitions::*;
     `endif
 
 
-    `ifdef VERILATOR
+    `ifdef VERILATOR_LINT
     DDR4Interface #(
         .COMMAND_WIDTH(COMMAND_WIDTH),
         .MEM_DATAWIDTH(MEM_DATAWIDTH),

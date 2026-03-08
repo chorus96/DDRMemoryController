@@ -105,11 +105,11 @@
 //      작성일  : 2026.02
 //////////////////////////////////////////////////////////////////////////////////////////
 
-`ifndef VERILATOR
+`ifndef VERILATOR_LINT
 import MemoryController_Definitions::*;
 `endif
 
-`ifdef VERILATOR
+`ifdef VERILATOR_LINT
 import MemoryController_Definitions::cache_side_request;
 import MemoryController_Definitions::cache_side_response;
 `endif
@@ -177,18 +177,18 @@ module MemoryController #(
     // Cache-side
     input cache_side_request cache_req,
     output cache_side_response cache_resp
-    `ifndef VERILATOR
+    `ifndef VERILATOR_LINT
 
         ,DDR4Interface DDR4_CH0_IF,
         DDR4Interface DDR4_CH1_IF
     `endif
     );
 
-    `ifdef VERILATOR
+    `ifdef VERILATOR_LINT
     import MemoryController_Definitions::*;
     `endif
 
-    `ifdef VERILATOR
+    `ifdef VERILATOR_LINT
     // DRAM-side
     DDR4Interface #(
         .COMMAND_WIDTH(COMMAND_WIDTH),

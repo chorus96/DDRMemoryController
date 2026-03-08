@@ -64,6 +64,7 @@ if ! "$VERILATOR_PATH" --lint-only +1800-2017ext+sv \
     -Wno-UNUSEDSIGNAL \
     -Wno-UNOPTFLAT  \
     -Wno-WIDTHTRUNC \
+    -D"VERILATOR_LINT" \
     -I"$RTL_PATH" \
     -I"$RTL_PATH/common" \
     -I"$RTL_PATH/backend" \

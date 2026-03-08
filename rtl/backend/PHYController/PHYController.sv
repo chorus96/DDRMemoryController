@@ -231,19 +231,19 @@ module PHYController #(
         .outflag(writeOutFlag), 
         .outACK(writeServingACK)
     );
-    `ifdef VERILATOR
+    `ifdef VERILATOR_LINT
         assign ddr4_dataBus.dqs_t  = (readInFlag == 1) ? '0 :  (writeOutFlag) ? WriteModeDqs_t : '0;
     `else
         assign ddr4_dataBus.dqs_t  = (readInFlag == 1) ? 'z :  (writeOutFlag) ? WriteModeDqs_t : 'z;
     `endif
 
-    `ifdef VERILATOR
+    `ifdef VERILATOR_LINT
         assign ddr4_dataBus.dqs_c  = (readInFlag == 1) ? '0 :  (writeOutFlag) ? WriteModeDqs_c : '0;
     `else
         assign ddr4_dataBus.dqs_c  = (readInFlag == 1) ? 'z :  (writeOutFlag) ? WriteModeDqs_c : 'z;
     `endif
 
-    `ifdef VERILATOR
+    `ifdef VERILATOR_LINT
         assign ddr4_dataBus.pin_dq = (readInFlag == 1) ? '0 :  (writeOutFlag) ? WriteModeData  : '0;
     `else
         assign ddr4_dataBus.pin_dq = (readInFlag == 1) ? 'z :  (writeOutFlag) ? WriteModeData  : 'z;

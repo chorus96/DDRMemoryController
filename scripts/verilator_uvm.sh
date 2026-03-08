@@ -29,17 +29,15 @@ VERILATOR_PATH=$(command -v verilator)
 # ------------------------------------------------------------------------------
 # Resolve project paths
 #   - SCRIPT_DIR : location of this script
-#   - BFM_PATH   : top-level BFM directory
+#   - RTL_PATH   : top-level RTL directory
 #   - LOG_FILE   : lint output log
 # ------------------------------------------------------------------------------
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 PROJECT_ROOT="$(cd "$SCRIPT_DIR/.." && pwd)"
+RTL_PATH="$PROJECT_ROOT/rtl"
+LOG_FILE="$SCRIPT_DIR/lint_rtl.log"
 
-BFM_PATH="$(cd "$SCRIPT_DIR/../bfm" && pwd)"
-RTL_PATH="$(cd "$SCRIPT_DIR/../rtl" && pwd)"
-LOG_FILE="$SCRIPT_DIR/lint_bfm.log"
-
-if [ ! -d "$BFM_PATH" ]; then
+if [ ! -d "$RTL_PATH" ]; then
   printf "%bERROR:%b RTL directory not found: %s\n" "$Red" "$NC" "$RTL_PATH"
   exit 1
 fi 
@@ -47,12 +45,6 @@ fi
 printf "%bINFO:%b Verilator found at %s\n" "$Blue" "$NC" "$VERILATOR_PATH"
 printf "%bINFO:%b Memory Controller Lint START\n" "$Blue" "$NC"
 
-# ------------------------------------------------------------------------------
-# Run lint from RTL root
-#   - Required so that relative paths in filelist.f are resolved correctly
-# ------------------------------------------------------------------------------
-
-cd "$PROJECT_ROOT"
 
 # ------------------------------------------------------------------------------
 # Lint policy note:
@@ -62,23 +54,22 @@ cd "$PROJECT_ROOT"
 #       Parameterized RTL and PHY/NoC stub signals
 #   - WIDTHTRUNC / WIDTHEXPAND:
 #       Width adaptation from timing parameters, counters, and indices
-#   - UNDRIVEN / UNSUPPORTED:
-#       BFM utilizes 'z' state for DDR BUS and don't drive command signals.
 #
 # These warnings are expected by design and do not indicate functional issues.
 # ------------------------------------------------------------------------------
-if ! "$VERILATOR_PATH" --lint-only +1800-2017ext+sv \
+if ! "$VERILATOR_PATH" --sc +1800-2017ext+sv \
     -Wall -Wpedantic \
     -Wno-WIDTHEXPAND \
     -Wno-UNUSEDPARAM \
     -Wno-UNUSEDSIGNAL \
+    -Wno-UNOPTFLAT  \
     -Wno-WIDTHTRUNC \
-    -Wno-UNDRIVEN \
-    -D"VERILATOR_LINT" \
-    -I"$BFM_PATH" \
-    -I"$RTL_PATH/common/" \
-    -f "$SCRIPT_DIR/lint_bfm_filelist.f" \
-    --top-module MemoryBFM \
+    -I"$SCRIPT_DIR" \
+    -I"$RTL_PATH/common" \
+    -I"$RTL_PATH/backend" \
+    -I"$RTL_PATH/frontend" \
+    -f "$SCRIPT_DIR/verilator_filelist.f" \
+    --top-module Top_xsim \
     2> "$LOG_FILE"; then
   printf "%bERROR:%b Lint failed. See %s\n" "$Red" "$NC" "$LOG_FILE"
   exit 1;
