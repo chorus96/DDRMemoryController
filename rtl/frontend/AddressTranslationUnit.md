@@ -9,6 +9,7 @@
  * 병렬 처리 지원: 각 FSM 내부에서 뱅크 레벨의 병렬성(Bank-level parallelism)을 처리할 수 있도록 설계되었습니다.
  * 우선순위: 읽기 요청(readValid)이 쓰기 요청(writeValid)보다 우선적으로 처리되는 구조입니다.
 3. 입출력 포트 정의
+
 | 구분 | 포트명 | 비트 폭 | 설명 |
 |---|---|---|---|
 | Inputs | readAddr / writeAddr | AXI_ADDRWIDTH | AXI 시스템 물리 주소 |
@@ -17,6 +18,7 @@
 | Outputs | targetFSMVector | NUM_RANKEXECUTION_UNIT | 선택된 FSM을 가리키는 원-핫(One-hot) 벡터 |
 |  | targetFSMIndex | NUM_RANKEXECUTION_UNIT_BIT | 선택된 FSM의 인덱스 번호 |
 |  | requestMemAddr | MemoryAddress (struct) | 구조화된 DRAM 주소 데이터 |
+
 4. 내부 로직 분석
 A. 주소 변환 (Address Decoding)
 입력된 AXI 주소는 MemoryAddress 구조체의 필드 순서에 따라 슬라이싱되어 할당됩니다.
