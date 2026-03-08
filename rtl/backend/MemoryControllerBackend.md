@@ -229,9 +229,11 @@ Read Response 저장
 - AXI Read response 생성
 
 데이터 흐름
-
-DDR PHY ↓ ReadBuffer ↓ Frontend
-
+```
+DDR PHY
+↓ ReadBuffer
+↓ Frontend
+```
 ---
 
 # 9. WriteBufferController
@@ -248,9 +250,11 @@ Write Data Buffer
 - Write completion ACK 생성
 
 데이터 흐름
-
-Frontend ↓ WriteBuffer ↓ PHY
-
+```
+Frontend
+↓ WriteBuffer
+↓ PHY
+```
 ---
 
 # 10. PHYController
@@ -285,15 +289,23 @@ DDR DQ → PHY → ReadBuffer
 # 11. Backend 내부 데이터 흐름
 
 ## READ Path
-
-Frontend ↓ ChannelController ↓ PHY Controller ↓ ReadBuffer ↓ Frontend
-
+```
+Frontend
+↓ ChannelController
+↓ PHY Controller
+↓ ReadBuffer
+↓ Frontend
+```
 ---
 
 ## WRITE Path
-
-Frontend ↓ WriteBuffer ↓ ChannelController ↓ PHY Controller ↓ DDR
-
+```
+Frontend
+↓ WriteBuffer
+↓ ChannelController
+↓ PHY Controller
+↓ DDR
+```
 ---
 
 # 12. 인터페이스 구조
@@ -387,18 +399,3 @@ DDR Memory Controller의 실행 엔진
 MemoryControllerBackend는
 
 DDR 메모리 채널에서 DRAM 명령 스케줄링과 데이터 버퍼 관리 및 PHY 인터페이스를 수행하는 채널 단위 메모리 컨트롤러 실행 엔진이다.
-
-
-
-
----
-
-원하시면 제가 추가로 매우 중요한 것들도 설명해 드릴 수 있습니다.
-
-이 코드의 실제 DDR Controller 아키텍처 (전문가 관점)
-
-ChannelController 내부 FSM 구조
-
-Bank FSM 구조 (DRAM Controller 핵심)
-
-Address → Rank/Bank/Row/Column 매핑
