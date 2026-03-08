@@ -1,8 +1,3 @@
-아래는 제공된 CMDTurnaroundGrant SystemVerilog 코드의 구조와 동작을 단계적으로 한국어로 분석한 내용입니다.
-
-
----
-
 1. 모듈 개요
 
 CMDTurnaroundGrant 모듈은 DRAM 채널에서 Rank가 변경될 때 발생하는 CMD Bus Turnaround Timing(tRTRS) 제약을 관리하는 모듈입니다.
