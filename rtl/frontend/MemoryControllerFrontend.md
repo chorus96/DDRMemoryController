@@ -29,17 +29,17 @@
 
 # 2. 파라미터 설명
 
-  파라미터           의미
-  ------------------ -------------------------
-  AXI_ADDRWIDTH      AXI 주소 폭
-  AXI_DATAWIDTH      AXI 데이터 폭
-  AXI_IDWIDTH        AXI Transaction ID
-  AXI_USERWIDTH      AXI USER 필드
-  BURST_LENGTH       Write burst 길이
-  ASSEMBLER_DEPTH    Write assembler 큐 깊이
-  NUMRANK            DRAM Rank 개수
-  READBUFFERDEPTH    Read buffer depth
-  WRITEBUFFERDEPTH   Write buffer depth
+ | 파라미터           |의미|
+  |------------------ |-------------------------|
+  |AXI_ADDRWIDTH      |AXI 주소 폭|
+  |AXI_DATAWIDTH      |AXI 데이터 폭|
+  |AXI_IDWIDTH        |AXI Transaction ID|
+  |AXI_USERWIDTH      |AXI USER 필드|
+  |BURST_LENGTH       |Write burst 길이|
+  |ASSEMBLER_DEPTH    |Write assembler 큐 깊이|
+  |NUMRANK            |DRAM Rank 개수|
+  |READBUFFERDEPTH    |Read buffer depth|
+  |WRITEBUFFERDEPTH   |Write buffer depth|
 
 ------------------------------------------------------------------------
 
