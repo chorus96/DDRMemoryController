@@ -92,7 +92,7 @@ typedef struct packed {
     logic reqReadReqReady;
     logic reqWriteReqReady;
 } rankReq;
-
+```
 포함 정보
 
 주소
@@ -114,7 +114,7 @@ RankController Ready 상태
 3.2 chSched 구조체
 
 Channel Scheduler와 RankController 사이의 상태 정보이다.
-
+```
 typedef struct packed {
     logic chSchedCMDGranted;
     logic chSchedRdReady;
@@ -124,7 +124,7 @@ typedef struct packed {
     logic chSchedFSMWait;
     logic ccdType;
 } chSched;
-
+```
 역할
 
 CMD bus grant 상태
@@ -142,7 +142,7 @@ CAS-to-CAS timing 타입
 3.3 memBuffer 구조체
 
 Memory Buffer와의 인터페이스 신호를 저장한다.
-
+```
 typedef struct packed {
     logic bufReadPreACK;
     logic bufWritePreACK;
@@ -158,7 +158,7 @@ typedef struct packed {
 
     MemoryAddress bufReqACKAddr;
 } memBuffer;
-
+```
 기능
 
 Auto-precharge ACK 전달
@@ -172,14 +172,14 @@ Buffer allocation ACK 전달
 ---
 
 4. Request 카운팅 로직
-
+```
 always_comb begin : RdWrRequestCounting
-
+```
 모든 RankController의 request queue를 합산한다.
-
+```
 NumRdReq = Sum(RDReqCnt[i])
 NumWrReq = Sum(WRReqCnt[i])
-
+```
 목적
 
 Channel-level scheduling 판단
@@ -191,9 +191,9 @@ Read / Write 모드 전환 판단
 ---
 
 5. Auto Precharge ACK Routing
-
+```
 always_comb begin : AutoPreChargeACKFromPHYController
-
+```
 PHY Controller에서 전달된 Auto-Precharge 완료 신호를
 해당 RankController로 전달한다.
 
@@ -216,9 +216,9 @@ PHY Controller에서 전달된 Auto-Precharge 완료 신호를
 ---
 
 6. Memory Buffer Allocation ACK
-
+```
 always_comb begin : MEMBufferAllocationACK
-
+```
 RankController에서 발생한 요청을
 
 다음 두 곳으로 전달한다.
@@ -236,7 +236,7 @@ CMD issued ACK 전달
 
 
 동작 흐름
-
+```
 RankController
       │
       ▼
@@ -245,23 +245,23 @@ ChannelController
       ├── ReadBuffer
       ├── WriteBuffer
       └── PHYController
-
+```
 
 ---
 
 7. Frontend Request Demultiplexing
-
+```
 always_comb begin : RequestDemultiplexing
-
+```
 Frontend에서 들어온 요청을 해당 RankController로 분배한다.
 
 동작
-
+```
 if(RankReqMemAddr.rank == i)
     request -> rankReqVector[i]
-
+```
 즉
-
+```
 Frontend Request
         │
         ▼
@@ -269,7 +269,7 @@ Frontend Request
         │
  ┌──────┴──────┐
 Rank0 Rank1 Rank2 Rank3
-
+```
 
 ---
 
@@ -280,19 +280,19 @@ ChannelController는 두 가지 Bus를 스케줄링한다.
 8.1 CMD Bus Scheduling
 
 제약
-
+```
 tRTR
 rank-to-rank command turnaround
-
+```
 스케줄러
-
+```
 CMDGrantScheduler
-
+```
 정책
-
+```
 Queue Depth Priority
 + Random Tie Breaking
-
+```
 
 ---
 
@@ -301,41 +301,41 @@ Queue Depth Priority
 제약
 
 1️⃣ CAS-to-CAS delay
-
+```
 tCCD_S
 tCCD_L
-
+```
 2️⃣ Read/Write Turnaround
-
+```
 tRTW
 tWTR_S
 tWTR_L
-
+```
 모듈
-
+```
 DQRdWrCCDGrant
 DQTurnaroundGrant
-
+```
 최종 DQ 사용 가능 조건
-
+```
 DQFree = chRdWrAvailable && DQTurnaroundFree
-
+```
 
 ---
 
 9. RankController 구조
 
 현재 구현은
-
+```
 NUMRANK = 4
-
+```
 각 Rank마다 별도의 RankController 존재
-
+```
 RankController 0
 RankController 1
 RankController 2
 RankController 3
-
+```
 각 RankController의 역할
 
 Bank FSM 관리
@@ -391,12 +391,12 @@ channelIdle = 1
 always_comb begin : COMMANDADDRSetup
 
 동작
-
+```
 if(chSchedVector[i].chSchedCMDGranted)
     DDR_CMD = Rank_i_CMD
-
+```
 출력 신호
-
+```
 cke
 cs_n
 par
@@ -404,12 +404,12 @@ act_n
 pin_A
 bg
 b
-
+```
 
 ---
 
 13. 전체 아키텍처 구조
-
+```
 FrontEnd
                     │
                     ▼
@@ -425,7 +425,7 @@ FrontEnd
                     │
                     ▼
                 DDR4 CMD BUS
-
+```
 
 ---
 
@@ -449,32 +449,32 @@ Rank Scheduling	여러 RankController의 명령 충돌 해결
 이 ChannelController는 다음 설계 철학을 따른다.
 
 1️⃣ Hierarchical Memory Scheduling
-
+```
 ChannelController
      ↓
 RankController
      ↓
 BankFSM
-
+```
 
 ---
 
 2️⃣ Command/Data Path 분리
-
+```
 CMD Scheduling -> ChannelController
 DATA Movement -> PHYController
-
+```
 
 ---
 
 3️⃣ Timing Isolation
 
 각 Timing 제약을 독립 모듈로 분리
-
+```
 CMDTurnaroundGrant
 DQTurnaroundGrant
 DQRdWrCCDGrant
-
+```
 
 ---
 
@@ -513,5 +513,3 @@ Scalable Architecture
 
 를 달성하도록 설계되어 있다.
 
-
----
