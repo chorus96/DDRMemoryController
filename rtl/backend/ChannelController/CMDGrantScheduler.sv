@@ -116,33 +116,6 @@ module CMDGrantScheduler#(
         end
     end : MakingPseudoRandomLFSR
 
-    `ifdef DISPLAY
-    //------------------------------------------------------------------------------
-    //      Debug Logic for CMD Grant Observation
-    //
-    //      - Extracts the granted rank index from CMDGrantVector
-    //      - Reports rank-to-rank transitions on CMD bus
-    //------------------------------------------------------------------------------
-    logic [$clog2(NUMRANK):0] granted_rank;
-    always_comb begin : GrantedRankCheckForDebug
-        granted_rank  = 0;
-        for(int i =0; i< NUMRANK; i++)begin
-            if(CMDGrantVector[i] == 1)begin
-                granted_rank = i;
-            end
-        end
-    end : GrantedRankCheckForDebug
-
-    always_ff@(posedge clk) begin : GrantedRankDisplayForDebug
-        if(rankTransition) begin
-            $display("[%0t] CMDGrantScheduler | RANK TRANSITION OCCURED", $time);            
-        end
-    end : GrantedRankDisplayForDebug
-    `endif
-
-    //-------------------------------------------------------------------//
-
-
     //------------------------------------------------------------------------------
     //      CMD Bus Arbitration Logic
     //
@@ -249,17 +222,11 @@ module CMDGrantScheduler#(
             if(CMDRankTurnaround) begin         // Change of arbitration is only valid when it is free from tRTR timing constraint.
                 if(CMDGrantVector == '0 && (next_cmd != '0)) begin     
                     CMDGrantVector <= next_cmd;                   // If there is no grant in current arbitration, but there is valid in next_cmd.    
-                    `ifdef DISPLAY
-                        $display("[%0t] CMDGrantScheduler | Rank-%0d FSM granted for CMD Bus", $time, granted_rank);
-                    `endif 
                 end
 
                 else if(grantACK)begin          // GrantACK comes from the target rank controller.
                     if(next_cmd != '0) begin    // If the grantACK comes, then we need to select new target rank for fairness.
                         CMDGrantVector <= next_cmd;
-                        `ifdef DISPLAY
-                            $display("[%0t] CMDGrantScheduler | Rank-%0d FSM granted for CMD Bus", $time, granted_rank);
-                        `endif 
                     end else begin
                         CMDGrantVector <= '0;
                     end
@@ -283,9 +250,9 @@ module CMDGrantScheduler#(
     //      - Used by channel-wide timing logic to enforce tRTR constraint
     //------------------------------------------------------------------------------
     always_ff @(posedge clk or negedge rst) begin : RankTransitionDetecting
-        if (!rst)
+        if (!rst) begin
             prev_cmd <= '0;
-        else begin
+        end else begin
             prev_cmd <= CMDGrantVector;
         end
     end : RankTransitionDetecting
