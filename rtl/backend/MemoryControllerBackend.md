@@ -1,6 +1,3 @@
-아래는 주어진 SystemVerilog MemoryControllerBackend 코드 전체를 한국어로 구조적으로 분석한 내용을 단일 Markdown 코드 블록으로 정리한 것입니다.
-(모듈 구조, 파라미터 의미, 인터페이스, 내부 구조, 스케줄링 정책까지 포함)
-
 # MemoryControllerBackend SystemVerilog 코드 분석
 
 ## 1. 모듈 개요
@@ -396,5 +393,3 @@ ChannelController 내부 FSM 구조
 Bank FSM 구조 (DRAM Controller 핵심)
 
 Address → Rank/Bank/Row/Column 매핑
-
-이 코드가 실제 논문 수준에서 어떤 아키텍처인지 (꽤 흥미로운 부분입니다)
