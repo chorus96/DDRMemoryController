@@ -1,6 +1,4 @@
 본 SystemVerilog 코드는 AXI 인터페이스의 물리 주소를 DRAM의 구조적 주소(Channel, Rank, Bank 등)로 변환하고, 이를 처리할 적절한 상태 머신(FSM)을 결정하는 Address Translation Unit (ATU) 모듈입니다.
-분석 내용을 정리한 Markdown 문서입니다.
-[분석 보고서] Address Translation Unit (ATU) 모듈
 1. 개요
 본 모듈은 AXI 버스로부터 입력된 물리 주소를 DRAM 제어에 필요한 세부 주소 필드로 변환하고, 해당 요청을 처리할 **Rank Execution Unit(FSM)**을 선택하는 중재 로직을 수행합니다.
 2. 주요 기능 및 특징
