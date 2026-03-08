@@ -47,7 +47,7 @@ parameter int BURST_LENGTH  = 8;
 설계 의미
 
 |파라미터	|의미|
-
+|---|---|
 |MEM_ADDRWIDTH	|AXI/MC 주소 width|
 |MEM_DATAWIDTH	|데이터 bus width|
 |MEM_IDWIDTH	|AXI ID width|
