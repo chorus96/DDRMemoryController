@@ -146,9 +146,11 @@ MemoryControllerBackend
 # 6. Channel Read/Write Mode Controller
 
 이 로직은 **채널이 현재 READ 모드인지 WRITE 모드인지 결정한다.**
-
-ChannelRDWRMode 0 → READ 1 → WRITE
-
+```
+ChannelRDWRMode
+0 → READ
+1 → WRITE
+```
 ---
 
 ## 동작 정책
@@ -158,41 +160,41 @@ Threshold 기반 스케줄링을 사용한다.
 ### READ 우선 정책
 
 조건
-
+```
 NumRdReq > 0
 
 → READ 유지
-
+```
 ---
 
 ### WRITE 전환 조건
-
+```
 NumWrReq > CHMODETHRESHOLD
 
 → WRITE 모드 전환
-
+```
 ---
 
 ### READ 전환 조건
-
+```
 NumWrReq < CHMODETHRESHOLD
 
 → READ 모드 복귀
-
+```
 ---
 
 ## Mode 전환 조건
 
 Mode 전환은 아래 조건이 모두 만족해야 한다.
-
+```
 channelIdle ModeTransitionValid ChannelRDWRTransReady
-
+```
 즉
-
+```
 - Bank FSM idle
 - PHY 준비
 - Scheduler 준비
-
+```
 ---
 
 # 7. ChannelController
@@ -202,12 +204,12 @@ channelIdle ModeTransitionValid ChannelRDWRTransReady
 DRAM Command Scheduler
 
 기능
-
+```
 - Rank / Bank FSM 관리
 - DRAM timing enforcement
 - Command arbitration
 - ACT / PRE / RD / WR 발행
-
+```
 중요 특징
 
 데이터 처리 안함 오직 CMD scheduling만 수행
