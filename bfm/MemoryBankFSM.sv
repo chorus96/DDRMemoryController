@@ -182,7 +182,6 @@ module MemoryBankFSM#(
             end
     end : burstCntEvent
 
-
     //-------------------------------------------------------------------------
     //  Memory Data Update (Write Burst Handling)
     //-------------------------------------------------------------------------
@@ -212,17 +211,6 @@ module MemoryBankFSM#(
     );
     
     //-------------------------------------------------------------------------
-    //  Bank-level DRAM FSM
-    //-------------------------------------------------------------------------
-    always_ff@(posedge clk or negedge rst_n) begin : BankFSMState
-        if(!rst_n) begin
-            curr <= rowClosed;
-        end else begin
-            curr <= next;
-        end
-    end : BankFSMState
-
-    //-------------------------------------------------------------------------
     //  Auto-Precharge Tracking
     //-------------------------------------------------------------------------
     always_ff@(posedge clk or negedge rst_n) begin : SetupAutoPrechargeREG
@@ -247,20 +235,20 @@ module MemoryBankFSM#(
     //  Next-State Logic with Timing Enforcement
     //-------------------------------------------------------------------------
     always_comb begin : BankFSMNextState
-        //      Initialization       //
-        next = rowClosed;
+        /* Initialization */
+        next  = rowClosed;
         setup = 0;
-        load = 0;
+        load  = 0;
         case(curr) 
             rowClosed: begin 
                 if(checkActivate(bankACT_N, bankCKE, bankCS_N, bankPIN_A)) begin
-                    next = Activate;
+                    next  = Activate;
                     setup = 1;
-                    load = tRCD-2;
+                    load  = tRCD - 2;
                 end else if(checkRefresh(bankACT_N, bankCKE, bankCS_N, bankPIN_A)) begin
-                    next = Refresh;
+                    next  = Refresh;
                     setup = 1;
-                    load = tRFC-2;
+                    load  = tRFC - 2;
                 end else begin
                     next = rowClosed;
                 end
@@ -274,27 +262,27 @@ module MemoryBankFSM#(
             end
             rowOpened: begin
                 if(checkAutoRead(bankACT_N, bankCKE, bankCS_N, bankPIN_A)) begin
-                    next = Read;
+                    next  = Read;
                     setup = 1;
-                    load = tCL-2;
+                    load  = tCL - 2;
                 end else if(checkRead(bankACT_N, bankCKE, bankCS_N, bankPIN_A)) begin
-                    next = Read;
+                    next  = Read;
                     setup = 1;
-                    load = tCL-2;
+                    load  = tCL - 2;
                 end else if(checkAutoWrite(bankACT_N, bankCKE, bankCS_N, bankPIN_A)) begin
-                    next = Write;
+                    next  = Write;
                     setup = 1;
-                    load = tCWL-2;
+                    load  = tCWL - 2;
                 end else if(checkWrite(bankACT_N, bankCKE, bankCS_N, bankPIN_A)) begin
-                    next = Write;
+                    next  = Write;
                     setup = 1;
-                    load = tCWL-2;
+                    load  = tCWL - 2;
                 end else if(checkPrecharge(bankACT_N, bankCKE, bankCS_N, bankPIN_A)) begin
-                    next = Precharge;
+                    next  = Precharge;
                     setup = 1;
-                    load = tRP-2;
+                    load  = tRP - 2;
                 end else begin
-                    next = rowOpened;
+                    next  = rowOpened;
                 end
             end
             Read: begin
@@ -324,14 +312,14 @@ module MemoryBankFSM#(
                 end
             end
             Precharge : begin
-                if(timeup) begin
+                if (timeup) begin
                     next = rowClosed;
                 end else begin
                     next = Precharge;
                 end
             end
             Refresh: begin
-                if(timeup) begin
+                if (timeup) begin
                     next = rowClosed;
                 end else begin
                     next = Refresh;
@@ -341,7 +329,18 @@ module MemoryBankFSM#(
             end
         endcase
     end : BankFSMNextState
-    
+
+    //-------------------------------------------------------------------------
+    //  Bank-level DRAM FSM
+    //-------------------------------------------------------------------------
+    always_ff @(posedge clk or negedge rst_n) begin : BankFSMState
+        if(!rst_n) begin
+            curr <= rowClosed;
+        end else begin
+            curr <= next;
+        end
+    end : BankFSMState
+  
     //-------------------------------------------------------------------------
     //  DDR4 Command Decode Helpers
     //-------------------------------------------------------------------------
