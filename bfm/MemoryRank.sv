@@ -49,6 +49,55 @@
 //      Author  : Seongwon Jo
 //      Created : 2026.02
 //////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////
+//
+//      MemoryRank  (DDR4 Rank BFM)
+//
+//      역할(Role):
+//          시뮬레이션 및 검증을 위한 단일 DDR4 Rank의 동작 모델.
+//          여러 개의 Bank 수준 BFM을 집합적으로 구성하고 Rank 수준의 명령
+//          디코딩 및 DQ 동작을 에뮬레이션한다.
+//
+//      BFM 범위(BFM Scope):
+//          - 이 모듈은 **시뮬레이션 전용**이다.
+//          - 합성(synthesis) 대상이 아니다.
+//          - 전기적/물리적 정확성보다는 프로토콜의 정확성과
+//            타이밍 관찰 가능성에 초점을 둔다.
+//
+//      아키텍처 개요:
+//
+//              DDR4 IF CMD / DQ BUS
+//                    |   ∧
+//                    V   |
+//                +-----------+
+//                | MemoryRank|   (이 모듈)
+//                +-----------+
+//                  |   |   |
+//          +--------+   |  +----  ...  ----+
+//          |            |                  |
+//      BankFSM[0]   BankFSM[1]    ...  BankFSM[N]
+//
+//      책임(Responsibilities):
+//          1) Rank 수준 CMD/ADDR 신호(CS_n, BG, BK)를 디코딩한다.
+//          2) 대상 MemoryBankFSM을 선택하고 활성화한다.
+//          3) 공유된 제어 신호와 DQ 신호를 모든 Bank로 전달한다.
+//          4) Bank별 Read/Write burst 동작을 집계한다.
+//          5) Rank 수준의 DQ 유효 신호를 컨트롤러에 제공한다.
+//
+//      모델링 가정(Modeling Assumptions):
+//          - 하나의 명령은 한 번에 하나의 Bank만을 대상으로 한다.
+//          - 동시에 DQ 버스를 구동하는 Bank는 최대 하나이다.
+//          - 타이밍 제약은 Bank 수준 FSM에서 강제된다.
+//
+//      설계 참고 사항(Design Notes):
+//          - 다음 목적을 위해 사용된다:
+//              * 메모리 컨트롤러 검증
+//              * 타이밍 FSM 검증
+//              * Read/Write 순서 및 중재(arbitration) 디버깅
+//
+//      Author  : Seongwon Jo
+//      Created : 2026.02
+//////////////////////////////////////////////////////////////////////////////////////////////////
 
 module MemoryRank#(
     parameter int RANKID        = 0,
@@ -90,8 +139,6 @@ module MemoryRank#(
     logic [MEM_DATAWIDTH-1:0] bankRdData [NUMBANKFSM-1:0];
     logic [MEM_DATAWIDTH-1:0] bankWrData [NUMBANKFSM-1:0];
 
-
-
     //------------------------------------------------------------------------------
     //      Bank Command Decode (BFM)
     //
@@ -118,7 +165,6 @@ module MemoryRank#(
     //      - Parallel bank FSMs allow verification of bank-level overlap
     //          and command interleaving behavior.
     //------------------------------------------------------------------------------
-    /* verilator lint_off PINCONNECTEMPTY */
     genvar i;
     generate
         for(i = 0; i < NUMBANKFSM; i++) begin : genMemoryBankFSM
@@ -196,9 +242,4 @@ module MemoryRank#(
     assign rankDQRdValid = |bankDQRdGranted;
     assign rankDQWrValid = |bankDQWrGranted;
 
-
-
 endmodule
-
-
-
