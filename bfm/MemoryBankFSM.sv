@@ -65,7 +65,7 @@
 //      Created : 2026.02
 //------------------------------------------------------------------------------
 
-module MemoryBankFSM#(
+module MemoryBankFSM #(
     parameter int BANKID        = 0,
     parameter int BANKGROUPID   = 0,
     parameter int IOWIDTH       = 8,
@@ -241,7 +241,7 @@ module MemoryBankFSM#(
         load  = 0;
         case(curr) 
             rowClosed: begin 
-                if(checkActivate(bankACT_N, bankCKE, bankCS_N, bankPIN_A)) begin
+                if (checkActivate(bankACT_N, bankCKE, bankCS_N, bankPIN_A)) begin
                     next  = Activate;
                     setup = 1;
                     load  = tRCD - 2;
@@ -254,30 +254,30 @@ module MemoryBankFSM#(
                 end
             end
             Activate: begin
-                if(timeup) begin
+                if (timeup) begin
                     next = rowOpened;
                 end else begin
                     next = Activate;
                 end
             end
             rowOpened: begin
-                if(checkAutoRead(bankACT_N, bankCKE, bankCS_N, bankPIN_A)) begin
+                if (checkAutoRead(bankACT_N, bankCKE, bankCS_N, bankPIN_A)) begin
                     next  = Read;
                     setup = 1;
                     load  = tCL - 2;
-                end else if(checkRead(bankACT_N, bankCKE, bankCS_N, bankPIN_A)) begin
+                end else if (checkRead(bankACT_N, bankCKE, bankCS_N, bankPIN_A)) begin
                     next  = Read;
                     setup = 1;
                     load  = tCL - 2;
-                end else if(checkAutoWrite(bankACT_N, bankCKE, bankCS_N, bankPIN_A)) begin
+                end else if (checkAutoWrite(bankACT_N, bankCKE, bankCS_N, bankPIN_A)) begin
                     next  = Write;
                     setup = 1;
                     load  = tCWL - 2;
-                end else if(checkWrite(bankACT_N, bankCKE, bankCS_N, bankPIN_A)) begin
+                end else if (checkWrite(bankACT_N, bankCKE, bankCS_N, bankPIN_A)) begin
                     next  = Write;
                     setup = 1;
                     load  = tCWL - 2;
-                end else if(checkPrecharge(bankACT_N, bankCKE, bankCS_N, bankPIN_A)) begin
+                end else if (checkPrecharge(bankACT_N, bankCKE, bankCS_N, bankPIN_A)) begin
                     next  = Precharge;
                     setup = 1;
                     load  = tRP - 2;
@@ -288,8 +288,8 @@ module MemoryBankFSM#(
             Read: begin
                 if(timeup) begin
                     if(autoPrecharge) begin
-                        next = Precharge;
-                        load = tRP-1;
+                        next  = Precharge;
+                        load  = tRP-1;
                         setup = 1;
                     end else begin
                         next = rowOpened;
@@ -301,17 +301,17 @@ module MemoryBankFSM#(
             Write: begin
                 if(timeup) begin
                     if(autoPrecharge) begin
-                        next = Precharge;
-                        load = tRP-1;
+                        next  = Precharge;
+                        load  = tRP-1;
                         setup = 1;
                     end else begin
-                        next = rowOpened;
+                        next  = rowOpened;
                     end
                 end else begin
                     next = Write;
                 end
             end
-            Precharge : begin
+            Precharge: begin
                 if (timeup) begin
                     next = rowClosed;
                 end else begin
@@ -325,8 +325,7 @@ module MemoryBankFSM#(
                     next = Refresh;
                 end
             end
-            default : begin
-            end
+            default: ;
         endcase
     end : BankFSMNextState
 
