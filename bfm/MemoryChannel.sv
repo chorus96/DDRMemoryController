@@ -47,28 +47,77 @@
 //      Author  : Seongwon Jo
 //      Created : 2026.02
 //------------------------------------------------------------------------------
+//------------------------------------------------------------------------------
+//  MemoryChannel (DDR4 채널 레벨 BFM)
+//
+//  역할(ROLE):
+//      여러 개의 Rank를 집합적으로 구성하고 공유되는 DQ/DQS 신호를 중재하는
+//      채널 레벨 DDR4 Bus Functional Model.
+//
+//  책임(RESPONSIBILITIES):
+//      - Rank별 DDR4 메모리 모델(MemoryRank)을 인스턴스화한다.
+//      - CA/ADDR 신호를 채널 내 모든 Rank로 브로드캐스트한다.
+//      - Rank 수준에서 발생하는 Read/Write burst를 단일 채널 DQ 버스로 결합한다.
+//      - Read burst 동안 채널 레벨 DQS 신호를 생성하고 구동한다.
+//      - 실제 DDR 동작을 모사하기 위해 DQ/DQS의 tri-state 동작을 모델링한다.
+//
+//  모델링 범위(MODELING SCOPE):
+//      - 하나의 메모리 채널 내부에서의 Rank 수준 병렬성.
+//      - Rank 간 DQ/DQS 충돌(contension) 해결.
+//      - 스케줄링, 재정렬, 또는 타이밍 중재 로직은 포함하지 않는다.
+//        (이 부분은 DRAM 모델이 아니라 Memory Controller에서 처리된다.)
+//
+//      아키텍처 개요:
+//
+//            Channel DDR4 IF CMD / DQ BUS
+//                    |   ∧
+//                    V   |
+//                +--------------+
+//                | MemoryChannel|   (이 모듈)
+//                +--------------+
+//                  |   |   |     |
+//              ----+   |   +---- +...  ----+
+//              |       |       |           |       
+//        RankFSM[0] RankFSM[1]   ...  RankFSM[N]
+//
+//  가정(ASSUMPTIONS):
+//      - 어떤 사이클에서도 최대 하나의 Rank만이 Read/Write 데이터를 구동한다.
+//      - 모든 Rank는 동일한 CA/ADDR 신호를 관측한다
+//        (중재는 cs_n 신호를 기반으로 이루어진다).
+//      - Write 데이터는 브로드캐스트되며 대상 Rank만 선택적으로 이를 소비한다.
+//
+//  참고 사항(NOTES):
+//      - 이 모델은 순수 시뮬레이션용 BFM이다.
+//      - 전기적 정확성보다는 프로토콜 수준 동작을 중심으로 모델링한다.
+//      - 동작의 정확성은 Memory Controller가 DDR 타이밍 규칙을
+//        올바르게 준수한다는 가정에 의존한다.
+//
+//
+//      Author  : Seongwon Jo
+//      Created : 2026.02
+//------------------------------------------------------------------------------
 
 module MemoryChannel#(
-        parameter int CHANNELID      = 0,
-        parameter int NUMRANK        = 4,
-        parameter int IOWIDTH        = 8,
-        parameter int DEVICEPERRANK  = 4,
-        parameter int CWIDTH         = 10,
-        parameter int RWIDTH         = 15,
-        parameter int BGWIDTH        = 2,
-        parameter int BKWIDTH        = 2,
-        parameter int COMMAND_WIDTH  = 18,
-        parameter int BURST_LENGTH   = 8,
-        parameter int MEM_DATAWIDTH  = 64,
-        parameter int tCWL           = 12,
-        parameter int tCL            = 16,
-        parameter int tRCD           = 16,
-        parameter int tRFC           = 256,
-        parameter int tRP            = 16
-    )(
-        input logic clk, rst_n, clk2x,
-        DDR4Interface.Memory_CA ddr4_cmdaddr_if,
-        DDR4Interface.Memory_DQ ddr4_dq_if
+    parameter int CHANNELID      = 0,
+    parameter int NUMRANK        = 4,
+    parameter int IOWIDTH        = 8,
+    parameter int DEVICEPERRANK  = 4,
+    parameter int CWIDTH         = 10,
+    parameter int RWIDTH         = 15,
+    parameter int BGWIDTH        = 2,
+    parameter int BKWIDTH        = 2,
+    parameter int COMMAND_WIDTH  = 18,
+    parameter int BURST_LENGTH   = 8,
+    parameter int MEM_DATAWIDTH  = 64,
+    parameter int tCWL           = 12,
+    parameter int tCL            = 16,
+    parameter int tRCD           = 16,
+    parameter int tRFC           = 256,
+    parameter int tRP            = 16
+)(
+    input logic clk, rst_n, clk2x,
+    DDR4Interface.Memory_CA ddr4_cmdaddr_if,
+    DDR4Interface.Memory_DQ ddr4_dq_if
 );
 
     logic [MEM_DATAWIDTH-1:0] rankDQValue;
@@ -188,12 +237,11 @@ module MemoryChannel#(
     //  - Read data is driven onto the channel DQ bus.
     //-------------------------------------------------------------------------
 
-
     genvar j;
     generate
-    for (j = 0; j < NUMRANK; j++) begin : genDQWrite
-        assign rankWrDQ[j] = rankDQWrValid[j] ? ddr4_dq_if.pin_dq : 'z;
-    end
+        for (j = 0; j < NUMRANK; j++) begin : genDQWrite
+            assign rankWrDQ[j] = rankDQWrValid[j] ? ddr4_dq_if.pin_dq : 'z;
+        end
     endgenerate
     
     assign ddr4_dq_if.pin_dq = channelDQRdValid ? rankDQValue : 'z;
