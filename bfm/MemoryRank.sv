@@ -184,7 +184,7 @@ module MemoryRank#(
                 .tRCD(tRCD),
                 .tRFC(tRFC),
                 .tRP(tRP)
-            ) BankFSM(
+            ) BankFSM (
                 .clk(clk), .rst_n(rst_n), .clk2x(clk2x),
                 
                 .bankCKE(bankCMDGranted[i]),
@@ -224,12 +224,12 @@ module MemoryRank#(
             bankWrData[p] = 0;
         end
         assertionCnt = 0;
-        for(int q = 0; q < NUMBANKFSM; q++) begin
+        for (int q = 0; q < NUMBANKFSM; q++) begin
             if(bankDQRdGranted[q]) begin
                 rankRdData = bankRdData[q];
                 assertionCnt = assertionCnt +1;
             end
-            if(bankDQWrGranted[q]) begin
+            if (bankDQWrGranted[q]) begin
                 bankWrData[q] = rankWrData;
                 assertionCnt = assertionCnt + 1;
             end
