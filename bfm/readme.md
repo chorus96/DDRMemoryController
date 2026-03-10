@@ -113,7 +113,7 @@ Tri-state bidirectional buses.
 
 - Read → Rank drives DQ
 - Write → Controller drives DQ
-- Idle → High-Z state (or Verilator-safe modeling)
+- Idle → High-Z state
 
 ---
 
@@ -121,8 +121,7 @@ Tri-state bidirectional buses.
 
 - Integrated with custom DDR4 Memory Controller RTL
 - Multi-channel simulation validated
-- Lint-clean under Verilator (Check the "script" folder)
-- Tested with Vivado-XSIM (Check the "script" folder)
+- Tested with Verilator (Check the "script" folder)
 
 ---
 
@@ -357,9 +356,7 @@ High-Z 상태 (또는 Verilator 안전 모델링)
 
 멀티채널 시뮬레이션 검증 완료
 
-Verilator Lint 통과
-
-Vivado-XSIM 테스트 완료
+Verilator 테스트 완료
 
 
 
