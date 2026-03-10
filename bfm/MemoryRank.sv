@@ -122,7 +122,6 @@ module MemoryRank#(
     output logic [MEM_DATAWIDTH-1:0] rankRdData,
     input logic [MEM_DATAWIDTH-1:0] rankWrData,
 
-
     input logic [MEM_DATAWIDTH/BURST_LENGTH-1:0] rankDataStrb,
 
     DDR4Interface.Memory_CA ddr4_cmdaddr_if,
