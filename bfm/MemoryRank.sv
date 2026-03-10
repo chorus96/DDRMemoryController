@@ -164,7 +164,17 @@ module MemoryRank#(
     //      - Parallel bank FSMs allow verification of bank-level overlap
     //          and command interleaving behavior.
     //------------------------------------------------------------------------------
-    genvar i;
+    //------------------------------------------------------------------------------
+    //      Bank-Level FSM 인스턴스화 (BFM)
+    //
+    //      - 각 MemoryBankFSM은 하나의 DRAM Bank 동작을 행동 수준(Behavioral)으로 모델링한다.
+    //      - FSM들은 동일한 Rank 레벨 신호를 입력으로 받지만,
+    //          선택된 Bank만 실제로 반응한다.
+    //
+    //  참고(NOTE):
+    //      - 병렬로 존재하는 Bank FSM들은 Bank 수준의 동시성(overlap)과
+    //          명령 인터리빙(command interleaving) 동작을 검증할 수 있게 한다.
+    //------------------------------------------------------------------------------    genvar i;
     generate
         for(i = 0; i < NUMBANKFSM; i++) begin : genMemoryBankFSM
             MemoryBankFSM #(
