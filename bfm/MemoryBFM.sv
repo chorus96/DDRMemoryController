@@ -110,8 +110,8 @@ module MemoryBFM#(
     parameter int tRP           = 16,
     parameter int tRFC          = 256
 )(
-    input logic clk, rst_n, clk2x
-    ,DDR4Interface DDR4_CH0_IF,
+    input logic clk, rst_n, clk2x,
+    DDR4Interface DDR4_CH0_IF,
     DDR4Interface DDR4_CH1_IF
 );
 
