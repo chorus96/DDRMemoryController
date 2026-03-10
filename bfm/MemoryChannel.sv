@@ -129,8 +129,8 @@ module MemoryChannel#(
     //  - rankDQRdValid : Indicates which rank is driving read data
     //  - rankDQWrValid : Indicates which rank is consuming write data
     //-------------------------------------------------------------------------
-    logic [NUMRANK-1:0] rankDQRdValid;                      //  Read Burst Valid per Rank
-    logic [NUMRANK-1:0] rankDQWrValid;                      //  Write Burst Valid per Rank
+    logic [NUMRANK-1:0] rankDQRdValid; //  Read Burst Valid per Rank
+    logic [NUMRANK-1:0] rankDQWrValid; //  Write Burst Valid per Rank
 
     //-------------------------------------------------------------------------
     //  Channel-level DQS generation
@@ -138,8 +138,8 @@ module MemoryChannel#(
     //  - DQS is generated at the channel level and broadcast to all ranks.
     //  - Only driven during read bursts.
     //-------------------------------------------------------------------------
-    logic channelDQS_t, channelDQS_c;                       //  Broadcast DQS Singal for channel
-    logic channelDQRdValid, channelDQWrValid;               //  Channel Read or Write Burst Valid
+    logic channelDQS_t, channelDQS_c;         //  Broadcast DQS Singal for channel
+    logic channelDQRdValid, channelDQWrValid; //  Channel Read or Write Burst Valid
 
     //-------------------------------------------------------------------------
     //  Per-rank memory instantiation
@@ -196,7 +196,7 @@ module MemoryChannel#(
     //  - DQS toggles on every clk2x during active read bursts.
     //  - Tri-stated when no read is in progress.
     //-------------------------------------------------------------------------
-    always_ff@(posedge clk2x or negedge rst_n) begin : ChannelDQS
+    always_ff @(posedge clk2x or negedge rst_n) begin : ChannelDQS
         if(!rst_n) begin
             channelDQS_t <= '0;
             channelDQS_c <= '1;
