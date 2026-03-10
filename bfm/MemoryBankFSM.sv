@@ -30,6 +30,40 @@
 //      Author  : Seongwon Jo
 //      Created : 2026.02
 //------------------------------------------------------------------------------
+//------------------------------------------------------------------------------
+//  MemoryBankFSM (DDR4 DRAM Bank-Level BFM)
+//
+//  역할(ROLE):
+//      DDR4를 위한 Bank 수준 DRAM 동작 모델.
+//      각 인스턴스는 하나의 (BG, Bank) 쌍을 모델링한다
+//      (이 모델에서는 Rank당 총 16개의 BankFSM이 존재).
+//
+//  책임(RESPONSIBILITIES):
+//      - Memory Controller 측 Rank 레벨 컨트롤러에서 브로드캐스트되는
+//        DDR4 명령 신호를 디코딩한다
+//        (ACT, READ, WRITE, PRECHARGE, REFRESH).
+//      - Row 상태 전이를 모델링한다 (Closed ↔ Opened).
+//      - 사이클 기반 타이밍 카운터를 사용하여 DRAM 타이밍 제약을 강제한다
+//        (tRCD, tCL, tCWL, tRP, tRFC 등).
+//      - clk2x 단위의 정밀도로 Burst 수준 Read/Write 동작을 생성한다.
+//      - 기능적 정확성을 위한 간단한 Bank 단위 저장소를 유지한다.
+//
+//  모델링 범위 (DRAM의 Bank FSM):
+//      - 사이클 정확도 기반 제어 타이밍 (FSM + 카운터).
+//      - 기능적 데이터 정확성 (Burst 수준 Read/Write).
+//      - DQS 및 Pin_dq (양방향 포트)는 추상화되어 있다.
+//
+//  참고 사항(NOTES):
+//      - 명령은 상위 Rank/Channel 로직에서 이미 올바르게 디코딩되고
+//        Bank가 선택되었다고 가정한다.
+//      - 저장소는 실제 DRAM 배열 전체를 모델링하지 않고
+//        Burst 단위의 단순화된 구조만 가진다
+//        (즉, 작은 메모리 공간만 모델링).
+//      - 검증 및 아키텍처 검증을 위한 용도로 설계되었다.
+//
+//      Author  : Seongwon Jo
+//      Created : 2026.02
+//------------------------------------------------------------------------------
 
 module MemoryBankFSM#(
     parameter int BANKID        = 0,
@@ -73,16 +107,15 @@ module MemoryBankFSM#(
     output logic WriteBurstValid                                
 );
 
-
     //////////////////////////////////////////////////////////////////////
     //////////////////// OPCODE FOR DDR4 Memory //////////////////////////
     //////////////// CKE     ACT     RAS      CAS      WE     CS   ///////
     // ACTIVATE       1       0       X        X       X       0        //
-    // PRECHARGE      1       1       0       1        0       0        //
-    // READ           1       1       1       0        0       0        //
-    // WRITE          1       1       1       0        1       0        //
-    // REFRESH        1       1       0       0        0       0        //
-    // NO-OPERATION   1       1       1       1        1       0        //
+    // PRECHARGE      1       1       0        1       0       0        //
+    // READ           1       1       1        0       0       0        //
+    // WRITE          1       1       1        0       1       0        //
+    // REFRESH        1       1       0        0       0       0        //
+    // NO-OPERATION   1       1       1        1       1       0        //
     //////////////////////////////////////////////////////////////////////
 
     typedef enum logic [2:0] {
@@ -164,7 +197,6 @@ module MemoryBankFSM#(
             end
         end
     end : MemoryModeling
-
 
     assign bankRdDQ         =  (mode == 0)  ? MEM[burstCnt] : '0;
     assign ReadBurstValid   =  (mode == 0) && burstFlag; 
@@ -336,7 +368,6 @@ module MemoryBankFSM#(
         end else return 0;
     endfunction
     
-    
     function automatic logic checkPrecharge(input logic act_n, input logic cke, input logic cs_n,
                                                 input logic [COMMAND_WIDTH-1:0] pin_A);
         if({cke, act_n, pin_A[15], cs_n, pin_A[16], pin_A[14], pin_A[10]} == 7'b1110000) begin
@@ -382,8 +413,3 @@ module MemoryBankFSM#(
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 endmodule
-
-
-
-
-
