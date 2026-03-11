@@ -1,12 +1,12 @@
 module lfsr_driver #(
     parameter int LENGTH = 4,
-    parameter logic [LENGTH-1:0] KEY = '1
+    parameter logic [LENGTH - 1 : 0] KEY = '1
 )(
     input  logic clk, rst_n,
     input  logic enable,
     output logic valid,
-    output logic [LENGTH-1:0] random
-);
+    output logic [LENGTH - 1 : 0] random
+)
 
     logic [LENGTH-1:0] lfsr;
     logic feedback;
@@ -33,7 +33,7 @@ module lfsr_driver #(
             lfsr  <= (KEY == '0) ? '1 : KEY;
             valid <= 1'b0;
         end else if (enable) begin
-            lfsr  <= {lfsr[LENGTH-2:0], feedback};
+            lfsr  <= {lfsr[LENGTH - 2 : 0], feedback};
             valid <= 1'b1;
         end else begin
             valid <= 1'b0;
