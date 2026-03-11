@@ -2,8 +2,6 @@
 import MemoryController_Definitions::*;
 import svut_if::*;
 
-
-`define DISPLAY
 module Top_xsim;
 
     logic clk, rst_n, clk2x;
@@ -76,7 +74,6 @@ module Top_xsim;
         .DDR4_CH0_IF(DDR4Interface_CH0), .DDR4_CH1_IF(DDR4Interface_CH1)
     );
 
-
     MemoryBFM #(
         .NUMCHANNEL(NUMCHANNEL),
         .NUMRANK(NUMRANK),
@@ -109,7 +106,6 @@ module Top_xsim;
     dram_data_Issue monitor_dramDataIssue [$clog2(NUMCHANNEL):0];
     dram_data_Receive monitor_dramDataReceive [$clog2(NUMCHANNEL):0];
 
-
     logic driverEnable;
     
     axi_ar_chan_t ar_driver;
@@ -120,11 +116,6 @@ module Top_xsim;
 
     axi_w_chan_t w_driver;
     logic w_valid_driver, w_ready_driver;
-
-
-
-    
-    
 
     driver #(
         .TIMEOUT(100),
@@ -144,7 +135,6 @@ module Top_xsim;
         .w_id(w_driver.id), .w_user(w_driver.user), .w_data(w_driver.data),
         .w_last(w_driver.last), .w_strb(w_driver.strb), 
         .w_valid(w_valid_driver), .w_ready(w_ready_driver)
-
     );
 
     monitor monitor_instance(
@@ -179,28 +169,26 @@ module Top_xsim;
     logic r_ready_driver, b_ready_driver;
 
     generate 
-             assign CacheReq.aw       = aw_driver;
-             assign CacheReq.aw_valid = aw_valid_driver;
-             assign CacheReq.w        = w_driver;
-             assign CacheReq.w_valid  = w_valid_driver;
-             assign CacheReq.ar       = ar_driver;
-             assign CacheReq.ar_valid = ar_valid_driver;
-             assign CacheReq.r_ready  = r_ready_driver;
-             assign CacheReq.b_ready  = b_ready_driver;
+        assign CacheReq.aw       = aw_driver;
+        assign CacheReq.aw_valid = aw_valid_driver;
+        assign CacheReq.w        = w_driver;
+        assign CacheReq.w_valid  = w_valid_driver;
+        assign CacheReq.ar       = ar_driver;
+        assign CacheReq.ar_valid = ar_valid_driver;
+        assign CacheReq.r_ready  = r_ready_driver;
+        assign CacheReq.b_ready  = b_ready_driver;
 
-             assign aw_ready_driver   = CacheResp.aw_ready;
-             assign ar_ready_driver   = CacheResp.ar_ready;
-             assign w_ready_driver    = CacheResp.w_ready;
+        assign aw_ready_driver   = CacheResp.aw_ready;
+        assign ar_ready_driver   = CacheResp.ar_ready;
+        assign w_ready_driver    = CacheResp.w_ready;
      endgenerate
 
-
     initial begin
-            #50
-            SVUMSetup();
-            SVUMRun(driverEnable, 100);        
-            SVUMFinish(500);
+        #50
+        SVUMSetup();
+        SVUMRun(driverEnable, 100);        
+        SVUMFinish(500);
     end
-
 
     task automatic  SVUMSetup();
         r_ready_driver = 1;
@@ -234,6 +222,5 @@ module Top_xsim;
         
         $finish(); 
     endtask
-
 
 endmodule
