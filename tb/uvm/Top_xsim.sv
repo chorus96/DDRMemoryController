@@ -10,13 +10,13 @@ module Top_xsim;
     cache_side_response CacheResp;
 
     initial begin
-        clk = 1;
-        clk2x = 1;
-        rst_n = 0;
+        clk      = 1;
+        clk2x    = 1;
+        rst_n    = 0;
         #4 rst_n = 1;
     end
 
-    always #2 clk = ~clk;
+    always #2 clk   = ~clk;
     always #1 clk2x = ~clk2x;
 
     DDR4Interface #(
