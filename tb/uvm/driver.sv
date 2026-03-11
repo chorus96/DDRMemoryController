@@ -49,7 +49,6 @@ module driver#
     logic [IDVECTORWIDTH-1:0] Aw_free_id_vector [USERVECTORWIDTH-1:0];
     logic [IDVECTORWIDTH-1:0] W_free_id_vector [USERVECTORWIDTH-1:0];
 
-
     logic [AXI_IDWIDTH-1:0] w_id_driver;
     logic [AXI_USERWIDTH-1:0] w_user_driver;
     logic [AXI_DATAWIDTH-1:0] w_data_driver;
@@ -69,14 +68,12 @@ module driver#
     logic w_mode;          // W SEND OR NOT
     logic ar_mode;         // AR SEND OR NOT
     
-
     typedef enum logic {  
         REQUEST,
         DATABURST
     } state_t;
 
     state_t state;  // BURST TIMING CONSIDERATION
-
 
     logic modeEnable;
     logic modeAWValid;
@@ -91,12 +88,10 @@ module driver#
     logic [MODELENGTH-1:0] modeWRandom;
     logic [MODELENGTH-1:0] modeARRandom;
 
-
     logic awLFSRValid;
     logic wLFSRValid;
     logic arLFSRValid;
     
-
     logic [AXI_ADDRWIDTH-1:0] awAddrRandom;
     logic [AXI_ADDRWIDTH-1:0] arAddrRandom;
     logic [AXI_DATAWIDTH-1:0] wDataRandom;
@@ -132,8 +127,6 @@ module driver#
         .valid(modeWValid),
         .random(modeWRandom)
     );
-
-
 
     lfsr_driver #(
         .LENGTH(32),
@@ -194,8 +187,6 @@ module driver#
     assign ar_valid_driver = testEnable ? ar_mode : 0;
     assign w_valid_driver =  testEnable ? w_mode  : 0;
 
-
-
     // finding LSB user, id in free id/user vector
     logic [AXI_USERWIDTH-1:0] targetArUser;
     logic [AXI_IDWIDTH-1:0] targetArId;
@@ -219,7 +210,6 @@ module driver#
             WvectorIdFull[i]  = !(|W_free_id_vector[i]);
         end
     end
-
 
     always_comb begin  : FindFreeUserId
         targetArUser = 0;
@@ -253,8 +243,6 @@ module driver#
         end
     end : FindFreeUserId
 
-
-
     always_ff@(posedge clk or negedge rst_n) begin : RequestIdUserSetup
         if(!rst_n) begin
             for(int i = 0; i < USERVECTORWIDTH; i++) begin
@@ -282,7 +270,6 @@ module driver#
             end
         end
     end : RequestIdUserSetup
-
 
     ///         Read/Write Address-Bus Serving        ///
     always_ff @(posedge clk or negedge rst_n) begin : AwArBus_generate
@@ -359,7 +346,6 @@ module driver#
     assign w_user_driver = testEnable ? targetWUser : 0;
     assign w_valid       = (state == DATABURST) ? testEnable ? 1: 0: 0;
 
-
     ///     AXI BUS SIGNALS FOR DUT 
     assign ar_id   = testEnable ? ar_id_driver   : 0;
     assign ar_user = testEnable ? ar_user_driver : 0;
@@ -374,6 +360,5 @@ module driver#
     assign w_data  = testEnable ? w_data_driver : 0;
     assign w_last  = (w_burst_cnt == BURST_LENGTH-1) ? testEnable ? 1: 0 : 0;
     assign w_strb  = '1;
-
 
 endmodule
