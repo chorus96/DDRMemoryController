@@ -18,7 +18,6 @@ module scoreboard#(
     parameter int tRCD = 16,
     parameter int tCCDS = 4,
     parameter int tCCDL = 6
-
 ) (
     //  COMMON  //
     input wire clk, rst_n,
