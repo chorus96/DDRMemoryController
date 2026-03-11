@@ -4,14 +4,12 @@
 
 // SystemVerilog Unit Test Interface
 package svut_if;
-    parameter int ERRORCNTWIDTH = 10;
-    parameter int DEADLOCKCNT = 1024;
-    parameter int TBREADREQWIDTH = 10;
+    parameter int ERRORCNTWIDTH   = 10;
+    parameter int DEADLOCKCNT.    = 1024;
+    parameter int TBREADREQWIDTH  = 10;
     parameter int TBWRITEREQWIDTH = 10;
 
-
-
-    `ifdef TESTBENCH
+`ifdef TESTBENCH
     localparam int TB_AXI_ADDRWIDTH = 32;
     localparam int TB_AXI_IDWIDTH   = 4;
     localparam int TB_AXI_USERWIDTH = 1;
@@ -23,7 +21,8 @@ package svut_if;
     localparam int TB_BGWIDTH       = 2;
     localparam int TB_tRCD          = 16;
     localparam int TB_NUM_BANKFSM   = 16;
-    `endif
+`endif
+    
     typedef struct packed{
         logic [TB_AXI_IDWIDTH-1:0] id;
         logic [TB_AXI_USERWIDTH-1:0] user;
@@ -37,7 +36,6 @@ package svut_if;
         time sendTime;
         logic [$clog2(DEADLOCKCNT):0] cnt;
     } TB_WRITEREQENTRY;
-
 
     typedef struct packed {
         logic [TB_BGWIDTH-1:0] bankgroup;
@@ -62,7 +60,6 @@ package svut_if;
         logic [TB_AXI_USERWIDTH-1:0] user;
     } cache_writeReq_Issue;
     
-
     typedef struct {
         logic valid;
         logic [TB_AXI_IDWIDTH-1:0] id;
@@ -70,15 +67,11 @@ package svut_if;
         logic [TB_AXI_DATAWIDTH*TB_BURST_LENGTH-1:0] data;
     } cache_readResp_Receive;
 
-
     typedef struct {
         logic valid;
         logic [TB_AXI_IDWIDTH-1:0] id;
         logic [TB_AXI_USERWIDTH-1:0] user;
     } cache_writeACK_Receive;
-
-
-
 
     typedef enum logic [2:0] {
         IDLE,
@@ -110,11 +103,8 @@ package svut_if;
         time Receive_time;
     } dram_data_Receive;
 
-
     function void error_msg(string msg);
-
         $display("[%0t] %s", $time, msg);
-
     endfunction
 
 endpackage
