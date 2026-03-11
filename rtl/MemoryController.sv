@@ -173,11 +173,10 @@ module MemoryController #(
     output cache_side_response cache_resp,
     DDR4Interface DDR4_CH0_IF,
     DDR4Interface DDR4_CH1_IF
-    );
+);
 
     // Memory Controller-side
     mc_side_request mc_req;
-
 
     //          Memory Request Arbitration Based on Channel Address             //
     /* verilator lint_off UNUSEDSIGNAL */
