@@ -2,7 +2,6 @@
 
 import svut_if::*;
 
-
 module monitor (
     ///      Cache <-> Memory Controller        ///
     input logic clk, rst_n, clk2x,
@@ -241,8 +240,6 @@ module monitor (
         end
     end 
 
-
-
     assign dramCmdIssue[0].cmdType    = cmdType[0];
     assign dramCmdIssue[0].valid      = (cmdType[0] != IDLE) ?  ((Ch0_rankselected) ? 1 : 0) : 0;
     assign dramCmdIssue[0].bk         = DDR4_CH0_IF.b;
@@ -256,7 +253,6 @@ module monitor (
     assign dramCmdIssue[1].bg         = DDR4_CH1_IF.bg;
     assign dramCmdIssue[1].rank       = rk_ch1;
     assign dramCmdIssue[1].Issue_time = (cmdType[1] != IDLE) ? $time : 0;
-
 
     logic [$clog2(BURST_LENGTH)-1:0] dataBusCnt [$clog2(NUMCHANNEL):0];
     
@@ -280,8 +276,6 @@ module monitor (
             end 
         end
     end
-
-
 
     logic [4:0] CommandQueue[NUMCHANNEL -1:0];
     logic [4:0] CommandReady[NUMCHANNEL -1:0];
@@ -352,20 +346,17 @@ module monitor (
         end
     end
 
-
     assign dramWriteDataIssue[0].valid      = (CommandQueue[0][readyPtr[0]] && (dataBusCnt[0] == 0) && (DDR4_CH0_IF.dqs_t || DDR4_CH0_IF.dqs_c)) ? 1     : 0;
     assign dramWriteDataIssue[0].Issue_time = (CommandQueue[0][readyPtr[0]]  && (dataBusCnt[0] == 0) && (DDR4_CH0_IF.dqs_t || DDR4_CH0_IF.dqs_c)) ? $time : 0;
 
     assign dramWriteDataIssue[1].valid      = (CommandQueue[1][readyPtr[1]]  && (dataBusCnt[1] == 0) && (DDR4_CH1_IF.dqs_t || DDR4_CH1_IF.dqs_c)) ? 1     : 0;
     assign dramWriteDataIssue[1].Issue_time = (CommandQueue[1][readyPtr[1]]  && (dataBusCnt[1] == 0) && (DDR4_CH1_IF.dqs_t || DDR4_CH1_IF.dqs_c)) ? $time : 0;
 
-
     assign dramReadDataReceive[0].valid        = (!CommandQueue[0][readyPtr[0]]  && (dataBusCnt[0] == 0) && (DDR4_CH0_IF.dqs_t || DDR4_CH0_IF.dqs_c)) ?  1    : 0;
     assign dramReadDataReceive[0].Receive_time = (!CommandQueue[0][readyPtr[0]] && (dataBusCnt[0] == 0) && (DDR4_CH0_IF.dqs_t || DDR4_CH0_IF.dqs_c)) ? $time : 0;
 
     assign dramReadDataReceive[1].valid        = (!CommandQueue[1][readyPtr[1]]  && (dataBusCnt[1] == 0) && (DDR4_CH1_IF.dqs_t || DDR4_CH1_IF.dqs_c)) ?  1    : 0;
     assign dramReadDataReceive[1].Receive_time = (!CommandQueue[1][readyPtr[1]]  && (dataBusCnt[1] == 0) && (DDR4_CH1_IF.dqs_t || DDR4_CH1_IF.dqs_c)) ? $time : 0;
-
 
     function automatic logic checkActivate(
         input logic cke,
@@ -385,7 +376,7 @@ module monitor (
         if({cke, act_n, pin_A[16], pin_A[14], pin_A[10]} == 5'b11111) begin
             if(pin_A[15] == 0 )begin
                 return 1;
-            end  return 0;
+            end else return 0;
         end
     endfunction
 
