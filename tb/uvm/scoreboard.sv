@@ -45,12 +45,8 @@ module scoreboard#(
     logic [ERRORCNTWIDTH-1:0] ReadReqMatchingError, ReadReqDeadLockError;
     logic [ERRORCNTWIDTH-1:0] WriteReqMatchingError, WriteReqDeadLockError;
 
-
-
-
     logic [TBREADREQWIDTH-1:0] NumOfReadRequestIssued, NumOfReadResponseReceived;
     logic [TBWRITEREQWIDTH-1:0] NumOfWriteRequestIssued, NumOfWriteResponseReceived;
-
 
     TB_READREQENTRY readReqQueue [TBREADREQWIDTH-1:0];
     TB_WRITEREQENTRY writeReqQueue [TBWRITEREQWIDTH-1:0];
@@ -96,14 +92,14 @@ module scoreboard#(
         end
     end : RequestIDUserMatching
 
-    always_ff@(posedge clk or negedge rst_n) begin
-        if(!rst_n) begin
-            for(int i = 0; i < TBREADREQWIDTH; i++) begin
+    always_ff @(posedge clk or negedge rst_n) begin
+        if (!rst_n) begin
+            for (int i = 0; i < TBREADREQWIDTH; i++) begin
                 readReqQueue[i].id       <= '0;
                 readReqQueue[i].user     <= '0;
                 readReqQueue[i].sendTime <= '0;
             end
-            for(int i = 0; i < TBWRITEREQWIDTH; i++) begin
+            for (int i = 0; i < TBWRITEREQWIDTH; i++) begin
                 writeReqQueue[i].id         <= '0;
                 writeReqQueue[i].user       <= '0;
                 writeReqQueue[i].sendTime   <= '0;
@@ -119,14 +115,14 @@ module scoreboard#(
             ReadReqMatchingError  <= 0;
             WriteReqMatchingError <= 0;
         end else begin
-            if(ReadReqIssue.valid) begin
+            if (ReadReqIssue.valid) begin
                 readReqQueue[readReqWritePtr].id        <= ReadReqIssue.id;
                 readReqQueue[readReqWritePtr].user      <= ReadReqIssue.user;
                 readReqQueue[readReqWritePtr].sendTime  <= $time;
                 readReqQueueFree[readReqWritePtr]       <= 0;
                 NumOfReadRequestIssued <= NumOfReadRequestIssued + 1;
             end
-            if(WriteReqIssue.valid) begin
+            if (WriteReqIssue.valid) begin
                 writeReqQueue[writeReqWritePtr].id       <= WriteReqIssue.id;
                 writeReqQueue[writeReqWritePtr].user     <= WriteReqIssue.user;
                 writeReqQueue[writeReqWritePtr].sendTime <= $time;
@@ -134,7 +130,7 @@ module scoreboard#(
                 NumOfWriteRequestIssued <= NumOfWriteRequestIssued + 1;
             end
 
-            if(ReadRespReceive.valid) begin
+            if (ReadRespReceive.valid) begin
                 if(ReadReqIDUserMatching) begin
                     readReqQueue[readReqReadPtr].sendTime <= 0;
                     readReqQueueFree[readReqReadPtr]      <= 1;
@@ -199,8 +195,8 @@ module scoreboard#(
         end
     end
 
-    logic[tCL-1:0] ch0_readCmdQueue, ch1_readCmdQueue;
-    logic[tCWL-1:0] ch0_writeCmdQueue, ch1_writeCmdQueue;
+    logic [tCL-1:0] ch0_readCmdQueue, ch1_readCmdQueue;
+    logic [tCWL-1:0] ch0_writeCmdQueue, ch1_writeCmdQueue;
     logic [ERRORCNTWIDTH-1:0] Ch0_ReadDataBusTimingError, Ch1_ReadDataBusTimingError;
     logic [ERRORCNTWIDTH-1:0] Ch0_WriteDataBusTimingError, Ch1_WriteDataBusTimingError;
 
@@ -210,8 +206,7 @@ module scoreboard#(
             ch0_writeCmdQueue       <= '0;
             ch1_readCmdQueue        <= '0;
             ch1_writeCmdQueue       <= '0;
-
-        end  else begin
+        end else begin
             if(dramCmdIssue[0].cmdType == READ) begin
                 ch0_readCmdQueue <= {1'b1, {ch0_readCmdQueue[tCL-2:1]}};
             end else if (dramCmdIssue[0].cmdType == WRITE) begin
@@ -257,7 +252,6 @@ module scoreboard#(
             end
         end
     end : tCLtCWLCheck_1
-
 
     TB_CCDUNIT Ch0_ccdUnit , Ch1_ccdUnit;
     logic [$clog2(tCCDL)+1:0] Ch0_ccdCnt, Ch1_ccdCnt;
@@ -334,7 +328,6 @@ module scoreboard#(
         end
     end : tCCDCheck
 
-    
     TB_RCDRANK Ch0_tRCDQueue [NUMRANK-1:0];
     TB_RCDRANK Ch1_tRCDQueue [NUMRANK-1:0];
     logic [ERRORCNTWIDTH-1:0] Ch0_tRCDTimingError, Ch1_tRCDTimingError;
@@ -385,7 +378,6 @@ module scoreboard#(
         end
     end : tRCDChecking_0
 
-
     always_ff@(posedge clk or negedge rst_n) begin : tRCDChecking_1
         if(!rst_n) begin
             Ch0_tRCDTimingError <= 0;
@@ -405,8 +397,6 @@ module scoreboard#(
             end     
         end
     end : tRCDChecking_1
-
-
 
     final begin
         int totalErrors;
