@@ -75,21 +75,19 @@
 //////////////////////////////////////////////////////////////////////////////////////////
 
 module DualPortBuffer #(
-    parameter int BufferDepth = 8,
-    parameter type DataEntry = logic
-
-    )(
+    parameter int  BufferDepth = 8,
+    parameter type DataEntry   = logic
+)(
     input logic clk, rst,
     input logic re, we,
     input logic [$clog2(BufferDepth)-1:0] readPtr,
     input logic [$clog2(BufferDepth)-1:0] writePtr,
-    input DataEntry wdata,
+    input  DataEntry wdata,
     output DataEntry rdata
 );
 
     DataEntry mem [BufferDepth-1:0];
 
-    
     // write port (PHY-side)
     always_ff @(posedge clk or negedge rst) begin
         if (!rst) begin
@@ -116,4 +114,5 @@ module DualPortBuffer #(
         !(re && we && (readPtr == writePtr))
     ) else $fatal(2,"DualPortBuffer: RAW Hazard occured.");
 `endif
+
 endmodule
