@@ -150,9 +150,7 @@ module PHYWriteMode #(
                                                             //          OUTPUT TO  DRAM-SIDE                  //
     output logic dqs_t, dqs_c,                              //  1. Diff. signals for DQ BUS                   //
     output logic [MEM_DATAWIDTH - 1 : 0] outdata,           //  2. Data to DQ BUS WHEN Write Processing       //
-    output logic [MEM_DATAWIDTH/BURST_LENGTH-1:0] outDM,    //  3. Data Masking Bit for 64-bit data           //
-
-
+    output logic [MEM_DATAWIDTH/BURST_LENGTH-1:0] outDM,    //  3. Data Masking Bit for 64-bit data           
                                                             //          INPUT FROM PHYCONTROLLER              //
     input logic clk2x,                                      //  1. clock 2x for generating diff. signals      //
     input logic inflag,                                     //  2. Valid for Receiving Data from WRITE BUFFER //
@@ -164,14 +162,11 @@ module PHYWriteMode #(
     output logic outACK                                     //  1. ACK to PHY Controller for Sending Data     //
 );
 
-
-
     logic [MEM_DATAWIDTH-1:0] writeModeFIFO [PHYFIFODEPTH-1:0];     //  BURST DATA FIFO IN PHY 
     logic writeModeDMFIFO [PHYFIFODEPTH-1:0];                       //  Data Masking of BURST DATA FIFO IN PHY         
     logic [$clog2(PHYFIFODEPTH)-1:0] burst_cnt_dram;                //  Burst Count for PHY -> DRAM 
     logic [$clog2(PHYFIFODEPTH)-1:0] burst_cnt_host;                //  Burst Count for PHY <- WRITE BUFFER
     
-
     //---  Burst Counter & Diff. Sig Setup for DQ-BUS  (COUNTER) --//
     always @(posedge clk2x or negedge rst) begin : FIFOPOPCntAndDiff
         if(!rst) begin
@@ -199,7 +194,6 @@ module PHYWriteMode #(
     end : FIFOPOPCntAndDiff
 
     /////////////////////////////////////////////////////////////
-
 
     assign outACK = (burst_cnt_dram[2:0] == BURST_LENGTH-1) ? 1: 0;
     /////////////////////////////////////////////////////////////
@@ -232,6 +226,5 @@ module PHYWriteMode #(
         end
     end : FIFOPUSH
     /////////////////////////////////////////////////////////////
-
 
 endmodule
