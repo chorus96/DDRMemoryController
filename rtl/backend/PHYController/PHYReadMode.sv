@@ -143,7 +143,6 @@
 //      작성일  : 2026.02
 //------------------------------------------------------------------------------
 
-
 module PHYReadMode #(
     parameter int PHY_CHANNEL       = 0,
     parameter int MEM_DATAWIDTH     = 64,
@@ -174,13 +173,12 @@ module PHYReadMode #(
     logic [$clog2(PHYFIFODEPTH)-1:0] burst_cnt_host;            //  Burst Counter for PHY -> READ BUFFER  //
     logic [MEM_DATAWIDTH-1:0] readModeFIFO [PHYFIFODEPTH-1:0];  //  Burst Data FIFO   in PHY              //
 
-
     //----  Burst Counter Setup for DQ-BUS Data (Counter) ------//
     always_ff @(posedge clk2x or negedge rst) begin : FIFOPUSHCounter
-        if(!rst) begin
+        if (!rst) begin
             burst_cnt_dram <= '0;
         end else begin
-            if(inflag) begin                            // Inflag is triggered by PHYController
+            if (inflag) begin                            // Inflag is triggered by PHYController
                 if(burst_cnt_dram == PHYFIFODEPTH-1)begin
                     burst_cnt_dram <= 0;
                 end else begin
@@ -195,14 +193,14 @@ module PHYReadMode #(
             readDataACK <= 0;
         end else begin
             if(inflag) begin
-                    if(burst_cnt_dram[2:0] == (BURST_LENGTH -1))begin
-                        readDataACK <= 1;
-                        `ifdef DISPLAY
-                            $display("[%0t] PHYReadMode | READ DATA RECEIVED FROM DRAM", $time);
-                        `endif
-                    end else begin
-                        readDataACK <= 0;
-                    end
+                if(burst_cnt_dram[2:0] == (BURST_LENGTH -1))begin
+                    readDataACK <= 1;
+                    `ifdef DISPLAY
+                        $display("[%0t] PHYReadMode | READ DATA RECEIVED FROM DRAM", $time);
+                    `endif
+                end else begin
+                    readDataACK <= 0;
+                end
             end else begin
                 readDataACK <= 0;
             end
@@ -217,17 +215,15 @@ module PHYReadMode #(
                 readModeFIFO[i] <= '0;
             end
        end  else begin
-            if(inflag) begin
+            if (inflag) begin
                 readModeFIFO[burst_cnt_dram] <= inData;     
                 `ifdef DISPLAY
                     $display("[%0t] PHYReadMode | RECEIVED READ DATA : %h | Bead: %d", $time, inData, burst_cnt_dram[$clog2(BURST_LENGTH)-1:0]);
                 `endif
-
             end
        end
     end : FIFOPush
     /////////////////////////////////////////////////////////////
-
 
     //----  Burst Counter Setup for Read Buffer (Counter) -----//
     always_ff@(posedge clk or negedge rst) begin : FIFOPOPCounter
@@ -249,6 +245,5 @@ module PHYReadMode #(
     assign outDataLast  = (burst_cnt_host[2:0] == BURST_LENGTH-1) ? 1 : 0;
     assign outData      = (outflag) ? readModeFIFO[burst_cnt_host] : 0; 
     /////////////////////////////////////////////////////////////
-
 
 endmodule
