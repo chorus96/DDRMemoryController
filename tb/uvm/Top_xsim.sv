@@ -168,20 +168,18 @@ module Top_xsim;
     );
     logic r_ready_driver, b_ready_driver;
 
-    generate 
-        assign CacheReq.aw       = aw_driver;
-        assign CacheReq.aw_valid = aw_valid_driver;
-        assign CacheReq.w        = w_driver;
-        assign CacheReq.w_valid  = w_valid_driver;
-        assign CacheReq.ar       = ar_driver;
-        assign CacheReq.ar_valid = ar_valid_driver;
-        assign CacheReq.r_ready  = r_ready_driver;
-        assign CacheReq.b_ready  = b_ready_driver;
+    assign CacheReq.aw       = aw_driver;
+    assign CacheReq.aw_valid = aw_valid_driver;
+    assign CacheReq.w        = w_driver;
+    assign CacheReq.w_valid  = w_valid_driver;
+    assign CacheReq.ar       = ar_driver;
+    assign CacheReq.ar_valid = ar_valid_driver;
+    assign CacheReq.r_ready  = r_ready_driver;
+    assign CacheReq.b_ready  = b_ready_driver;
 
-        assign aw_ready_driver   = CacheResp.aw_ready;
-        assign ar_ready_driver   = CacheResp.ar_ready;
-        assign w_ready_driver    = CacheResp.w_ready;
-     endgenerate
+    assign aw_ready_driver   = CacheResp.aw_ready;
+    assign ar_ready_driver   = CacheResp.ar_ready;
+    assign w_ready_driver    = CacheResp.w_ready;
 
     initial begin
         #50
