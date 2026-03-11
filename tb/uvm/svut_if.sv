@@ -19,7 +19,7 @@ package svut_if;
     localparam int TB_tRCD          = 16;
     localparam int TB_NUM_BANKFSM   = 16;
     
-    typedef struct packed{
+    typedef struct packed {
         logic [TB_AXI_IDWIDTH-1:0] id;
         logic [TB_AXI_USERWIDTH-1:0] user;
         time sendTime;
