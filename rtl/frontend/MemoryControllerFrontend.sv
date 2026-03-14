@@ -623,23 +623,17 @@ module MemoryControllerFrontend#(
         end
     end : AvoidingRespStarvation
 
-
-
-
-
     assign MCRespStateBackend = (MCRespState == SERVE_CH0) ? 0 : 1;
     
-    assign noc_resp.r.data   =  MCRespState ? ch1_MCResp.read_data : ch0_MCResp.read_data;
-    assign noc_resp.r.id =  MCRespState ? ch1_MCResp.mem_read_id : ch0_MCResp.mem_read_id;
-    assign noc_resp.r.user = MCRespState ? ch1_MCResp.mem_read_user : ch0_MCResp.mem_read_user;
-    assign noc_resp.r.last = MCRespState ? ch1_MCResp.last : ch0_MCResp.last;
+    assign noc_resp.r.data  = MCRespState ? ch1_MCResp.read_data : ch0_MCResp.read_data;
+    assign noc_resp.r.id    = MCRespState ? ch1_MCResp.mem_read_id : ch0_MCResp.mem_read_id;
+    assign noc_resp.r.user  = MCRespState ? ch1_MCResp.mem_read_user : ch0_MCResp.mem_read_user;
+    assign noc_resp.r.last  = MCRespState ? ch1_MCResp.last : ch0_MCResp.last;
     assign noc_resp.r_valid = MCRespState ? ch1_MCResp.r_valid : ch0_MCResp.r_valid;
 
-    assign noc_resp.b.id = ch1_MCResp.b_valid ? ch1_MCResp.mem_ack_id : ch0_MCResp.b_valid ? ch0_MCResp.mem_ack_id : 0;
-    assign noc_resp.b.user = ch1_MCResp.b_valid ? ch1_MCResp.mem_ack_user : ch0_MCResp.b_valid ? ch0_MCResp.mem_ack_user : 0;
+    assign noc_resp.b.id    = ch1_MCResp.b_valid ? ch1_MCResp.mem_ack_id : ch0_MCResp.b_valid ? ch0_MCResp.mem_ack_id : 0;
+    assign noc_resp.b.user  = ch1_MCResp.b_valid ? ch1_MCResp.mem_ack_user : ch0_MCResp.b_valid ? ch0_MCResp.mem_ack_user : 0;
     assign noc_resp.b_valid = ch1_MCResp.b_valid || ch0_MCResp.b_valid;
-
-
 
     assign aggregate_ar_ready =  {{NUMRANK{~Ch1_ReadBufferFull}}  & Ch1_RankFSMRdReady,   {NUMRANK{~Ch0_ReadBufferFull}}  & Ch0_RankFSMRdReady};
     assign aggregate_w_ready =   {{NUMRANK{~Ch1_WriteBufferFull}} & Ch1_RankFSMWrReady,   {NUMRANK{~Ch0_WriteBufferFull}} & Ch0_RankFSMWrReady};
@@ -649,12 +643,6 @@ module MemoryControllerFrontend#(
     assign noc_resp.ar_ready = (|aggregate_ar_ready) && !arbitrationMode;
     assign noc_resp.aw_ready = (|aggregate_aw_ready) && !WrAddrQueueFull;
     assign noc_resp.w_ready  = (|aggregate_w_ready)  && !WrDataQueueFull;
-
-
-
-
-
-
 
 ///////////// 위에꺼 Response 수정하기 + Frontend 랑 Top MemoryController 엮이는 거 다시 확인하기
 
