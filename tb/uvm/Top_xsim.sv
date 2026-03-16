@@ -138,11 +138,17 @@ module Top_xsim;
     );
 
     monitor monitor_instance(
-        .clk(clk), .rst_n(rst_n), .clk2x(clk2x),
-        .cache_req(CacheReq), .cache_resp(CacheResp),
-        .DDR4_CH0_IF(DDR4Interface_CH0), .DDR4_CH1_IF(DDR4Interface_CH1),
-        .cacheReadReqIssue(monitor_cacheReadReqIssue), .cacheWriteReqIssue(monitor_cacheWriteReqIssue),
-        .cacheReadRespReceive(monitor_cacheReadRespReceive), .cacheWriteACKReceive(monitor_cacheWriteACKReceive),
+        .clk(clk), 
+        .rst_n(rst_n), 
+        .clk2x(clk2x),
+        .cache_req(CacheReq), 
+        .cache_resp(CacheResp),
+        .DDR4_CH0_IF(DDR4Interface_CH0), 
+        .DDR4_CH1_IF(DDR4Interface_CH1),
+        .cacheReadReqIssue(monitor_cacheReadReqIssue), 
+        .cacheWriteReqIssue(monitor_cacheWriteReqIssue),
+        .cacheReadRespReceive(monitor_cacheReadRespReceive), 
+        .cacheWriteACKReceive(monitor_cacheWriteACKReceive),
         .dramCmdIssue(monitor_dramCmdIssue),
         .dramWriteDataIssue(monitor_dramDataIssue),
         .dramReadDataReceive(monitor_dramDataReceive)
@@ -157,15 +163,24 @@ module Top_xsim;
         .TBREADREQWIDTH(TBREADREQWIDTH),
         .TBWRITEREQWIDTH(TBWRITEREQWIDTH),
         .ERRORCNTWIDTH(ERRORCNTWIDTH),
-        .tCL(tCL), .tCWL(tCWL), .tRCD(tRCD), .tCCDS(tCCDS), .tCCDL(tCCDL)
+        .tCL(tCL), 
+        .tCWL(tCWL), 
+        .tRCD(tRCD), 
+        .tCCDS(tCCDS), 
+        .tCCDL(tCCDL)
     ) scoreboard_instance(
-        .clk(clk), .rst_n(rst_n),
-        .ReadReqIssue(monitor_cacheReadReqIssue), .WriteReqIssue(monitor_cacheWriteReqIssue),
-        .ReadRespReceive(monitor_cacheReadRespReceive), .WriteRespReceive(monitor_cacheWriteACKReceive),
+        .clk(clk), 
+        .rst_n(rst_n),
+        .ReadReqIssue(monitor_cacheReadReqIssue), 
+        .WriteReqIssue(monitor_cacheWriteReqIssue),
+        .ReadRespReceive(monitor_cacheReadRespReceive), 
+        .WriteRespReceive(monitor_cacheWriteACKReceive),
         
-        .dramCmdIssue(monitor_dramCmdIssue), .dramDataIssue(monitor_dramDataIssue),
+        .dramCmdIssue(monitor_dramCmdIssue), 
+        .dramDataIssue(monitor_dramDataIssue),
         .dramDataReceive(monitor_dramDataReceive) 
     );
+    
     logic r_ready_driver, b_ready_driver;
 
     assign CacheReq.aw       = aw_driver;
