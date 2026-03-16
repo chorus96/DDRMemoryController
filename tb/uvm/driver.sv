@@ -185,7 +185,7 @@ module driver#
 
     assign aw_valid_driver = testEnable ? aw_mode : 0;
     assign ar_valid_driver = testEnable ? ar_mode : 0;
-    assign w_valid_driver =  testEnable ? w_mode  : 0;
+    assign w_valid_driver  = testEnable ? w_mode  : 0;
 
     // finding LSB user, id in free id/user vector
     logic [AXI_USERWIDTH-1:0] targetArUser;
