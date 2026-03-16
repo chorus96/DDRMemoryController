@@ -11,7 +11,7 @@ module driver#
     parameter int AXI_USERWIDTH = 1,
     parameter int MODELENGTH    = 32,
     parameter int BURST_LENGTH  = 8
-)(
+) (
     //      COMMON      //
     input wire clk, rst_n, 
 
