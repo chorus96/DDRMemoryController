@@ -92,7 +92,7 @@ module scoreboard#(
         end
     end : RequestIDUserMatching
 
-    always_ff @(posedge clk or negedge rst_n) begin
+    always_ff @(posedge clk or negedge rst_n) begin : RequestMatchingError
         if (!rst_n) begin
             for (int i = 0; i < TBREADREQWIDTH; i++) begin
                 readReqQueue[i].id       <= '0;
@@ -151,9 +151,9 @@ module scoreboard#(
                 end
             end
         end
-    end
+    end : RequestMatchingError
 
-    always_ff @(posedge clk or negedge rst_n) begin : Deadlock
+    always_ff @(posedge clk or negedge rst_n) begin : RequestDeadLockError
         if(!rst_n) begin
             for(int i = 0; i< TBREADREQWIDTH; i++) begin
                 readReqQueue[i].cnt <= 0;
@@ -193,7 +193,7 @@ module scoreboard#(
                 end
             end
         end
-    end : Deadlock
+    end : RequestDeadLockError
 
     logic [tCL-1:0] ch0_readCmdQueue, ch1_readCmdQueue;
     logic [tCWL-1:0] ch0_writeCmdQueue, ch1_writeCmdQueue;
