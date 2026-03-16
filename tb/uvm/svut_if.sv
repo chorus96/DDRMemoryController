@@ -91,12 +91,12 @@ package svut_if;
 
     typedef struct {
         logic valid;
-        time Issue_time;
+        time  Issue_time;
     } dram_data_Issue;
 
     typedef struct {
         logic valid;
-        time Receive_time;
+        time  Receive_time;
     } dram_data_Receive;
 
     function void error_msg(string msg);
