@@ -136,7 +136,6 @@ module monitor (
     assign cacheWriteReqIssue.id    =  (writeReqCombine) ? cache_req.aw.id   : (cache_req.w_valid && cache_resp.w_ready) ? AwIdQueue[AwQueueRdPtr]   : 0;
     assign cacheWriteReqIssue.user  =  (writeReqCombine) ? cache_req.aw.user : (cache_req.w_valid && cache_resp.w_ready) ? AwUserQueue[AwQueueRdPtr] : 0;
     
-
     ///         RESPONSE  FINDING       // 
     logic [AXI_DATAWIDTH * BURST_LENGTH-1:0] ReadRespDataQueue;
     logic [$clog2(BURST_LENGTH)-1:0] ReadRespDataCnt;
@@ -392,7 +391,7 @@ module monitor (
         else return 0;
     endfunction
 
-    function automatic logic checkAutoPrechargeWrite (
+    function automatic logic checkAutoPrechargeWrite(
         input logic cke,
         input logic act_n,
         input logic [COMMAND_WIDTH-1:0] pin_A
@@ -405,7 +404,7 @@ module monitor (
         end else return 0;    
     endfunction
 
-    function automatic logic checkWrite (
+    function automatic logic checkWrite(
         input logic cke,
         input logic act_n,
         input logic [COMMAND_WIDTH-1:0] pin_A    
@@ -417,7 +416,7 @@ module monitor (
         end return 0;
     endfunction
 
-    function automatic logic checkRefresh (
+    function automatic logic checkRefresh(
         input logic cke,
         input logic act_n,
         input logic [COMMAND_WIDTH-1:0] pin_A
@@ -427,7 +426,7 @@ module monitor (
         end else return 0;
     endfunction
 
-    function automatic logic checkPrecharge (
+    function automatic logic checkPrecharge(
         input logic cke, 
         input logic act_n,
         input logic [COMMAND_WIDTH-1:0] pin_A
