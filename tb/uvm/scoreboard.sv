@@ -2,27 +2,27 @@
 
 import svut_if::*;
 module scoreboard#(
-    parameter int DEADLOCKCNT = 1000,
+    parameter int DEADLOCKCNT   = 1000,
     parameter int AXI_DATAWIDTH = 64,
     parameter int AXI_ADDRWIDTH = 32,
-    parameter int AXI_IDWIDTH = 4,
+    parameter int AXI_IDWIDTH.  = 4,
     parameter int AXI_USERWIDTH = 1,
-    parameter int BURST_LENGTH = 8,
+    parameter int BURST_LENGTH  = 8,
 
-    parameter int TBREADREQWIDTH = 8,
+    parameter int TBREADREQWIDTH  = 8,
     parameter int TBWRITEREQWIDTH = 8,
-    parameter int ERRORCNTWIDTH = 100,
+    parameter int ERRORCNTWIDTH   = 100,
     
-    parameter int  tCL =  16,
-    parameter int tCWL = 12,
-    parameter int tRCD = 16,
+    parameter int  tCL  = 16,
+    parameter int tCWL  = 12,
+    parameter int tRCD  = 16,
     parameter int tCCDS = 4,
     parameter int tCCDL = 6
 ) (
     //  COMMON  //
     input wire clk, rst_n,
 
-    //  MONITOR <-> SCOREBOARD   //
+    //  MONITOR -> SCOREBOARD   //
     input cache_readReq_Issue ReadReqIssue,
     input cache_writeReq_Issue WriteReqIssue,
     input cache_readResp_Receive ReadRespReceive,
@@ -147,13 +147,13 @@ module scoreboard#(
                     NumOfWriteResponseReceived <= NumOfWriteResponseReceived + 1; 
                 end else begin
                     WriteReqMatchingError <= WriteReqMatchingError + 1;
-                    error_msg("Read Req/Resp ID/User Mismatching");
+                    error_msg("Write Req/Resp ID/User Mismatching");
                 end
             end
         end
     end
 
-    always_ff@(posedge clk or negedge rst_n) begin
+    always_ff @(posedge clk or negedge rst_n) begin : Deadlock
         if(!rst_n) begin
             for(int i = 0; i< TBREADREQWIDTH; i++) begin
                 readReqQueue[i].cnt <= 0;
@@ -193,7 +193,7 @@ module scoreboard#(
                 end
             end
         end
-    end
+    end : Deadlock
 
     logic [tCL-1:0] ch0_readCmdQueue, ch1_readCmdQueue;
     logic [tCWL-1:0] ch0_writeCmdQueue, ch1_writeCmdQueue;
@@ -385,7 +385,7 @@ module scoreboard#(
         end else begin
             if((dramCmdIssue[0].cmdType == READ) || (dramCmdIssue[0].cmdType == WRITE)) begin
                 if(|Ch0_tRCDQueue[dramCmdIssue[0].rank].actTiming[{dramCmdIssue[0].bg, dramCmdIssue[0].bk}]) begin
-                    Ch0_tRCDTimingError <= Ch0_tRCDTimingError +1;
+                    Ch0_tRCDTimingError <= Ch0_tRCDTimingError + 1;
                     error_msg("Channel_0 : Read/Write Timing Error (tRCD)");
                 end
             end 
@@ -398,7 +398,7 @@ module scoreboard#(
         end
     end : tRCDChecking_1
 
-    final begin
+    final begin : Summary
         int totalErrors;
 
         totalErrors = 
@@ -454,7 +454,6 @@ module scoreboard#(
         else
             $display("  RESULT : FAIL  ❌  (Total Errors = %0d)", totalErrors);
         $display("=====================================================================\n");
-
-    end
+    end : Summary
 
 endmodule
