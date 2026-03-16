@@ -2,8 +2,7 @@
 
 import MemoryController_Definitions::*;
 
-module driver#
-(
+module driver #(
     parameter int TIMEOUT       = 100,
     parameter int AXI_DATAWIDTH = 64,
     parameter int AXI_ADDRWIDTH = 32,
