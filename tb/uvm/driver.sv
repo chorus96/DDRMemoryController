@@ -27,11 +27,11 @@ module driver#
     input  wire  ar_ready,
 
     //       Write Request       //
-    output wire [AXI_IDWIDTH-1:0] aw_id,
+    output wire [AXI_IDWIDTH - 1:0] aw_id,
     output wire [AXI_USERWIDTH-1:0] aw_user,
     output wire [AXI_ADDRWIDTH-1:0] aw_addr,
     output logic aw_valid,
-    input wire aw_ready,
+    input  wire  aw_ready,
 
     output wire [AXI_IDWIDTH-1:0] w_id,
     output wire [AXI_USERWIDTH-1:0] w_user,
@@ -39,7 +39,7 @@ module driver#
     output wire w_last,
     output wire [AXI_DATAWIDTH/BURST_LENGTH -1: 0] w_strb,
     output logic w_valid,
-    input wire w_ready
+    input  wire  w_ready
 );
 
     localparam int IDVECTORWIDTH   = (1 << AXI_IDWIDTH);
@@ -326,7 +326,7 @@ module driver#
         end
     end : w_bus_stateCnt
 
-    always_ff@(posedge clk or negedge rst_n) begin : w_bus_generate
+    always_ff @(posedge clk or negedge rst_n) begin : w_bus_generate
         if(!rst_n) begin
             w_data_driver <= '0;
             WBusSent      <= 0;
