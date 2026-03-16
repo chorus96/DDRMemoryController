@@ -392,7 +392,7 @@ module monitor (
         else return 0;
     endfunction
 
-    function automatic logic checkAutoPrechargeWrite(
+    function automatic logic checkAutoPrechargeWrite (
         input logic cke,
         input logic act_n,
         input logic [COMMAND_WIDTH-1:0] pin_A
@@ -405,7 +405,7 @@ module monitor (
         end else return 0;    
     endfunction
 
-    function automatic logic checkWrite(
+    function automatic logic checkWrite (
         input logic cke,
         input logic act_n,
         input logic [COMMAND_WIDTH-1:0] pin_A    
@@ -417,7 +417,7 @@ module monitor (
         end return 0;
     endfunction
 
-    function automatic logic checkRefresh(
+    function automatic logic checkRefresh (
         input logic cke,
         input logic act_n,
         input logic [COMMAND_WIDTH-1:0] pin_A
@@ -427,7 +427,7 @@ module monitor (
         end else return 0;
     endfunction
 
-    function automatic logic checkPrecharge(
+    function automatic logic checkPrecharge (
         input logic cke, 
         input logic act_n,
         input logic [COMMAND_WIDTH-1:0] pin_A
