@@ -102,7 +102,8 @@ module driver#
         .LENGTH(MODELENGTH),
         .KEY(32'h2451_2312) 
     ) lfsr_ar_mode (
-        .clk(clk), .rst_n(rst_n),
+        .clk(clk), 
+        .rst_n(rst_n),
         .enable(modeEnable),
         .valid(modeARValid),
         .random(modeARRandom)
@@ -112,7 +113,8 @@ module driver#
         .LENGTH(32),
         .KEY(32'h5351_3467)
     ) lfsr_aw_mode (
-        .clk(clk), .rst_n(rst_n),
+        .clk(clk), 
+        .rst_n(rst_n),
         .enable(modeEnable),
         .valid(modeAWValid),
         .random(modeAWRandom)
@@ -122,7 +124,8 @@ module driver#
         .LENGTH(32),
         .KEY(32'h9825_5257) 
     ) lfsr_w_mode (
-        .clk(clk), .rst_n(rst_n),
+        .clk(clk), 
+        .rst_n(rst_n),
         .enable(modeEnable),
         .valid(modeWValid),
         .random(modeWRandom)
@@ -215,11 +218,11 @@ module driver#
         targetArUser = 0;
         targetAwUser = 0;
         targetWUser  = 0;
-        targetArId = 0;
-        targetAwId = 0;
-        targetWId  = 0;
+        targetArId  = 0;
+        targetAwId  = 0;
+        targetWId   = 0;
         
-        for(int i = USERVECTORWIDTH; i>0; i--) begin
+        for(int i = USERVECTORWIDTH; i > 0; i--) begin
             if(!ArvectorIdFull[i]) begin
                 targetArUser = i;
             end
@@ -281,12 +284,10 @@ module driver#
                 if(ar_valid_driver) begin
                     ar_addr_driver <= arAddrRandom;
                 end 
-
                 if(aw_valid_driver) begin
                     aw_addr_driver <= awAddrRandom;
                 end 
             end else begin
-
                 aw_addr_driver <= '0;
                 ar_addr_driver <= '0;                
             end
