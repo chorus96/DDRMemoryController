@@ -4,13 +4,13 @@ import MemoryController_Definitions::*;
 
 module driver#
 (
-    parameter int TIMEOUT = 100,
+    parameter int TIMEOUT       = 100,
     parameter int AXI_DATAWIDTH = 64,
     parameter int AXI_ADDRWIDTH = 32,
-    parameter int AXI_IDWIDTH = 4,
+    parameter int AXI_IDWIDTH   = 4,
     parameter int AXI_USERWIDTH = 1,
-    parameter int MODELENGTH = 32,
-    parameter int BURST_LENGTH = 8
+    parameter int MODELENGTH    = 32,
+    parameter int BURST_LENGTH  = 8
 )(
     //      COMMON      //
     input wire clk, rst_n, 
