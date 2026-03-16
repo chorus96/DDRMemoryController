@@ -47,8 +47,7 @@ module monitor (
         if (!rst_n) begin
             NumCacheReadReq  <= 0;
             NumCacheWriteReq <= 0;
-            NumCacheReadResp <= 0;
-            
+            NumCacheReadResp <= 0;            
         end else begin
             if (cacheReadReqIssue.valid) begin
                 NumCacheReadReq <= NumCacheReadReq + 1;
@@ -103,7 +102,7 @@ module monitor (
         end
     end
 
-    always_ff@(posedge clk or negedge rst_n) begin
+    always_ff @(posedge clk or negedge rst_n) begin
         if(!rst_n) begin
             for(int i = 0; i < AWREQWIDTH; i++) begin
                 AwAddrQueue[i]  <= '0;
@@ -256,7 +255,7 @@ module monitor (
 
     logic [$clog2(BURST_LENGTH)-1:0] dataBusCnt [$clog2(NUMCHANNEL):0];
     
-    always_ff@(posedge clk2x or negedge rst_n) begin
+    always_ff @(posedge clk2x or negedge rst_n) begin
         if(!rst_n) begin
             dataBusCnt[0] <= 0;
             dataBusCnt[1] <= 0;
@@ -280,7 +279,7 @@ module monitor (
     logic [4:0] CommandQueue[NUMCHANNEL -1:0];
     logic [4:0] CommandReady[NUMCHANNEL -1:0];
 
-    always_ff@(posedge clk or negedge rst_n) begin
+    always_ff @(posedge clk or negedge rst_n) begin
         if(!rst_n) begin
                 CommandQueue[0] <= '0;
                 CommandReady[0] <= '0;
@@ -298,7 +297,7 @@ module monitor (
         end
     end
 
-    always_ff@(posedge clk2x or negedge rst_n) begin
+    always_ff @(posedge clk2x or negedge rst_n) begin
         if(!rst_n) begin
             validSig <= '0;
         end else begin
@@ -315,7 +314,7 @@ module monitor (
         end
     end
 
-    always_ff@(posedge clk or negedge rst_n) begin
+    always_ff @(posedge clk or negedge rst_n) begin
         if(!rst_n) begin
             CommandQueue[1] <= '0;
             CommandReady[1] <= '0; 
@@ -385,7 +384,7 @@ module monitor (
         input logic act_n,
         input logic [COMMAND_WIDTH-1:0] pin_A
     );
-        if({cke, act_n, pin_A[16], pin_A[14]} == 4'b1111) begin
+        if ({cke, act_n, pin_A[16], pin_A[14]} == 4'b1111) begin
             if({pin_A[15], pin_A[10]} == 2'b00) begin
                 return 1;
             end else return 0;
@@ -398,7 +397,7 @@ module monitor (
         input logic act_n,
         input logic [COMMAND_WIDTH-1:0] pin_A
     );
-        if({cke, act_n, pin_A[16], pin_A[10]} == 4'b1111) begin
+        if ({cke, act_n, pin_A[16], pin_A[10]} == 4'b1111) begin
             if({pin_A[15], pin_A[14]}== 2'b00) begin
                 return 1;
             end
@@ -411,7 +410,7 @@ module monitor (
         input logic act_n,
         input logic [COMMAND_WIDTH-1:0] pin_A    
     );
-        if({cke, act_n, pin_A[16]} == 3'b111) begin
+        if ({cke, act_n, pin_A[16]} == 3'b111) begin
             if({pin_A[15], pin_A[14], pin_A[10]} == 3'b000) begin
                 return 1;
             end else return 0;
@@ -423,7 +422,7 @@ module monitor (
         input logic act_n,
         input logic [COMMAND_WIDTH-1:0] pin_A
     );
-        if({cke, act_n, pin_A[16], pin_A[15], pin_A[14]} == 5'b11000) begin
+        if ({cke, act_n, pin_A[16], pin_A[15], pin_A[14]} == 5'b11000) begin
             return 1;
         end else return 0;
     endfunction
@@ -433,7 +432,7 @@ module monitor (
         input logic act_n,
         input logic [COMMAND_WIDTH-1:0] pin_A
     );
-        if({cke, act_n, pin_A[15]} == 3'b111) begin
+        if ({cke, act_n, pin_A[15]} == 3'b111) begin
             if({pin_A[16], pin_A[14], pin_A[10]} == 3'b000) begin
                 return 1;
             end else return 0;
