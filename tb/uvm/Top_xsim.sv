@@ -129,7 +129,9 @@ module Top_xsim;
         .tRFC(tRFC),
         .tRP(tRP)
     ) MemoryBFM_Instance(
-        .clk(clk), .rst_n(rst_n), .clk2x(clk2x),
+        .clk(clk), 
+        .rst_n(rst_n), 
+        .clk2x(clk2x),
         .DDR4_CH0_IF(DDR4Interface_CH0),
         .DDR4_CH1_IF(DDR4Interface_CH1)
     );
@@ -146,13 +148,16 @@ module Top_xsim;
     logic driverEnable;
     
     axi_ar_chan_t ar_driver;
-    logic ar_valid_driver, ar_ready_driver;
+    logic ar_valid_driver;
+    logic ar_ready_driver;
 
     axi_aw_chan_t aw_driver;
-    logic aw_valid_driver, aw_ready_driver;
+    logic aw_valid_driver;
+    logic aw_ready_driver;
 
     axi_w_chan_t w_driver;
-    logic w_valid_driver, w_ready_driver;
+    logic w_valid_driver; 
+    logic w_ready_driver;
 
     driver #(
         .TIMEOUT(100),
@@ -162,16 +167,28 @@ module Top_xsim;
         .MODELENGTH(32),
         .BURST_LENGTH(8)
     ) driver_instance(
-        .clk(clk), .rst_n(rst_n), .testEnable(driverEnable),
-        .ar_id(ar_driver.id), .ar_user(ar_driver.user), .ar_addr(ar_driver.addr),
-        .ar_valid(ar_valid_driver), .ar_ready(ar_ready_driver),
+        .clk(clk), 
+        .rst_n(rst_n), 
+        .testEnable(driverEnable),
+        .ar_id(ar_driver.id), 
+        .ar_user(ar_driver.user), 
+        .ar_addr(ar_driver.addr),
+        .ar_valid(ar_valid_driver), 
+        .ar_ready(ar_ready_driver),
 
-        .aw_id(aw_driver.id), .aw_user(aw_driver.user), .aw_addr(aw_driver.addr),
-        .aw_valid(aw_valid_driver), .aw_ready(aw_ready_driver),
+        .aw_id(aw_driver.id), 
+        .aw_user(aw_driver.user), 
+        .aw_addr(aw_driver.addr),
+        .aw_valid(aw_valid_driver), 
+        .aw_ready(aw_ready_driver),
         
-        .w_id(w_driver.id), .w_user(w_driver.user), .w_data(w_driver.data),
-        .w_last(w_driver.last), .w_strb(w_driver.strb), 
-        .w_valid(w_valid_driver), .w_ready(w_ready_driver)
+        .w_id(w_driver.id), 
+        .w_user(w_driver.user), 
+        .w_data(w_driver.data),
+        .w_last(w_driver.last), 
+        .w_strb(w_driver.strb), 
+        .w_valid(w_valid_driver), 
+        .w_ready(w_ready_driver)
     );
 
     monitor monitor_instance(
@@ -218,7 +235,8 @@ module Top_xsim;
         .dramDataReceive(monitor_dramDataReceive) 
     );
     
-    logic r_ready_driver, b_ready_driver;
+    logic r_ready_driver;
+    logic b_ready_driver;
 
     assign CacheReq.aw       = aw_driver;
     assign CacheReq.aw_valid = aw_valid_driver;
@@ -245,8 +263,10 @@ module Top_xsim;
         b_ready_driver = 1;
     endtask
 
-    task automatic SVUMRun(ref logic UVMEnable,
-                            input integer RUNTIME);
+    task automatic SVUMRun (
+        ref logic UVMEnable,
+        input integer RUNTIME
+    );
         integer i = 0;
         @(posedge clk); 
         UVMEnable = 0;
@@ -262,7 +282,9 @@ module Top_xsim;
         UVMEnable = 0;
     endtask
 
-    task automatic SVUMFinish(input integer ENDTIME);
+    task automatic SVUMFinish (
+        input integer ENDTIME
+    );
         integer i = 0;
         @(posedge clk);
         do begin
