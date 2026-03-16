@@ -30,7 +30,8 @@ module Top_xsim;
         .CWIDTH(CWIDTH),
         .NUMRANK(NUMRANK)
     ) DDR4Interface_CH0(
-        .clk(clk), .rst(rst_n)
+        .clk(clk), 
+        .rst(rst_n)
     );
 
     DDR4Interface #(
@@ -44,34 +45,70 @@ module Top_xsim;
         .CWIDTH(CWIDTH),
         .NUMRANK(NUMRANK)
     ) DDR4Interface_CH1(
-        .clk(clk), .rst(rst_n)
+        .clk(clk), 
+        .rst(rst_n)
     );
 
     MemoryController #(
-        .AXI_DATAWIDTH(AXI_DATAWIDTH), .AXI_ADDRWIDTH(AXI_ADDRWIDTH), 
-        .AXI_IDWIDTH(AXI_IDWIDTH), .AXI_USERWIDTH(AXI_USERWIDTH),
-        .MEM_DATAWIDTH(MEM_DATAWIDTH), .MEM_ADDRWIDTH(MEM_ADDRWIDTH),
-        .MEM_IDWIDTH(MEM_IDWIDTH), .MEM_USERWIDTH(MEM_USERWIDTH),
+        .AXI_DATAWIDTH(AXI_DATAWIDTH), 
+        .AXI_ADDRWIDTH(AXI_ADDRWIDTH), 
+        .AXI_IDWIDTH(AXI_IDWIDTH), 
+        .AXI_USERWIDTH(AXI_USERWIDTH),
+        .MEM_DATAWIDTH(MEM_DATAWIDTH), 
+        .MEM_ADDRWIDTH(MEM_ADDRWIDTH),
+        .MEM_IDWIDTH(MEM_IDWIDTH), 
+        .MEM_USERWIDTH(MEM_USERWIDTH),
         .COMMAND_WIDTH(COMMAND_WIDTH), 
-        .CHWIDTH(CHWIDTH), .RKWIDTH(RKWIDTH), .BGWIDTH(BGWIDTH),
-        .CWIDTH(CWIDTH), .RWIDTH(RWIDTH), .BKWIDTH(BKWIDTH),
-        .NUMCHANNEL(NUMCHANNEL), .NUMRANK(NUMRANK),
-        .NUMBANKGROUP(NUMBANKGROUP), .NUMBANK(NUMBANK),
+        .CHWIDTH(CHWIDTH), 
+        .RKWIDTH(RKWIDTH), 
+        .BGWIDTH(BGWIDTH),
+        .CWIDTH(CWIDTH), 
+        .RWIDTH(RWIDTH), 
+        .BKWIDTH(BKWIDTH),
+        .NUMCHANNEL(NUMCHANNEL), 
+        .NUMRANK(NUMRANK),
+        .NUMBANKGROUP(NUMBANKGROUP), 
+        .NUMBANK(NUMBANK),
         .NUM_RANKEXECUTION_UNIT(NUM_RANKEXECUTION_UNIT), 
-        .THRESHOLD(THRESHOLD), .AGINGWIDTH(AGINGWIDTH),
-        .READCMDQUEUEDEPTH(READCMDQUEUEDEPTH), .WRITECMDQUEUEDEPTH(WRITECMDQUEUEDEPTH),
+        .THRESHOLD(THRESHOLD), 
+        .AGINGWIDTH(AGINGWIDTH),
+        .READCMDQUEUEDEPTH(READCMDQUEUEDEPTH), 
+        .WRITECMDQUEUEDEPTH(WRITECMDQUEUEDEPTH),
         .OPENPAGELISTDEPTH(OPENPAGELISTDEPTH),
-        .RESPSCHEDULINGCNT(RESPSCHEDULINGCNT), .ASSEMBLER_DEPTH(ASSEMBLER_DEPTH),
-        .READBUFFERDEPTH(READBUFFERDEPTH), .WRITEBUFFERDEPTH(WRITEBUFFERDEPTH),
-        .PHYFIFOMAXENTRY(PHYFIFOMAXENTRY), .PHYFIFODEPTH(PHYFIFODEPTH), .PHYFIFOREQUESTWINDOW(PHYFIFOREQUESTWINDOW),
+        .RESPSCHEDULINGCNT(RESPSCHEDULINGCNT), 
+        .ASSEMBLER_DEPTH(ASSEMBLER_DEPTH),
+        .READBUFFERDEPTH(READBUFFERDEPTH), 
+        .WRITEBUFFERDEPTH(WRITEBUFFERDEPTH),
+        .PHYFIFOMAXENTRY(PHYFIFOMAXENTRY), 
+        .PHYFIFODEPTH(PHYFIFODEPTH), 
+        .PHYFIFOREQUESTWINDOW(PHYFIFOREQUESTWINDOW),
         .BURST_LENGTH(BURST_LENGTH),
-        .tBL(tBL), .tCCDS(tCCDS), .tCCDL(tCCDL), .tRTRS(tRTRS), .tCL(tCL), .tRCD(tRCD),
-        .tRP(tRP), .tCWL(tCWL), .tRTW(tRTW), .tRAS(tRAS), .tRC(tRC), .tRTP(tRTP),
-        .tWTRS(tWTRS), .tWTRL(tWTRL), .tWR(tWR), .tRFC(tRFC), .tREFI(tREFI), .CHMODETHRESHOLD(CHMODETHRESHOLD)
+        .tBL(tBL), 
+        .tCCDS(tCCDS), 
+        .tCCDL(tCCDL), 
+        .tRTRS(tRTRS), 
+        .tCL(tCL), 
+        .tRCD(tRCD),
+        .tRP(tRP), 
+        .tCWL(tCWL), 
+        .tRTW(tRTW), 
+        .tRAS(tRAS), 
+        .tRC(tRC), 
+        .tRTP(tRTP),
+        .tWTRS(tWTRS), 
+        .tWTRL(tWTRL), 
+        .tWR(tWR), 
+        .tRFC(tRFC), 
+        .tREFI(tREFI), 
+        .CHMODETHRESHOLD(CHMODETHRESHOLD)
     ) MemoryController_Instance(
-        .clk(clk), .rst_n(rst_n), .clk2x(clk2x),
-        .cache_req(CacheReq), .cache_resp(CacheResp),
-        .DDR4_CH0_IF(DDR4Interface_CH0), .DDR4_CH1_IF(DDR4Interface_CH1)
+        .clk(clk), 
+        .rst_n(rst_n), 
+        .clk2x(clk2x),
+        .cache_req(CacheReq), 
+        .cache_resp(CacheResp),
+        .DDR4_CH0_IF(DDR4Interface_CH0), 
+        .DDR4_CH1_IF(DDR4Interface_CH1)
     );
 
     MemoryBFM #(
