@@ -1,7 +1,7 @@
 module lfsr_driver #(
-    parameter int LENGTH = 4,
+    parameter int  p0 LENGTH = 4,
     parameter logic [LENGTH - 1 : 0] KEY = '1
-)(
+) (
     input  logic clk, rst_n,
     input  logic enable,
     output logic valid,
