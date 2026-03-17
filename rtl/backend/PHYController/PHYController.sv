@@ -116,55 +116,44 @@ module PHYController #(
     /* common */
     input logic clk, rst, mode,                  
     input logic clk2x, // DDR Clocking for generating DQS_t signal
-           
-                                                                                ////////////////////////////////////////////////////////
-                                                                                //          INPUT FROM  WRITE BUFFER SIDE             // 
-    input logic [MEM_DATAWIDTH-1:0] writeBufferData,                            //  1. Data from Write Buffer        (To WriteMode)   // 
-    input logic writeBufferDataLast,                                            //  2. Data Last from Write Buffer   (To WriteMode)   //            
-    input logic writeBufferDataValid,                                           //  3. Data Valid from Write Buffer  (To WriteMode)   //
-    input logic [MEM_DATAWIDTH/BURST_LENGTH - 1 : 0] writeBufferDataStrb,       //  4. Masking Bit for Data          (To WriteMode)   //
-                                                                                ////////////////////////////////////////////////////////
 
-                                                                                ////////////////////////////////////////////////////////
-                                                                                //          OUTPUT TO WRITE BUFFER SIDE               //
-    output logic WriteModeFIFOReady,                                            //  1. Ready Signal from PHYWriteModeFIFO             //
-    output logic WriteModeACK,                                                  //  2. ACK Signal from PHY WriteMode to WR BUFFER     //
-                                                                                ////////////////////////////////////////////////////////
+    /* INPUT FROM WRITE BUFFER SIDE */ 
+    input logic [MEM_DATAWIDTH - 1 : 0] writeBufferData,                      // 1. Data from Write Buffer       (To WriteMode)
+    input logic writeBufferDataLast,                                      // 2. Data Last from Write Buffer  (To WriteMode)       
+    input logic writeBufferDataValid,                                     // 3. Data Valid from Write Buffer (To WriteMode)
+    input logic [MEM_DATAWIDTH/BURST_LENGTH - 1 : 0] writeBufferDataStrb, // 4. Masking Bit for Data         (To WriteMode)
 
-                                                                                ////////////////////////////////////////////////////////
-                                                                                //          OUTPUT TO  RAED BUFFER SIDE               //
-    output logic [MEM_DATAWIDTH-1:0] readBufferData,                            //  1. Data to Read Buffer        (From ReadMode)     //
-    output logic [NUMRANK-1:0] readBufferDataTag,                               //  2. Data Tag to Read Buffer                        //
-    output logic readBufferDataValid,                                           //  3. Data Valid to Read Buffer  (From ReadMode)     //
-    output logic readBufferDataLast,                                            //  4. Data Last to Read Buffer   (From ReadMode)     //
-    output logic ReadModeFIFOReady,                                             //  5. Ready Signal from PHYReadModeFIFO              //
-                                                                                ////////////////////////////////////////////////////////
+    /* OUTPUT TO WRITE BUFFER SIDE */
+    output logic WriteModeFIFOReady, // 1. Ready Signal from PHYWriteModeFIFO
+    output logic WriteModeACK,       // 2. ACK Signal from PHY WriteMode to WR BUFFER
 
-                                                                                ////////////////////////////////////////////////////////
-                                                                                //          INPUT FROM CHANNEL SCHEDULER              //
-    input logic ReadCMDIssuedACK,                                               //  1. READ Command Issued ACK                        //
-    input MemoryAddress ReadCMDIssuedAddr,                                      //  2. READ Command Issued Address                    //
-    input logic WriteCMDIssuedACK,                                              //  3. WRITE Command Issued ACK                       //
-    input MemoryAddress WriteCMDIssuedAddr,                                     //  4. WRITE Command Issued Address                   //
-                                                                                ////////////////////////////////////////////////////////
+    /* OUTPUT TO RAED BUFFER SIDE */
+    output logic [MEM_DATAWIDTH - 1 : 0] readBufferData, // 1. Data to Read Buffer        (From ReadMode)
+    output logic [NUMRANK - 1 : 0] readBufferDataTag,    // 2. Data Tag to Read Buffer                   
+    output logic readBufferDataValid,                    // 3. Data Valid to Read Buffer  (From ReadMode)
+    output logic readBufferDataLast,                     // 4. Data Last to Read Buffer   (From ReadMode)
+    output logic ReadModeFIFOReady,                      // 5. Ready Signal from PHYReadModeFIFO          
+                                                                                
+    /* INPUT FROM CHANNEL SCHEDULER */
+    input logic ReadCMDIssuedACK,           // 1. READ Command Issued ACK                        
+    input MemoryAddress ReadCMDIssuedAddr,  // 2. READ Command Issued Address                    
+    input logic WriteCMDIssuedACK,          // 3. WRITE Command Issued ACK                       
+    input MemoryAddress WriteCMDIssuedAddr, // 4. WRITE Command Issued Address                                                                                           
+                                                                                
+    /* OUTPUT TO CHANNEL SCHEDULER */
+    output logic ReadAutoPrechargeACK,           // 1. ReadCMD+AP Acknowledge to RankFSM         
+    output MemoryAddress ReadAutoPrechargeAddr,  // 2. ReadCMD+AP ACK Address to RankFSM             
+    output logic WriteAutoPrechargeACK,          // 3. WriteCMD+AP Acknowledge to RankFSM            
+    output MemoryAddress WriteAutoPrechargeAddr, // 4. WriteCMD+AP ACK Address to RankFSM                                                                                       
 
-                                                                                ////////////////////////////////////////////////////////
-                                                                                //          OUTPUT TO CHANNEL SCHEDULER               //
-    output logic ReadAutoPrechargeACK,                                          //  1. ReadCMD+AP Acknowledge to RankFSM              //
-    output MemoryAddress ReadAutoPrechargeAddr,                                 //  2. ReadCMD+AP ACK Address to RankFSM              //
-    output logic WriteAutoPrechargeACK,                                         //  3. WriteCMD+AP Acknowledge to RankFSM             //
-    output MemoryAddress WriteAutoPrechargeAddr,                                //  4. WriteCMD+AP ACK Address to RankFSM             // 
-                                                                                ////////////////////////////////////////////////////////
-
-                                                                                ////////////////////////////////////////////////////////
+                                                                                
                                                                                 //           OUTPUT TO MemoryController BackEnd       //
     output logic ModeTransitionReady,                                           //  1. Channel Mode Transition Ready                  //
-                                                                                ////////////////////////////////////////////////////////
+                                                                                
 
-                                                                                ////////////////////////////////////////////////////////
+                                                                                
                                                                                 //          INPUT/OUTPUT FROM/TO DRAM-SIDE            //
-    DDR4Interface ddr4_dataBus                                                  // 1. INPUT/OUTPUT FOR DQ BUS                         //
-                                                                                ////////////////////////////////////////////////////////
+    DDR4Interface ddr4_dataBus                                                  // 1. INPUT/OUTPUT FOR DQ BUS                         //                                                                          
 );
 
 
