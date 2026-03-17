@@ -1,7 +1,7 @@
 `timescale 1ns / 1ps
 
 //------------------------------------------------------------------------------
-//      PHYController
+// PHYController
 //
 //      Role:
 //          Behavioral PHY-layer controller inside the Memory Controller.
@@ -113,9 +113,9 @@ module PHYController #(
     parameter int tCWL                  = 12,
     parameter type MemoryAddress        = logic
 )(
-        // common
+    /* common */
     input logic clk, rst, mode,                  
-    input logic clk2x,                                                          //  DDR Clocking for generating DQS_t signal
+    input logic clk2x, // DDR Clocking for generating DQS_t signal
            
                                                                                 ////////////////////////////////////////////////////////
                                                                                 //          INPUT FROM  WRITE BUFFER SIDE             // 
