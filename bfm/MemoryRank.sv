@@ -175,6 +175,7 @@ module MemoryRank#(
     //      - 병렬로 존재하는 Bank FSM들은 Bank 수준의 동시성(overlap)과
     //          명령 인터리빙(command interleaving) 동작을 검증할 수 있게 한다.
     //------------------------------------------------------------------------------    genvar i;
+    genvar i;
     generate
         for(i = 0; i < NUMBANKFSM; i++) begin : genMemoryBankFSM
             MemoryBankFSM #(

@@ -5,7 +5,7 @@ module scoreboard#(
     parameter int DEADLOCKCNT   = 1000,
     parameter int AXI_DATAWIDTH = 64,
     parameter int AXI_ADDRWIDTH = 32,
-    parameter int AXI_IDWIDTH.  = 4,
+    parameter int AXI_IDWIDTH   = 4,
     parameter int AXI_USERWIDTH = 1,
     parameter int BURST_LENGTH  = 8,
 

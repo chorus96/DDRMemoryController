@@ -1,0 +1,2020 @@
+%Warning-EOFNEWLINE: /workspaces/DDRMemoryController/scripts/../tb/uvm/lfsr_driver.sv:45:10: Missing newline at end of file (POSIX 3.206).
+                                                                                           : ... Suggest add newline.
+   45 | endmodule
+      |          ^
+                     ... For warning description see https://verilator.org/warn/EOFNEWLINE?v=5.020
+                     ... Use "/* verilator lint_off EOFNEWLINE */" and lint_on around source to disable this message.
+%Warning-PINCONNECTEMPTY: /workspaces/DDRMemoryController/scripts/../bfm/MemoryRank.sv:208:18: Cell pin connected by name with empty reference: 'bankUDM_N'
+  208 |                 .bankUDM_N(),
+      |                  ^~~~~~~~~
+%Warning-PINCONNECTEMPTY: /workspaces/DDRMemoryController/scripts/../bfm/MemoryRank.sv:209:18: Cell pin connected by name with empty reference: 'bankLDM_N'
+  209 |                 .bankLDM_N(),
+      |                  ^~~~~~~~~
+%Warning-PINCONNECTEMPTY: /workspaces/DDRMemoryController/scripts/../bfm/MemoryRank.sv:210:18: Cell pin connected by name with empty reference: 'bankODT'
+  210 |                 .bankODT(),
+      |                  ^~~~~~~
+%Warning-GENUNNAMED: /workspaces/DDRMemoryController/scripts/../tb/uvm/lfsr_driver.sv:19:29: Unnamed generate block 'genblk1' (IEEE 1800-2017 27.6)
+                                                                                           : ... Suggest assign a label with 'begin : gen_<label_name>'
+   19 |             assign feedback = lfsr[3] ^ lfsr[2];
+      |                             ^
+%Warning-GENUNNAMED: /workspaces/DDRMemoryController/scripts/../tb/uvm/lfsr_driver.sv:21:29: Unnamed generate block 'genblk1' (IEEE 1800-2017 27.6)
+                                                                                           : ... Suggest assign a label with 'begin : gen_<label_name>'
+   21 |             assign feedback = lfsr[31] ^ lfsr[21] ^ lfsr[1] ^ lfsr[0];
+      |                             ^
+%Warning-GENUNNAMED: /workspaces/DDRMemoryController/scripts/../tb/uvm/lfsr_driver.sv:23:29: Unnamed generate block 'genblk1' (IEEE 1800-2017 27.6)
+                                                                                           : ... Suggest assign a label with 'begin : gen_<label_name>'
+   23 |             assign feedback = lfsr[63] ^ lfsr[62] ^ lfsr[60] ^ lfsr[59];
+      |                             ^
+%Warning-GENUNNAMED: /workspaces/DDRMemoryController/scripts/../tb/uvm/lfsr_driver.sv:25:13: Unnamed generate block 'genblk1' (IEEE 1800-2017 27.6)
+                                                                                           : ... Suggest assign a label with 'begin : gen_<label_name>'
+   25 |             initial $error("Unsupported LFSR LENGTH");
+      |             ^~~~~~~
+%Warning-IMPORTSTAR: /workspaces/DDRMemoryController/scripts/../rtl/MemoryController.sv:108:36: Import::* in $unit scope may pollute global namespace
+  108 | import MemoryController_Definitions::*;
+      |                                    ^~
+%Warning-IMPORTSTAR: /workspaces/DDRMemoryController/scripts/../tb/uvm/driver.sv:3:36: Import::* in $unit scope may pollute global namespace
+    3 | import MemoryController_Definitions::*;
+      |                                    ^~
+%Warning-IMPORTSTAR: /workspaces/DDRMemoryController/scripts/../tb/uvm/monitor.sv:3:15: Import::* in $unit scope may pollute global namespace
+    3 | import svut_if::*;
+      |               ^~
+%Warning-IMPORTSTAR: /workspaces/DDRMemoryController/scripts/../tb/uvm/scoreboard.sv:3:15: Import::* in $unit scope may pollute global namespace
+    3 | import svut_if::*;
+      |               ^~
+%Warning-IMPORTSTAR: /workspaces/DDRMemoryController/scripts/../tb/uvm/Top_xsim.sv:2:36: Import::* in $unit scope may pollute global namespace
+    2 | import MemoryController_Definitions::*;
+      |                                    ^~
+%Warning-IMPORTSTAR: /workspaces/DDRMemoryController/scripts/../tb/uvm/Top_xsim.sv:3:15: Import::* in $unit scope may pollute global namespace
+    3 | import svut_if::*;
+      |               ^~
+%Warning-VARHIDDEN: /workspaces/DDRMemoryController/scripts/../rtl/common/DDR4Interface.sv:56:16: Declaration of signal hides declaration in upper scope: 'COMMAND_WIDTH'
+   56 |  parameter int COMMAND_WIDTH = 18,
+      |                ^~~~~~~~~~~~~
+                    /workspaces/DDRMemoryController/scripts/../rtl/common/MemoryController_Definitions.sv:11:19: ... Location of original declaration
+   11 |     parameter int COMMAND_WIDTH = 18;                      
+      |                   ^~~~~~~~~~~~~
+%Warning-VARHIDDEN: /workspaces/DDRMemoryController/scripts/../rtl/common/DDR4Interface.sv:57:16: Declaration of signal hides declaration in upper scope: 'MEM_DATAWIDTH'
+   57 |  parameter int MEM_DATAWIDTH = 64,
+      |                ^~~~~~~~~~~~~
+                    /workspaces/DDRMemoryController/scripts/../rtl/common/MemoryController_Definitions.sv:8:19: ... Location of original declaration
+    8 |     parameter int MEM_DATAWIDTH = 64;                                        
+      |                   ^~~~~~~~~~~~~
+%Warning-VARHIDDEN: /workspaces/DDRMemoryController/scripts/../rtl/common/DDR4Interface.sv:58:16: Declaration of signal hides declaration in upper scope: 'BURST_LENGTH'
+   58 |  parameter int BURST_LENGTH  = 8,
+      |                ^~~~~~~~~~~~
+                    /workspaces/DDRMemoryController/scripts/../rtl/common/MemoryController_Definitions.sv:12:19: ... Location of original declaration
+   12 |     parameter int BURST_LENGTH  = 8;
+      |                   ^~~~~~~~~~~~
+%Warning-VARHIDDEN: /workspaces/DDRMemoryController/scripts/../rtl/common/DDR4Interface.sv:59:16: Declaration of signal hides declaration in upper scope: 'BGWIDTH'
+   59 |  parameter int BGWIDTH       = 2,
+      |                ^~~~~~~
+                    /workspaces/DDRMemoryController/scripts/../rtl/common/MemoryController_Definitions.sv:19:19: ... Location of original declaration
+   19 |     parameter int BGWIDTH = 2;                               
+      |                   ^~~~~~~
+%Warning-VARHIDDEN: /workspaces/DDRMemoryController/scripts/../rtl/common/DDR4Interface.sv:60:16: Declaration of signal hides declaration in upper scope: 'BKWIDTH'
+   60 |  parameter int BKWIDTH       = 2,
+      |                ^~~~~~~
+                    /workspaces/DDRMemoryController/scripts/../rtl/common/MemoryController_Definitions.sv:20:19: ... Location of original declaration
+   20 |     parameter int BKWIDTH = 2;                               
+      |                   ^~~~~~~
+%Warning-VARHIDDEN: /workspaces/DDRMemoryController/scripts/../rtl/common/DDR4Interface.sv:61:16: Declaration of signal hides declaration in upper scope: 'RWIDTH'
+   61 |  parameter int RWIDTH        = 15,
+      |                ^~~~~~
+                    /workspaces/DDRMemoryController/scripts/../rtl/common/MemoryController_Definitions.sv:17:19: ... Location of original declaration
+   17 |     parameter int RWIDTH  = 15;                              
+      |                   ^~~~~~
+%Warning-VARHIDDEN: /workspaces/DDRMemoryController/scripts/../rtl/common/DDR4Interface.sv:62:16: Declaration of signal hides declaration in upper scope: 'RKWIDTH'
+   62 |  parameter int RKWIDTH       = 2,
+      |                ^~~~~~~
+                    /workspaces/DDRMemoryController/scripts/../rtl/common/MemoryController_Definitions.sv:21:19: ... Location of original declaration
+   21 |     parameter int RKWIDTH = 2;                               
+      |                   ^~~~~~~
+%Warning-VARHIDDEN: /workspaces/DDRMemoryController/scripts/../rtl/common/DDR4Interface.sv:63:16: Declaration of signal hides declaration in upper scope: 'CWIDTH'
+   63 |  parameter int CWIDTH        = 10,
+      |                ^~~~~~
+                    /workspaces/DDRMemoryController/scripts/../rtl/common/MemoryController_Definitions.sv:18:19: ... Location of original declaration
+   18 |     parameter int CWIDTH  = 10;                              
+      |                   ^~~~~~
+%Warning-VARHIDDEN: /workspaces/DDRMemoryController/scripts/../rtl/common/DDR4Interface.sv:64:16: Declaration of signal hides declaration in upper scope: 'NUMRANK'
+   64 |  parameter int NUMRANK       = 4
+      |                ^~~~~~~
+                    /workspaces/DDRMemoryController/scripts/../rtl/common/MemoryController_Definitions.sv:40:19: ... Location of original declaration
+   40 |     parameter int NUMRANK       = 4;                               
+      |                   ^~~~~~~
+%Warning-VARHIDDEN: /workspaces/DDRMemoryController/scripts/../rtl/MemoryController.sv:111:19: Declaration of signal hides declaration in upper scope: 'AXI_DATAWIDTH'
+  111 |     parameter int AXI_DATAWIDTH     = 64,
+      |                   ^~~~~~~~~~~~~
+                    /workspaces/DDRMemoryController/scripts/../rtl/common/MemoryController_Definitions.sv:128:19: ... Location of original declaration
+  128 |     parameter int AXI_DATAWIDTH = 64;
+      |                   ^~~~~~~~~~~~~
+%Warning-VARHIDDEN: /workspaces/DDRMemoryController/scripts/../rtl/MemoryController.sv:112:19: Declaration of signal hides declaration in upper scope: 'AXI_ADDRWIDTH'
+  112 |     parameter int AXI_ADDRWIDTH     = 32,
+      |                   ^~~~~~~~~~~~~
+                    /workspaces/DDRMemoryController/scripts/../rtl/common/MemoryController_Definitions.sv:129:19: ... Location of original declaration
+  129 |     parameter int AXI_ADDRWIDTH = 32;
+      |                   ^~~~~~~~~~~~~
+%Warning-VARHIDDEN: /workspaces/DDRMemoryController/scripts/../rtl/MemoryController.sv:113:19: Declaration of signal hides declaration in upper scope: 'AXI_IDWIDTH'
+  113 |     parameter int AXI_IDWIDTH       = 4,
+      |                   ^~~~~~~~~~~
+                    /workspaces/DDRMemoryController/scripts/../rtl/common/MemoryController_Definitions.sv:130:19: ... Location of original declaration
+  130 |     parameter int AXI_IDWIDTH   = 4;
+      |                   ^~~~~~~~~~~
+%Warning-VARHIDDEN: /workspaces/DDRMemoryController/scripts/../rtl/MemoryController.sv:114:19: Declaration of signal hides declaration in upper scope: 'AXI_USERWIDTH'
+  114 |     parameter int AXI_USERWIDTH     = 1,
+      |                   ^~~~~~~~~~~~~
+                    /workspaces/DDRMemoryController/scripts/../rtl/common/MemoryController_Definitions.sv:131:19: ... Location of original declaration
+  131 |     parameter int AXI_USERWIDTH = 1;
+      |                   ^~~~~~~~~~~~~
+%Warning-VARHIDDEN: /workspaces/DDRMemoryController/scripts/../rtl/MemoryController.sv:115:19: Declaration of signal hides declaration in upper scope: 'MEM_ADDRWIDTH'
+  115 |     parameter int MEM_ADDRWIDTH     = 32,
+      |                   ^~~~~~~~~~~~~
+                    /workspaces/DDRMemoryController/scripts/../rtl/common/MemoryController_Definitions.sv:7:19: ... Location of original declaration
+    7 |     parameter int MEM_ADDRWIDTH = 32;                                        
+      |                   ^~~~~~~~~~~~~
+%Warning-VARHIDDEN: /workspaces/DDRMemoryController/scripts/../rtl/MemoryController.sv:116:19: Declaration of signal hides declaration in upper scope: 'MEM_DATAWIDTH'
+  116 |     parameter int MEM_DATAWIDTH     = 64,
+      |                   ^~~~~~~~~~~~~
+                    /workspaces/DDRMemoryController/scripts/../rtl/common/MemoryController_Definitions.sv:8:19: ... Location of original declaration
+    8 |     parameter int MEM_DATAWIDTH = 64;                                        
+      |                   ^~~~~~~~~~~~~
+%Warning-VARHIDDEN: /workspaces/DDRMemoryController/scripts/../rtl/MemoryController.sv:117:19: Declaration of signal hides declaration in upper scope: 'MEM_IDWIDTH'
+  117 |     parameter int MEM_IDWIDTH       = 4,
+      |                   ^~~~~~~~~~~
+                    /workspaces/DDRMemoryController/scripts/../rtl/common/MemoryController_Definitions.sv:9:19: ... Location of original declaration
+    9 |     parameter int MEM_IDWIDTH   = 4;                                           
+      |                   ^~~~~~~~~~~
+%Warning-VARHIDDEN: /workspaces/DDRMemoryController/scripts/../rtl/MemoryController.sv:118:19: Declaration of signal hides declaration in upper scope: 'MEM_USERWIDTH'
+  118 |     parameter int MEM_USERWIDTH     = 1,
+      |                   ^~~~~~~~~~~~~
+                    /workspaces/DDRMemoryController/scripts/../rtl/common/MemoryController_Definitions.sv:10:19: ... Location of original declaration
+   10 |     parameter int MEM_USERWIDTH = 1;                                         
+      |                   ^~~~~~~~~~~~~
+%Warning-VARHIDDEN: /workspaces/DDRMemoryController/scripts/../rtl/MemoryController.sv:119:19: Declaration of signal hides declaration in upper scope: 'NUM_BANKFSM'
+  119 |     parameter int NUM_BANKFSM       = 16,
+      |                   ^~~~~~~~~~~
+                    /workspaces/DDRMemoryController/scripts/../rtl/common/MemoryController_Definitions.sv:44:19: ... Location of original declaration
+   44 |     parameter int NUM_BANKFSM                    = NUMBANKGROUP * NUMBANK;
+      |                   ^~~~~~~~~~~
+%Warning-VARHIDDEN: /workspaces/DDRMemoryController/scripts/../rtl/MemoryController.sv:120:19: Declaration of signal hides declaration in upper scope: 'NUM_BANKFSM_BIT'
+  120 |     parameter int NUM_BANKFSM_BIT   = 4,
+      |                   ^~~~~~~~~~~~~~~
+                    /workspaces/DDRMemoryController/scripts/../rtl/common/MemoryController_Definitions.sv:45:19: ... Location of original declaration
+   45 |     parameter int NUM_BANKFSM_BIT                = $clog2(NUM_BANKFSM);
+      |                   ^~~~~~~~~~~~~~~
+%Warning-VARHIDDEN: /workspaces/DDRMemoryController/scripts/../rtl/MemoryController.sv:122:19: Declaration of signal hides declaration in upper scope: 'COMMAND_WIDTH'
+  122 |     parameter int COMMAND_WIDTH          = 18,
+      |                   ^~~~~~~~~~~~~
+                    /workspaces/DDRMemoryController/scripts/../rtl/common/MemoryController_Definitions.sv:11:19: ... Location of original declaration
+   11 |     parameter int COMMAND_WIDTH = 18;                      
+      |                   ^~~~~~~~~~~~~
+%Warning-VARHIDDEN: /workspaces/DDRMemoryController/scripts/../rtl/MemoryController.sv:123:19: Declaration of signal hides declaration in upper scope: 'RWIDTH'
+  123 |     parameter int RWIDTH                 = 15,
+      |                   ^~~~~~
+                    /workspaces/DDRMemoryController/scripts/../rtl/common/MemoryController_Definitions.sv:17:19: ... Location of original declaration
+   17 |     parameter int RWIDTH  = 15;                              
+      |                   ^~~~~~
+%Warning-VARHIDDEN: /workspaces/DDRMemoryController/scripts/../rtl/MemoryController.sv:124:19: Declaration of signal hides declaration in upper scope: 'CWIDTH'
+  124 |     parameter int CWIDTH                 = 10,
+      |                   ^~~~~~
+                    /workspaces/DDRMemoryController/scripts/../rtl/common/MemoryController_Definitions.sv:18:19: ... Location of original declaration
+   18 |     parameter int CWIDTH  = 10;                              
+      |                   ^~~~~~
+%Warning-VARHIDDEN: /workspaces/DDRMemoryController/scripts/../rtl/MemoryController.sv:125:19: Declaration of signal hides declaration in upper scope: 'BGWIDTH'
+  125 |     parameter int BGWIDTH                = 2,
+      |                   ^~~~~~~
+                    /workspaces/DDRMemoryController/scripts/../rtl/common/MemoryController_Definitions.sv:19:19: ... Location of original declaration
+   19 |     parameter int BGWIDTH = 2;                               
+      |                   ^~~~~~~
+%Warning-VARHIDDEN: /workspaces/DDRMemoryController/scripts/../rtl/MemoryController.sv:126:19: Declaration of signal hides declaration in upper scope: 'BKWIDTH'
+  126 |     parameter int BKWIDTH                = 2,
+      |                   ^~~~~~~
+                    /workspaces/DDRMemoryController/scripts/../rtl/common/MemoryController_Definitions.sv:20:19: ... Location of original declaration
+   20 |     parameter int BKWIDTH = 2;                               
+      |                   ^~~~~~~
+%Warning-VARHIDDEN: /workspaces/DDRMemoryController/scripts/../rtl/MemoryController.sv:127:19: Declaration of signal hides declaration in upper scope: 'RKWIDTH'
+  127 |     parameter int RKWIDTH                = 2,
+      |                   ^~~~~~~
+                    /workspaces/DDRMemoryController/scripts/../rtl/common/MemoryController_Definitions.sv:21:19: ... Location of original declaration
+   21 |     parameter int RKWIDTH = 2;                               
+      |                   ^~~~~~~
+%Warning-VARHIDDEN: /workspaces/DDRMemoryController/scripts/../rtl/MemoryController.sv:128:19: Declaration of signal hides declaration in upper scope: 'CHWIDTH'
+  128 |     parameter int CHWIDTH                = 1,
+      |                   ^~~~~~~
+                    /workspaces/DDRMemoryController/scripts/../rtl/common/MemoryController_Definitions.sv:22:19: ... Location of original declaration
+   22 |     parameter int CHWIDTH = 1;                               
+      |                   ^~~~~~~
+%Warning-VARHIDDEN: /workspaces/DDRMemoryController/scripts/../rtl/MemoryController.sv:129:19: Declaration of signal hides declaration in upper scope: 'NUM_RANKEXECUTION_UNIT'
+  129 |     parameter int NUM_RANKEXECUTION_UNIT = 8,
+      |                   ^~~~~~~~~~~~~~~~~~~~~~
+                    /workspaces/DDRMemoryController/scripts/../rtl/common/MemoryController_Definitions.sv:46:19: ... Location of original declaration
+   46 |     parameter int NUM_RANKEXECUTION_UNIT         = 1 << (RKWIDTH + CHWIDTH);       
+      |                   ^~~~~~~~~~~~~~~~~~~~~~
+%Warning-VARHIDDEN: /workspaces/DDRMemoryController/scripts/../rtl/MemoryController.sv:130:19: Declaration of signal hides declaration in upper scope: 'PHYFIFODEPTH'
+  130 |     parameter int PHYFIFODEPTH           = 32,
+      |                   ^~~~~~~~~~~~
+                    /workspaces/DDRMemoryController/scripts/../rtl/common/MemoryController_Definitions.sv:50:19: ... Location of original declaration
+   50 |     parameter int PHYFIFODEPTH          = PHYFIFOMAXENTRY * BURST_LENGTH;    
+      |                   ^~~~~~~~~~~~
+%Warning-VARHIDDEN: /workspaces/DDRMemoryController/scripts/../rtl/MemoryController.sv:131:19: Declaration of signal hides declaration in upper scope: 'READCMDQUEUEDEPTH'
+  131 |     parameter int READCMDQUEUEDEPTH      = 8,
+      |                   ^~~~~~~~~~~~~~~~~
+                    /workspaces/DDRMemoryController/scripts/../rtl/common/MemoryController_Definitions.sv:32:19: ... Location of original declaration
+   32 |     parameter int READCMDQUEUEDEPTH  = 8;                          
+      |                   ^~~~~~~~~~~~~~~~~
+%Warning-VARHIDDEN: /workspaces/DDRMemoryController/scripts/../rtl/MemoryController.sv:132:19: Declaration of signal hides declaration in upper scope: 'WRITECMDQUEUEDEPTH'
+  132 |     parameter int WRITECMDQUEUEDEPTH     = 8,
+      |                   ^~~~~~~~~~~~~~~~~~
+                    /workspaces/DDRMemoryController/scripts/../rtl/common/MemoryController_Definitions.sv:33:19: ... Location of original declaration
+   33 |     parameter int WRITECMDQUEUEDEPTH = 8;                          
+      |                   ^~~~~~~~~~~~~~~~~~
+%Warning-VARHIDDEN: /workspaces/DDRMemoryController/scripts/../rtl/MemoryController.sv:133:19: Declaration of signal hides declaration in upper scope: 'OPENPAGELISTDEPTH'
+  133 |     parameter int OPENPAGELISTDEPTH      = 16,
+      |                   ^~~~~~~~~~~~~~~~~
+                    /workspaces/DDRMemoryController/scripts/../rtl/common/MemoryController_Definitions.sv:36:19: ... Location of original declaration
+   36 |     parameter int OPENPAGELISTDEPTH  = 1 << (BKWIDTH+BGWIDTH);     
+      |                   ^~~~~~~~~~~~~~~~~
+%Warning-VARHIDDEN: /workspaces/DDRMemoryController/scripts/../rtl/MemoryController.sv:134:19: Declaration of signal hides declaration in upper scope: 'NUMCHANNEL'
+  134 |     parameter int NUMCHANNEL             = 2,
+      |                   ^~~~~~~~~~
+                    /workspaces/DDRMemoryController/scripts/../rtl/common/MemoryController_Definitions.sv:39:19: ... Location of original declaration
+   39 |     parameter int NUMCHANNEL    = 2;                               
+      |                   ^~~~~~~~~~
+%Warning-VARHIDDEN: /workspaces/DDRMemoryController/scripts/../rtl/MemoryController.sv:135:19: Declaration of signal hides declaration in upper scope: 'NUMRANK'
+  135 |     parameter int NUMRANK                = 4,
+      |                   ^~~~~~~
+                    /workspaces/DDRMemoryController/scripts/../rtl/common/MemoryController_Definitions.sv:40:19: ... Location of original declaration
+   40 |     parameter int NUMRANK       = 4;                               
+      |                   ^~~~~~~
+%Warning-VARHIDDEN: /workspaces/DDRMemoryController/scripts/../rtl/MemoryController.sv:136:19: Declaration of signal hides declaration in upper scope: 'NUMBANKGROUP'
+  136 |     parameter int NUMBANKGROUP           = 4,
+      |                   ^~~~~~~~~~~~
+                    /workspaces/DDRMemoryController/scripts/../rtl/common/MemoryController_Definitions.sv:41:19: ... Location of original declaration
+   41 |     parameter int NUMBANKGROUP  = 4;                               
+      |                   ^~~~~~~~~~~~
+%Warning-VARHIDDEN: /workspaces/DDRMemoryController/scripts/../rtl/MemoryController.sv:137:19: Declaration of signal hides declaration in upper scope: 'NUMBANK'
+  137 |     parameter int NUMBANK                = 4,
+      |                   ^~~~~~~
+                    /workspaces/DDRMemoryController/scripts/../rtl/common/MemoryController_Definitions.sv:42:19: ... Location of original declaration
+   42 |     parameter int NUMBANK       = 4;                               
+      |                   ^~~~~~~
+%Warning-VARHIDDEN: /workspaces/DDRMemoryController/scripts/../rtl/MemoryController.sv:138:19: Declaration of signal hides declaration in upper scope: 'READBUFFERDEPTH'
+  138 |     parameter int READBUFFERDEPTH        = 128,
+      |                   ^~~~~~~~~~~~~~~
+                    /workspaces/DDRMemoryController/scripts/../rtl/common/MemoryController_Definitions.sv:34:19: ... Location of original declaration
+   34 |     parameter int READBUFFERDEPTH    = 128;                        
+      |                   ^~~~~~~~~~~~~~~
+%Warning-VARHIDDEN: /workspaces/DDRMemoryController/scripts/../rtl/MemoryController.sv:139:19: Declaration of signal hides declaration in upper scope: 'WRITEBUFFERDEPTH'
+  139 |     parameter int WRITEBUFFERDEPTH       = 128,
+      |                   ^~~~~~~~~~~~~~~~
+                    /workspaces/DDRMemoryController/scripts/../rtl/common/MemoryController_Definitions.sv:35:19: ... Location of original declaration
+   35 |     parameter int WRITEBUFFERDEPTH   = 128;                        
+      |                   ^~~~~~~~~~~~~~~~
+%Warning-VARHIDDEN: /workspaces/DDRMemoryController/scripts/../rtl/MemoryController.sv:140:19: Declaration of signal hides declaration in upper scope: 'RESPSCHEDULINGCNT'
+  140 |     parameter int RESPSCHEDULINGCNT      = 4,
+      |                   ^~~~~~~~~~~~~~~~~
+                    /workspaces/DDRMemoryController/scripts/../rtl/common/MemoryController_Definitions.sv:58:19: ... Location of original declaration
+   58 |     parameter int RESPSCHEDULINGCNT = 4;
+      |                   ^~~~~~~~~~~~~~~~~
+%Warning-VARHIDDEN: /workspaces/DDRMemoryController/scripts/../rtl/MemoryController.sv:141:19: Declaration of signal hides declaration in upper scope: 'CHMODETHRESHOLD'
+  141 |     parameter int CHMODETHRESHOLD        = 16,
+      |                   ^~~~~~~~~~~~~~~
+                    /workspaces/DDRMemoryController/scripts/../rtl/common/MemoryController_Definitions.sv:57:19: ... Location of original declaration
+   57 |     parameter int CHMODETHRESHOLD   = 16;
+      |                   ^~~~~~~~~~~~~~~
+%Warning-VARHIDDEN: /workspaces/DDRMemoryController/scripts/../rtl/MemoryController.sv:142:19: Declaration of signal hides declaration in upper scope: 'THRESHOLD'
+  142 |     parameter int THRESHOLD              = 512,
+      |                   ^~~~~~~~~
+                    /workspaces/DDRMemoryController/scripts/../rtl/common/MemoryController_Definitions.sv:55:19: ... Location of original declaration
+   55 |     parameter int THRESHOLD         = 512;                               
+      |                   ^~~~~~~~~
+%Warning-VARHIDDEN: /workspaces/DDRMemoryController/scripts/../rtl/MemoryController.sv:143:19: Declaration of signal hides declaration in upper scope: 'AGINGWIDTH'
+  143 |     parameter int AGINGWIDTH             = 10,
+      |                   ^~~~~~~~~~
+                    /workspaces/DDRMemoryController/scripts/../rtl/common/MemoryController_Definitions.sv:56:19: ... Location of original declaration
+   56 |     parameter int AGINGWIDTH        = 10;                               
+      |                   ^~~~~~~~~~
+%Warning-VARHIDDEN: /workspaces/DDRMemoryController/scripts/../rtl/MemoryController.sv:145:19: Declaration of signal hides declaration in upper scope: 'ASSEMBLER_DEPTH'
+  145 |     parameter int ASSEMBLER_DEPTH        = 8,
+      |                   ^~~~~~~~~~~~~~~
+                    /workspaces/DDRMemoryController/scripts/../rtl/common/MemoryController_Definitions.sv:37:19: ... Location of original declaration
+   37 |     parameter int ASSEMBLER_DEPTH    = 8;                          
+      |                   ^~~~~~~~~~~~~~~
+%Warning-VARHIDDEN: /workspaces/DDRMemoryController/scripts/../rtl/MemoryController.sv:146:19: Declaration of signal hides declaration in upper scope: 'PHYFIFOMAXENTRY'
+  146 |     parameter int PHYFIFOMAXENTRY        = 4,
+      |                   ^~~~~~~~~~~~~~~
+                    /workspaces/DDRMemoryController/scripts/../rtl/common/MemoryController_Definitions.sv:49:19: ... Location of original declaration
+   49 |     parameter int PHYFIFOMAXENTRY       = 4;                                 
+      |                   ^~~~~~~~~~~~~~~
+%Warning-VARHIDDEN: /workspaces/DDRMemoryController/scripts/../rtl/MemoryController.sv:147:19: Declaration of signal hides declaration in upper scope: 'PHYFIFOREQUESTWINDOW'
+  147 |     parameter int PHYFIFOREQUESTWINDOW   = 8,
+      |                   ^~~~~~~~~~~~~~~~~~~~
+                    /workspaces/DDRMemoryController/scripts/../rtl/common/MemoryController_Definitions.sv:51:19: ... Location of original declaration
+   51 |     parameter int PHYFIFOREQUESTWINDOW  = 8;                                 
+      |                   ^~~~~~~~~~~~~~~~~~~~
+%Warning-VARHIDDEN: /workspaces/DDRMemoryController/scripts/../rtl/MemoryController.sv:148:19: Declaration of signal hides declaration in upper scope: 'BURST_LENGTH'
+  148 |     parameter int BURST_LENGTH           = 8,
+      |                   ^~~~~~~~~~~~
+                    /workspaces/DDRMemoryController/scripts/../rtl/common/MemoryController_Definitions.sv:12:19: ... Location of original declaration
+   12 |     parameter int BURST_LENGTH  = 8;
+      |                   ^~~~~~~~~~~~
+%Warning-VARHIDDEN: /workspaces/DDRMemoryController/scripts/../rtl/MemoryController.sv:150:19: Declaration of signal hides declaration in upper scope: 'tBL'
+  150 |     parameter int tBL   = 4,
+      |                   ^~~
+                    /workspaces/DDRMemoryController/scripts/../rtl/common/MemoryController_Definitions.sv:107:19: ... Location of original declaration
+  107 |     parameter int tBL   = 4;                                   
+      |                   ^~~
+%Warning-VARHIDDEN: /workspaces/DDRMemoryController/scripts/../rtl/MemoryController.sv:151:19: Declaration of signal hides declaration in upper scope: 'tCCDS'
+  151 |     parameter int tCCDS = 4,
+      |                   ^~~~~
+                    /workspaces/DDRMemoryController/scripts/../rtl/common/MemoryController_Definitions.sv:108:19: ... Location of original declaration
+  108 |     parameter int tCCDS = 4;                                 
+      |                   ^~~~~
+%Warning-VARHIDDEN: /workspaces/DDRMemoryController/scripts/../rtl/MemoryController.sv:152:19: Declaration of signal hides declaration in upper scope: 'tCCDL'
+  152 |     parameter int tCCDL = 6,
+      |                   ^~~~~
+                    /workspaces/DDRMemoryController/scripts/../rtl/common/MemoryController_Definitions.sv:109:19: ... Location of original declaration
+  109 |     parameter int tCCDL = 6;                                 
+      |                   ^~~~~
+%Warning-VARHIDDEN: /workspaces/DDRMemoryController/scripts/../rtl/MemoryController.sv:153:19: Declaration of signal hides declaration in upper scope: 'tRTRS'
+  153 |     parameter int tRTRS = 2,
+      |                   ^~~~~
+                    /workspaces/DDRMemoryController/scripts/../rtl/common/MemoryController_Definitions.sv:110:19: ... Location of original declaration
+  110 |     parameter int tRTRS = 2;                                 
+      |                   ^~~~~
+%Warning-VARHIDDEN: /workspaces/DDRMemoryController/scripts/../rtl/MemoryController.sv:154:19: Declaration of signal hides declaration in upper scope: 'tCL'
+  154 |     parameter int tCL   = 16,
+      |                   ^~~
+                    /workspaces/DDRMemoryController/scripts/../rtl/common/MemoryController_Definitions.sv:111:19: ... Location of original declaration
+  111 |     parameter int tCL   = 16;                                  
+      |                   ^~~
+%Warning-VARHIDDEN: /workspaces/DDRMemoryController/scripts/../rtl/MemoryController.sv:155:19: Declaration of signal hides declaration in upper scope: 'tRCD'
+  155 |     parameter int tRCD  = 16,
+      |                   ^~~~
+                    /workspaces/DDRMemoryController/scripts/../rtl/common/MemoryController_Definitions.sv:112:19: ... Location of original declaration
+  112 |     parameter int tRCD  = 16;                                 
+      |                   ^~~~
+%Warning-VARHIDDEN: /workspaces/DDRMemoryController/scripts/../rtl/MemoryController.sv:156:19: Declaration of signal hides declaration in upper scope: 'tRP'
+  156 |     parameter int tRP   = 16,
+      |                   ^~~
+                    /workspaces/DDRMemoryController/scripts/../rtl/common/MemoryController_Definitions.sv:113:19: ... Location of original declaration
+  113 |     parameter int tRP   = 16;                                  
+      |                   ^~~
+%Warning-VARHIDDEN: /workspaces/DDRMemoryController/scripts/../rtl/MemoryController.sv:157:19: Declaration of signal hides declaration in upper scope: 'tCWL'
+  157 |     parameter int tCWL  = 12,
+      |                   ^~~~
+                    /workspaces/DDRMemoryController/scripts/../rtl/common/MemoryController_Definitions.sv:114:19: ... Location of original declaration
+  114 |     parameter int tCWL  = 12;                                 
+      |                   ^~~~
+%Warning-VARHIDDEN: /workspaces/DDRMemoryController/scripts/../rtl/MemoryController.sv:158:19: Declaration of signal hides declaration in upper scope: 'tRTW'
+  158 |     parameter int tRTW  = 8,
+      |                   ^~~~
+                    /workspaces/DDRMemoryController/scripts/../rtl/common/MemoryController_Definitions.sv:115:19: ... Location of original declaration
+  115 |     parameter int tRTW  = 8;                                  
+      |                   ^~~~
+%Warning-VARHIDDEN: /workspaces/DDRMemoryController/scripts/../rtl/MemoryController.sv:159:19: Declaration of signal hides declaration in upper scope: 'tRAS'
+  159 |     parameter int tRAS  = 39,
+      |                   ^~~~
+                    /workspaces/DDRMemoryController/scripts/../rtl/common/MemoryController_Definitions.sv:116:19: ... Location of original declaration
+  116 |     parameter int tRAS  = 39;                                 
+      |                   ^~~~
+%Warning-VARHIDDEN: /workspaces/DDRMemoryController/scripts/../rtl/MemoryController.sv:160:19: Declaration of signal hides declaration in upper scope: 'tRC'
+  160 |     parameter int tRC   = 55,
+      |                   ^~~
+                    /workspaces/DDRMemoryController/scripts/../rtl/common/MemoryController_Definitions.sv:117:19: ... Location of original declaration
+  117 |     parameter int tRC   = 55;                                  
+      |                   ^~~
+%Warning-VARHIDDEN: /workspaces/DDRMemoryController/scripts/../rtl/MemoryController.sv:161:19: Declaration of signal hides declaration in upper scope: 'tRTP'
+  161 |     parameter int tRTP  = 9,
+      |                   ^~~~
+                    /workspaces/DDRMemoryController/scripts/../rtl/common/MemoryController_Definitions.sv:118:19: ... Location of original declaration
+  118 |     parameter int tRTP  = 9;                                  
+      |                   ^~~~
+%Warning-VARHIDDEN: /workspaces/DDRMemoryController/scripts/../rtl/MemoryController.sv:162:19: Declaration of signal hides declaration in upper scope: 'tWTRS'
+  162 |     parameter int tWTRS = 3,
+      |                   ^~~~~
+                    /workspaces/DDRMemoryController/scripts/../rtl/common/MemoryController_Definitions.sv:119:19: ... Location of original declaration
+  119 |     parameter int tWTRS = 3;                                 
+      |                   ^~~~~
+%Warning-VARHIDDEN: /workspaces/DDRMemoryController/scripts/../rtl/MemoryController.sv:163:19: Declaration of signal hides declaration in upper scope: 'tWTRL'
+  163 |     parameter int tWTRL = 9,
+      |                   ^~~~~
+                    /workspaces/DDRMemoryController/scripts/../rtl/common/MemoryController_Definitions.sv:120:19: ... Location of original declaration
+  120 |     parameter int tWTRL = 9;                                 
+      |                   ^~~~~
+%Warning-VARHIDDEN: /workspaces/DDRMemoryController/scripts/../rtl/MemoryController.sv:164:19: Declaration of signal hides declaration in upper scope: 'tWR'
+  164 |     parameter int tWR   = 18,
+      |                   ^~~
+                    /workspaces/DDRMemoryController/scripts/../rtl/common/MemoryController_Definitions.sv:121:19: ... Location of original declaration
+  121 |     parameter int tWR   = 18;                                  
+      |                   ^~~
+%Warning-VARHIDDEN: /workspaces/DDRMemoryController/scripts/../rtl/MemoryController.sv:165:19: Declaration of signal hides declaration in upper scope: 'tRFC'
+  165 |     parameter int tRFC  = 256,
+      |                   ^~~~
+                    /workspaces/DDRMemoryController/scripts/../rtl/common/MemoryController_Definitions.sv:122:19: ... Location of original declaration
+  122 |     parameter int tRFC  = 256;                                
+      |                   ^~~~
+%Warning-VARHIDDEN: /workspaces/DDRMemoryController/scripts/../rtl/MemoryController.sv:166:19: Declaration of signal hides declaration in upper scope: 'tREFI'
+  166 |     parameter int tREFI = 8192
+      |                   ^~~~~
+                    /workspaces/DDRMemoryController/scripts/../rtl/common/MemoryController_Definitions.sv:123:19: ... Location of original declaration
+  123 |     parameter int tREFI = 8192;                              
+      |                   ^~~~~
+%Warning-VARHIDDEN: /workspaces/DDRMemoryController/scripts/../rtl/frontend/MemoryControllerFrontend.sv:122:23: Declaration of signal hides declaration in upper scope: 'AXI_ADDRWIDTH'
+  122 |         parameter int AXI_ADDRWIDTH              = 32,
+      |                       ^~~~~~~~~~~~~
+                    /workspaces/DDRMemoryController/scripts/../rtl/common/MemoryController_Definitions.sv:129:19: ... Location of original declaration
+  129 |     parameter int AXI_ADDRWIDTH = 32;
+      |                   ^~~~~~~~~~~~~
+%Warning-VARHIDDEN: /workspaces/DDRMemoryController/scripts/../rtl/frontend/MemoryControllerFrontend.sv:123:23: Declaration of signal hides declaration in upper scope: 'AXI_USERWIDTH'
+  123 |         parameter int AXI_USERWIDTH              = 1,
+      |                       ^~~~~~~~~~~~~
+                    /workspaces/DDRMemoryController/scripts/../rtl/common/MemoryController_Definitions.sv:131:19: ... Location of original declaration
+  131 |     parameter int AXI_USERWIDTH = 1;
+      |                   ^~~~~~~~~~~~~
+%Warning-VARHIDDEN: /workspaces/DDRMemoryController/scripts/../rtl/frontend/MemoryControllerFrontend.sv:124:23: Declaration of signal hides declaration in upper scope: 'AXI_IDWIDTH'
+  124 |         parameter int AXI_IDWIDTH                = 4,
+      |                       ^~~~~~~~~~~
+                    /workspaces/DDRMemoryController/scripts/../rtl/common/MemoryController_Definitions.sv:130:19: ... Location of original declaration
+  130 |     parameter int AXI_IDWIDTH   = 4;
+      |                   ^~~~~~~~~~~
+%Warning-VARHIDDEN: /workspaces/DDRMemoryController/scripts/../rtl/frontend/MemoryControllerFrontend.sv:125:23: Declaration of signal hides declaration in upper scope: 'AXI_DATAWIDTH'
+  125 |         parameter int AXI_DATAWIDTH              = 64,
+      |                       ^~~~~~~~~~~~~
+                    /workspaces/DDRMemoryController/scripts/../rtl/common/MemoryController_Definitions.sv:128:19: ... Location of original declaration
+  128 |     parameter int AXI_DATAWIDTH = 64;
+      |                   ^~~~~~~~~~~~~
+%Warning-VARHIDDEN: /workspaces/DDRMemoryController/scripts/../rtl/frontend/MemoryControllerFrontend.sv:127:23: Declaration of signal hides declaration in upper scope: 'MEM_ADDRWIDTH'
+  127 |         parameter int MEM_ADDRWIDTH              = 32,
+      |                       ^~~~~~~~~~~~~
+                    /workspaces/DDRMemoryController/scripts/../rtl/common/MemoryController_Definitions.sv:7:19: ... Location of original declaration
+    7 |     parameter int MEM_ADDRWIDTH = 32;                                        
+      |                   ^~~~~~~~~~~~~
+%Warning-VARHIDDEN: /workspaces/DDRMemoryController/scripts/../rtl/frontend/MemoryControllerFrontend.sv:128:23: Declaration of signal hides declaration in upper scope: 'CHWIDTH'
+  128 |         parameter int CHWIDTH                    = 1,
+      |                       ^~~~~~~
+                    /workspaces/DDRMemoryController/scripts/../rtl/common/MemoryController_Definitions.sv:22:19: ... Location of original declaration
+   22 |     parameter int CHWIDTH = 1;                               
+      |                   ^~~~~~~
+%Warning-VARHIDDEN: /workspaces/DDRMemoryController/scripts/../rtl/frontend/MemoryControllerFrontend.sv:129:23: Declaration of signal hides declaration in upper scope: 'RKWIDTH'
+  129 |         parameter int RKWIDTH                    = 2,
+      |                       ^~~~~~~
+                    /workspaces/DDRMemoryController/scripts/../rtl/common/MemoryController_Definitions.sv:21:19: ... Location of original declaration
+   21 |     parameter int RKWIDTH = 2;                               
+      |                   ^~~~~~~
+%Warning-VARHIDDEN: /workspaces/DDRMemoryController/scripts/../rtl/frontend/MemoryControllerFrontend.sv:130:23: Declaration of signal hides declaration in upper scope: 'NUM_RANKEXECUTION_UNIT'
+  130 |         parameter int NUM_RANKEXECUTION_UNIT     = 8,
+      |                       ^~~~~~~~~~~~~~~~~~~~~~
+                    /workspaces/DDRMemoryController/scripts/../rtl/common/MemoryController_Definitions.sv:46:19: ... Location of original declaration
+   46 |     parameter int NUM_RANKEXECUTION_UNIT         = 1 << (RKWIDTH + CHWIDTH);       
+      |                   ^~~~~~~~~~~~~~~~~~~~~~
+%Warning-VARHIDDEN: /workspaces/DDRMemoryController/scripts/../rtl/frontend/MemoryControllerFrontend.sv:131:23: Declaration of signal hides declaration in upper scope: 'NUM_RANKEXECUTION_UNIT_BIT'
+  131 |         parameter int NUM_RANKEXECUTION_UNIT_BIT = $clog2(NUM_RANKEXECUTION_UNIT),
+      |                       ^~~~~~~~~~~~~~~~~~~~~~~~~~
+                    /workspaces/DDRMemoryController/scripts/../rtl/common/MemoryController_Definitions.sv:47:19: ... Location of original declaration
+   47 |     parameter int NUM_RANKEXECUTION_UNIT_BIT     = $clog2(NUM_RANKEXECUTION_UNIT);                
+      |                   ^~~~~~~~~~~~~~~~~~~~~~~~~~
+%Warning-VARHIDDEN: /workspaces/DDRMemoryController/scripts/../rtl/frontend/MemoryControllerFrontend.sv:132:23: Declaration of signal hides declaration in upper scope: 'BURST_LENGTH'
+  132 |         parameter int BURST_LENGTH               = 8,
+      |                       ^~~~~~~~~~~~
+                    /workspaces/DDRMemoryController/scripts/../rtl/common/MemoryController_Definitions.sv:12:19: ... Location of original declaration
+   12 |     parameter int BURST_LENGTH  = 8;
+      |                   ^~~~~~~~~~~~
+%Warning-VARHIDDEN: /workspaces/DDRMemoryController/scripts/../rtl/frontend/MemoryControllerFrontend.sv:133:23: Declaration of signal hides declaration in upper scope: 'ASSEMBLER_DEPTH'
+  133 |         parameter int ASSEMBLER_DEPTH            = 8,
+      |                       ^~~~~~~~~~~~~~~
+                    /workspaces/DDRMemoryController/scripts/../rtl/common/MemoryController_Definitions.sv:37:19: ... Location of original declaration
+   37 |     parameter int ASSEMBLER_DEPTH    = 8;                          
+      |                   ^~~~~~~~~~~~~~~
+%Warning-VARHIDDEN: /workspaces/DDRMemoryController/scripts/../rtl/frontend/MemoryControllerFrontend.sv:134:23: Declaration of signal hides declaration in upper scope: 'NUMRANK'
+  134 |         parameter int NUMRANK                    = 4,
+      |                       ^~~~~~~
+                    /workspaces/DDRMemoryController/scripts/../rtl/common/MemoryController_Definitions.sv:40:19: ... Location of original declaration
+   40 |     parameter int NUMRANK       = 4;                               
+      |                   ^~~~~~~
+%Warning-VARHIDDEN: /workspaces/DDRMemoryController/scripts/../rtl/frontend/MemoryControllerFrontend.sv:135:23: Declaration of signal hides declaration in upper scope: 'READBUFFERDEPTH'
+  135 |         parameter int READBUFFERDEPTH            = 128,
+      |                       ^~~~~~~~~~~~~~~
+                    /workspaces/DDRMemoryController/scripts/../rtl/common/MemoryController_Definitions.sv:34:19: ... Location of original declaration
+   34 |     parameter int READBUFFERDEPTH    = 128;                        
+      |                   ^~~~~~~~~~~~~~~
+%Warning-VARHIDDEN: /workspaces/DDRMemoryController/scripts/../rtl/frontend/MemoryControllerFrontend.sv:136:23: Declaration of signal hides declaration in upper scope: 'WRITEBUFFERDEPTH'
+  136 |         parameter int WRITEBUFFERDEPTH           = 128,
+      |                       ^~~~~~~~~~~~~~~~
+                    /workspaces/DDRMemoryController/scripts/../rtl/common/MemoryController_Definitions.sv:35:19: ... Location of original declaration
+   35 |     parameter int WRITEBUFFERDEPTH   = 128;                        
+      |                   ^~~~~~~~~~~~~~~~
+%Warning-VARHIDDEN: /workspaces/DDRMemoryController/scripts/../rtl/frontend/MemoryControllerFrontend.sv:137:23: Declaration of signal hides declaration in upper scope: 'RESPSCHEDULINGCNT'
+  137 |         parameter int RESPSCHEDULINGCNT          = 4,
+      |                       ^~~~~~~~~~~~~~~~~
+                    /workspaces/DDRMemoryController/scripts/../rtl/common/MemoryController_Definitions.sv:58:19: ... Location of original declaration
+   58 |     parameter int RESPSCHEDULINGCNT = 4;
+      |                   ^~~~~~~~~~~~~~~~~
+%Warning-VARHIDDEN: /workspaces/DDRMemoryController/scripts/../rtl/frontend/AddressTranslationUnit.sv:45:19: Declaration of signal hides declaration in upper scope: 'MEM_ADDRWIDTH'
+   45 |     parameter int MEM_ADDRWIDTH              = 32,
+      |                   ^~~~~~~~~~~~~
+                    /workspaces/DDRMemoryController/scripts/../rtl/common/MemoryController_Definitions.sv:7:19: ... Location of original declaration
+    7 |     parameter int MEM_ADDRWIDTH = 32;                                        
+      |                   ^~~~~~~~~~~~~
+%Warning-VARHIDDEN: /workspaces/DDRMemoryController/scripts/../rtl/frontend/AddressTranslationUnit.sv:46:19: Declaration of signal hides declaration in upper scope: 'AXI_ADDRWIDTH'
+   46 |     parameter int AXI_ADDRWIDTH              = 32,
+      |                   ^~~~~~~~~~~~~
+                    /workspaces/DDRMemoryController/scripts/../rtl/common/MemoryController_Definitions.sv:129:19: ... Location of original declaration
+  129 |     parameter int AXI_ADDRWIDTH = 32;
+      |                   ^~~~~~~~~~~~~
+%Warning-VARHIDDEN: /workspaces/DDRMemoryController/scripts/../rtl/frontend/AddressTranslationUnit.sv:47:19: Declaration of signal hides declaration in upper scope: 'NUM_RANKEXECUTION_UNIT'
+   47 |     parameter int NUM_RANKEXECUTION_UNIT     = 8,
+      |                   ^~~~~~~~~~~~~~~~~~~~~~
+                    /workspaces/DDRMemoryController/scripts/../rtl/common/MemoryController_Definitions.sv:46:19: ... Location of original declaration
+   46 |     parameter int NUM_RANKEXECUTION_UNIT         = 1 << (RKWIDTH + CHWIDTH);       
+      |                   ^~~~~~~~~~~~~~~~~~~~~~
+%Warning-VARHIDDEN: /workspaces/DDRMemoryController/scripts/../rtl/frontend/AddressTranslationUnit.sv:48:19: Declaration of signal hides declaration in upper scope: 'NUM_RANKEXECUTION_UNIT_BIT'
+   48 |     parameter int NUM_RANKEXECUTION_UNIT_BIT = $clog2(NUM_RANKEXECUTION_UNIT),
+      |                   ^~~~~~~~~~~~~~~~~~~~~~~~~~
+                    /workspaces/DDRMemoryController/scripts/../rtl/common/MemoryController_Definitions.sv:47:19: ... Location of original declaration
+   47 |     parameter int NUM_RANKEXECUTION_UNIT_BIT     = $clog2(NUM_RANKEXECUTION_UNIT);                
+      |                   ^~~~~~~~~~~~~~~~~~~~~~~~~~
+%Warning-VARHIDDEN: /workspaces/DDRMemoryController/scripts/../rtl/frontend/AddressTranslationUnit.sv:49:19: Declaration of signal hides declaration in upper scope: 'CHWIDTH'
+   49 |     parameter int CHWIDTH                    = 1,
+      |                   ^~~~~~~
+                    /workspaces/DDRMemoryController/scripts/../rtl/common/MemoryController_Definitions.sv:22:19: ... Location of original declaration
+   22 |     parameter int CHWIDTH = 1;                               
+      |                   ^~~~~~~
+%Warning-VARHIDDEN: /workspaces/DDRMemoryController/scripts/../rtl/frontend/AddressTranslationUnit.sv:50:19: Declaration of signal hides declaration in upper scope: 'RKWIDTH'
+   50 |     parameter int RKWIDTH                    = 2,
+      |                   ^~~~~~~
+                    /workspaces/DDRMemoryController/scripts/../rtl/common/MemoryController_Definitions.sv:21:19: ... Location of original declaration
+   21 |     parameter int RKWIDTH = 2;                               
+      |                   ^~~~~~~
+%Warning-VARHIDDEN: /workspaces/DDRMemoryController/scripts/../rtl/backend/MemoryControllerBackend.sv:108:19: Declaration of signal hides declaration in upper scope: 'NUM_BANKFSM_BIT'
+  108 |     parameter int NUM_BANKFSM_BIT       = 0,
+      |                   ^~~~~~~~~~~~~~~
+                    /workspaces/DDRMemoryController/scripts/../rtl/common/MemoryController_Definitions.sv:45:19: ... Location of original declaration
+   45 |     parameter int NUM_BANKFSM_BIT                = $clog2(NUM_BANKFSM);
+      |                   ^~~~~~~~~~~~~~~
+%Warning-VARHIDDEN: /workspaces/DDRMemoryController/scripts/../rtl/backend/MemoryControllerBackend.sv:109:19: Declaration of signal hides declaration in upper scope: 'NUM_BANKFSM'
+  109 |     parameter int NUM_BANKFSM           = 0,
+      |                   ^~~~~~~~~~~
+                    /workspaces/DDRMemoryController/scripts/../rtl/common/MemoryController_Definitions.sv:44:19: ... Location of original declaration
+   44 |     parameter int NUM_BANKFSM                    = NUMBANKGROUP * NUMBANK;
+      |                   ^~~~~~~~~~~
+%Warning-VARHIDDEN: /workspaces/DDRMemoryController/scripts/../rtl/backend/MemoryControllerBackend.sv:111:19: Declaration of signal hides declaration in upper scope: 'MEM_DATAWIDTH'
+  111 |     parameter int MEM_DATAWIDTH         = 64,
+      |                   ^~~~~~~~~~~~~
+                    /workspaces/DDRMemoryController/scripts/../rtl/common/MemoryController_Definitions.sv:8:19: ... Location of original declaration
+    8 |     parameter int MEM_DATAWIDTH = 64;                                        
+      |                   ^~~~~~~~~~~~~
+%Warning-VARHIDDEN: /workspaces/DDRMemoryController/scripts/../rtl/backend/MemoryControllerBackend.sv:112:19: Declaration of signal hides declaration in upper scope: 'MEM_IDWIDTH'
+  112 |     parameter int MEM_IDWIDTH           = 4,
+      |                   ^~~~~~~~~~~
+                    /workspaces/DDRMemoryController/scripts/../rtl/common/MemoryController_Definitions.sv:9:19: ... Location of original declaration
+    9 |     parameter int MEM_IDWIDTH   = 4;                                           
+      |                   ^~~~~~~~~~~
+%Warning-VARHIDDEN: /workspaces/DDRMemoryController/scripts/../rtl/backend/MemoryControllerBackend.sv:113:19: Declaration of signal hides declaration in upper scope: 'MEM_ADDRWIDTH'
+  113 |     parameter int MEM_ADDRWIDTH         = 32,
+      |                   ^~~~~~~~~~~~~
+                    /workspaces/DDRMemoryController/scripts/../rtl/common/MemoryController_Definitions.sv:7:19: ... Location of original declaration
+    7 |     parameter int MEM_ADDRWIDTH = 32;                                        
+      |                   ^~~~~~~~~~~~~
+%Warning-VARHIDDEN: /workspaces/DDRMemoryController/scripts/../rtl/backend/MemoryControllerBackend.sv:114:19: Declaration of signal hides declaration in upper scope: 'MEM_USERWIDTH'
+  114 |     parameter int MEM_USERWIDTH         = 1,
+      |                   ^~~~~~~~~~~~~
+                    /workspaces/DDRMemoryController/scripts/../rtl/common/MemoryController_Definitions.sv:10:19: ... Location of original declaration
+   10 |     parameter int MEM_USERWIDTH = 1;                                         
+      |                   ^~~~~~~~~~~~~
+%Warning-VARHIDDEN: /workspaces/DDRMemoryController/scripts/../rtl/backend/MemoryControllerBackend.sv:115:19: Declaration of signal hides declaration in upper scope: 'CHMODETHRESHOLD'
+  115 |     parameter int CHMODETHRESHOLD       = 16,
+      |                   ^~~~~~~~~~~~~~~
+                    /workspaces/DDRMemoryController/scripts/../rtl/common/MemoryController_Definitions.sv:57:19: ... Location of original declaration
+   57 |     parameter int CHMODETHRESHOLD   = 16;
+      |                   ^~~~~~~~~~~~~~~
+%Warning-VARHIDDEN: /workspaces/DDRMemoryController/scripts/../rtl/backend/MemoryControllerBackend.sv:116:19: Declaration of signal hides declaration in upper scope: 'NUMRANK'
+  116 |     parameter int NUMRANK               = 4,
+      |                   ^~~~~~~
+                    /workspaces/DDRMemoryController/scripts/../rtl/common/MemoryController_Definitions.sv:40:19: ... Location of original declaration
+   40 |     parameter int NUMRANK       = 4;                               
+      |                   ^~~~~~~
+%Warning-VARHIDDEN: /workspaces/DDRMemoryController/scripts/../rtl/backend/MemoryControllerBackend.sv:117:19: Declaration of signal hides declaration in upper scope: 'NUMBANK'
+  117 |     parameter int NUMBANK               = 4,
+      |                   ^~~~~~~
+                    /workspaces/DDRMemoryController/scripts/../rtl/common/MemoryController_Definitions.sv:42:19: ... Location of original declaration
+   42 |     parameter int NUMBANK       = 4;                               
+      |                   ^~~~~~~
+%Warning-VARHIDDEN: /workspaces/DDRMemoryController/scripts/../rtl/backend/MemoryControllerBackend.sv:118:19: Declaration of signal hides declaration in upper scope: 'NUMBANKGROUP'
+  118 |     parameter int NUMBANKGROUP          = 4,
+      |                   ^~~~~~~~~~~~
+                    /workspaces/DDRMemoryController/scripts/../rtl/common/MemoryController_Definitions.sv:41:19: ... Location of original declaration
+   41 |     parameter int NUMBANKGROUP  = 4;                               
+      |                   ^~~~~~~~~~~~
+%Warning-VARHIDDEN: /workspaces/DDRMemoryController/scripts/../rtl/backend/MemoryControllerBackend.sv:119:19: Declaration of signal hides declaration in upper scope: 'BGWIDTH'
+  119 |     parameter int BGWIDTH               = 2,
+      |                   ^~~~~~~
+                    /workspaces/DDRMemoryController/scripts/../rtl/common/MemoryController_Definitions.sv:19:19: ... Location of original declaration
+   19 |     parameter int BGWIDTH = 2;                               
+      |                   ^~~~~~~
+%Warning-VARHIDDEN: /workspaces/DDRMemoryController/scripts/../rtl/backend/MemoryControllerBackend.sv:120:19: Declaration of signal hides declaration in upper scope: 'BKWIDTH'
+  120 |     parameter int BKWIDTH               = 2,
+      |                   ^~~~~~~
+                    /workspaces/DDRMemoryController/scripts/../rtl/common/MemoryController_Definitions.sv:20:19: ... Location of original declaration
+   20 |     parameter int BKWIDTH = 2;                               
+      |                   ^~~~~~~
+%Warning-VARHIDDEN: /workspaces/DDRMemoryController/scripts/../rtl/backend/MemoryControllerBackend.sv:121:19: Declaration of signal hides declaration in upper scope: 'RWIDTH'
+  121 |     parameter int RWIDTH                = 15,
+      |                   ^~~~~~
+                    /workspaces/DDRMemoryController/scripts/../rtl/common/MemoryController_Definitions.sv:17:19: ... Location of original declaration
+   17 |     parameter int RWIDTH  = 15;                              
+      |                   ^~~~~~
+%Warning-VARHIDDEN: /workspaces/DDRMemoryController/scripts/../rtl/backend/MemoryControllerBackend.sv:122:19: Declaration of signal hides declaration in upper scope: 'CWIDTH'
+  122 |     parameter int CWIDTH                = 10,
+      |                   ^~~~~~
+                    /workspaces/DDRMemoryController/scripts/../rtl/common/MemoryController_Definitions.sv:18:19: ... Location of original declaration
+   18 |     parameter int CWIDTH  = 10;                              
+      |                   ^~~~~~
+%Warning-VARHIDDEN: /workspaces/DDRMemoryController/scripts/../rtl/backend/MemoryControllerBackend.sv:123:19: Declaration of signal hides declaration in upper scope: 'BURST_LENGTH'
+  123 |     parameter int BURST_LENGTH          = 8,
+      |                   ^~~~~~~~~~~~
+                    /workspaces/DDRMemoryController/scripts/../rtl/common/MemoryController_Definitions.sv:12:19: ... Location of original declaration
+   12 |     parameter int BURST_LENGTH  = 8;
+      |                   ^~~~~~~~~~~~
+%Warning-VARHIDDEN: /workspaces/DDRMemoryController/scripts/../rtl/backend/MemoryControllerBackend.sv:124:19: Declaration of signal hides declaration in upper scope: 'PHYFIFODEPTH'
+  124 |     parameter int PHYFIFODEPTH          = 32,
+      |                   ^~~~~~~~~~~~
+                    /workspaces/DDRMemoryController/scripts/../rtl/common/MemoryController_Definitions.sv:50:19: ... Location of original declaration
+   50 |     parameter int PHYFIFODEPTH          = PHYFIFOMAXENTRY * BURST_LENGTH;    
+      |                   ^~~~~~~~~~~~
+%Warning-VARHIDDEN: /workspaces/DDRMemoryController/scripts/../rtl/backend/MemoryControllerBackend.sv:125:19: Declaration of signal hides declaration in upper scope: 'READBUFFERDEPTH'
+  125 |     parameter int READBUFFERDEPTH       = 128,
+      |                   ^~~~~~~~~~~~~~~
+                    /workspaces/DDRMemoryController/scripts/../rtl/common/MemoryController_Definitions.sv:34:19: ... Location of original declaration
+   34 |     parameter int READBUFFERDEPTH    = 128;                        
+      |                   ^~~~~~~~~~~~~~~
+%Warning-VARHIDDEN: /workspaces/DDRMemoryController/scripts/../rtl/backend/MemoryControllerBackend.sv:126:19: Declaration of signal hides declaration in upper scope: 'WRITEBUFFERDEPTH'
+  126 |     parameter int WRITEBUFFERDEPTH      = 128,
+      |                   ^~~~~~~~~~~~~~~~
+                    /workspaces/DDRMemoryController/scripts/../rtl/common/MemoryController_Definitions.sv:35:19: ... Location of original declaration
+   35 |     parameter int WRITEBUFFERDEPTH   = 128;                        
+      |                   ^~~~~~~~~~~~~~~~
+%Warning-VARHIDDEN: /workspaces/DDRMemoryController/scripts/../rtl/backend/MemoryControllerBackend.sv:127:19: Declaration of signal hides declaration in upper scope: 'READCMDQUEUEDEPTH'
+  127 |     parameter int READCMDQUEUEDEPTH     = 8,
+      |                   ^~~~~~~~~~~~~~~~~
+                    /workspaces/DDRMemoryController/scripts/../rtl/common/MemoryController_Definitions.sv:32:19: ... Location of original declaration
+   32 |     parameter int READCMDQUEUEDEPTH  = 8;                          
+      |                   ^~~~~~~~~~~~~~~~~
+%Warning-VARHIDDEN: /workspaces/DDRMemoryController/scripts/../rtl/backend/MemoryControllerBackend.sv:128:19: Declaration of signal hides declaration in upper scope: 'WRITECMDQUEUEDEPTH'
+  128 |     parameter int WRITECMDQUEUEDEPTH    = 8,
+      |                   ^~~~~~~~~~~~~~~~~~
+                    /workspaces/DDRMemoryController/scripts/../rtl/common/MemoryController_Definitions.sv:33:19: ... Location of original declaration
+   33 |     parameter int WRITECMDQUEUEDEPTH = 8;                          
+      |                   ^~~~~~~~~~~~~~~~~~
+%Warning-VARHIDDEN: /workspaces/DDRMemoryController/scripts/../rtl/backend/MemoryControllerBackend.sv:129:19: Declaration of signal hides declaration in upper scope: 'OPENPAGELISTDEPTH'
+  129 |     parameter int OPENPAGELISTDEPTH     = 16,
+      |                   ^~~~~~~~~~~~~~~~~
+                    /workspaces/DDRMemoryController/scripts/../rtl/common/MemoryController_Definitions.sv:36:19: ... Location of original declaration
+   36 |     parameter int OPENPAGELISTDEPTH  = 1 << (BKWIDTH+BGWIDTH);     
+      |                   ^~~~~~~~~~~~~~~~~
+%Warning-VARHIDDEN: /workspaces/DDRMemoryController/scripts/../rtl/backend/MemoryControllerBackend.sv:130:19: Declaration of signal hides declaration in upper scope: 'PHYFIFOREQUESTWINDOW'
+  130 |     parameter int PHYFIFOREQUESTWINDOW  = 8,
+      |                   ^~~~~~~~~~~~~~~~~~~~
+                    /workspaces/DDRMemoryController/scripts/../rtl/common/MemoryController_Definitions.sv:51:19: ... Location of original declaration
+   51 |     parameter int PHYFIFOREQUESTWINDOW  = 8;                                 
+      |                   ^~~~~~~~~~~~~~~~~~~~
+%Warning-VARHIDDEN: /workspaces/DDRMemoryController/scripts/../rtl/backend/MemoryControllerBackend.sv:131:19: Declaration of signal hides declaration in upper scope: 'PHYFIFOMAXENTRY'
+  131 |     parameter int PHYFIFOMAXENTRY       = 4,
+      |                   ^~~~~~~~~~~~~~~
+                    /workspaces/DDRMemoryController/scripts/../rtl/common/MemoryController_Definitions.sv:49:19: ... Location of original declaration
+   49 |     parameter int PHYFIFOMAXENTRY       = 4;                                 
+      |                   ^~~~~~~~~~~~~~~
+%Warning-VARHIDDEN: /workspaces/DDRMemoryController/scripts/../rtl/backend/MemoryControllerBackend.sv:132:19: Declaration of signal hides declaration in upper scope: 'AGINGWIDTH'
+  132 |     parameter int AGINGWIDTH            = 10,
+      |                   ^~~~~~~~~~
+                    /workspaces/DDRMemoryController/scripts/../rtl/common/MemoryController_Definitions.sv:56:19: ... Location of original declaration
+   56 |     parameter int AGINGWIDTH        = 10;                               
+      |                   ^~~~~~~~~~
+%Warning-VARHIDDEN: /workspaces/DDRMemoryController/scripts/../rtl/backend/MemoryControllerBackend.sv:133:19: Declaration of signal hides declaration in upper scope: 'THRESHOLD'
+  133 |     parameter int THRESHOLD             = 512,
+      |                   ^~~~~~~~~
+                    /workspaces/DDRMemoryController/scripts/../rtl/common/MemoryController_Definitions.sv:55:19: ... Location of original declaration
+   55 |     parameter int THRESHOLD         = 512;                               
+      |                   ^~~~~~~~~
+%Warning-VARHIDDEN: /workspaces/DDRMemoryController/scripts/../rtl/backend/MemoryControllerBackend.sv:134:19: Declaration of signal hides declaration in upper scope: 'COMMAND_WIDTH'
+  134 |     parameter int COMMAND_WIDTH         = 18,
+      |                   ^~~~~~~~~~~~~
+                    /workspaces/DDRMemoryController/scripts/../rtl/common/MemoryController_Definitions.sv:11:19: ... Location of original declaration
+   11 |     parameter int COMMAND_WIDTH = 18;                      
+      |                   ^~~~~~~~~~~~~
+%Warning-VARHIDDEN: /workspaces/DDRMemoryController/scripts/../rtl/backend/MemoryControllerBackend.sv:135:19: Declaration of signal hides declaration in upper scope: 'tRP'
+  135 |     parameter int tRP                   = 16,
+      |                   ^~~
+                    /workspaces/DDRMemoryController/scripts/../rtl/common/MemoryController_Definitions.sv:113:19: ... Location of original declaration
+  113 |     parameter int tRP   = 16;                                  
+      |                   ^~~
+%Warning-VARHIDDEN: /workspaces/DDRMemoryController/scripts/../rtl/backend/MemoryControllerBackend.sv:136:19: Declaration of signal hides declaration in upper scope: 'tWR'
+  136 |     parameter int tWR                   = 18,
+      |                   ^~~
+                    /workspaces/DDRMemoryController/scripts/../rtl/common/MemoryController_Definitions.sv:121:19: ... Location of original declaration
+  121 |     parameter int tWR   = 18;                                  
+      |                   ^~~
+%Warning-VARHIDDEN: /workspaces/DDRMemoryController/scripts/../rtl/backend/MemoryControllerBackend.sv:137:19: Declaration of signal hides declaration in upper scope: 'tRFC'
+  137 |     parameter int tRFC                  = 256,
+      |                   ^~~~
+                    /workspaces/DDRMemoryController/scripts/../rtl/common/MemoryController_Definitions.sv:122:19: ... Location of original declaration
+  122 |     parameter int tRFC  = 256;                                
+      |                   ^~~~
+%Warning-VARHIDDEN: /workspaces/DDRMemoryController/scripts/../rtl/backend/MemoryControllerBackend.sv:138:19: Declaration of signal hides declaration in upper scope: 'tRTRS'
+  138 |     parameter int tRTRS                 = 2,
+      |                   ^~~~~
+                    /workspaces/DDRMemoryController/scripts/../rtl/common/MemoryController_Definitions.sv:110:19: ... Location of original declaration
+  110 |     parameter int tRTRS = 2;                                 
+      |                   ^~~~~
+%Warning-VARHIDDEN: /workspaces/DDRMemoryController/scripts/../rtl/backend/MemoryControllerBackend.sv:139:19: Declaration of signal hides declaration in upper scope: 'tCCDL'
+  139 |     parameter int tCCDL                 = 6,
+      |                   ^~~~~
+                    /workspaces/DDRMemoryController/scripts/../rtl/common/MemoryController_Definitions.sv:109:19: ... Location of original declaration
+  109 |     parameter int tCCDL = 6;                                 
+      |                   ^~~~~
+%Warning-VARHIDDEN: /workspaces/DDRMemoryController/scripts/../rtl/backend/MemoryControllerBackend.sv:140:19: Declaration of signal hides declaration in upper scope: 'tCCDS'
+  140 |     parameter int tCCDS                 = 4,
+      |                   ^~~~~
+                    /workspaces/DDRMemoryController/scripts/../rtl/common/MemoryController_Definitions.sv:108:19: ... Location of original declaration
+  108 |     parameter int tCCDS = 4;                                 
+      |                   ^~~~~
+%Warning-VARHIDDEN: /workspaces/DDRMemoryController/scripts/../rtl/backend/MemoryControllerBackend.sv:141:19: Declaration of signal hides declaration in upper scope: 'tRTW'
+  141 |     parameter int tRTW                  = 8,
+      |                   ^~~~
+                    /workspaces/DDRMemoryController/scripts/../rtl/common/MemoryController_Definitions.sv:115:19: ... Location of original declaration
+  115 |     parameter int tRTW  = 8;                                  
+      |                   ^~~~
+%Warning-VARHIDDEN: /workspaces/DDRMemoryController/scripts/../rtl/backend/MemoryControllerBackend.sv:142:19: Declaration of signal hides declaration in upper scope: 'tWTRS'
+  142 |     parameter int tWTRS                 = 3,
+      |                   ^~~~~
+                    /workspaces/DDRMemoryController/scripts/../rtl/common/MemoryController_Definitions.sv:119:19: ... Location of original declaration
+  119 |     parameter int tWTRS = 3;                                 
+      |                   ^~~~~
+%Warning-VARHIDDEN: /workspaces/DDRMemoryController/scripts/../rtl/backend/MemoryControllerBackend.sv:143:19: Declaration of signal hides declaration in upper scope: 'tWTRL'
+  143 |     parameter int tWTRL                 = 9,
+      |                   ^~~~~
+                    /workspaces/DDRMemoryController/scripts/../rtl/common/MemoryController_Definitions.sv:120:19: ... Location of original declaration
+  120 |     parameter int tWTRL = 9;                                 
+      |                   ^~~~~
+%Warning-VARHIDDEN: /workspaces/DDRMemoryController/scripts/../rtl/backend/MemoryControllerBackend.sv:144:19: Declaration of signal hides declaration in upper scope: 'tREFI'
+  144 |     parameter int tREFI                 = 8192,
+      |                   ^~~~~
+                    /workspaces/DDRMemoryController/scripts/../rtl/common/MemoryController_Definitions.sv:123:19: ... Location of original declaration
+  123 |     parameter int tREFI = 8192;                              
+      |                   ^~~~~
+%Warning-VARHIDDEN: /workspaces/DDRMemoryController/scripts/../rtl/backend/MemoryControllerBackend.sv:145:19: Declaration of signal hides declaration in upper scope: 'tCL'
+  145 |     parameter int tCL                   = 16,
+      |                   ^~~
+                    /workspaces/DDRMemoryController/scripts/../rtl/common/MemoryController_Definitions.sv:111:19: ... Location of original declaration
+  111 |     parameter int tCL   = 16;                                  
+      |                   ^~~
+%Warning-VARHIDDEN: /workspaces/DDRMemoryController/scripts/../rtl/backend/MemoryControllerBackend.sv:146:19: Declaration of signal hides declaration in upper scope: 'tCWL'
+  146 |     parameter int tCWL                  = 12,
+      |                   ^~~~
+                    /workspaces/DDRMemoryController/scripts/../rtl/common/MemoryController_Definitions.sv:114:19: ... Location of original declaration
+  114 |     parameter int tCWL  = 12;                                 
+      |                   ^~~~
+%Warning-VARHIDDEN: /workspaces/DDRMemoryController/scripts/../rtl/backend/MemoryControllerBackend.sv:147:19: Declaration of signal hides declaration in upper scope: 'tRCD'
+  147 |     parameter int tRCD                  = 16,
+      |                   ^~~~
+                    /workspaces/DDRMemoryController/scripts/../rtl/common/MemoryController_Definitions.sv:112:19: ... Location of original declaration
+  112 |     parameter int tRCD  = 16;                                 
+      |                   ^~~~
+%Warning-VARHIDDEN: /workspaces/DDRMemoryController/scripts/../rtl/backend/ChannelController/ChannelController.sv:231:19: Declaration of signal hides declaration in upper scope: 'NUM_BANKFSM'
+  231 |     parameter int NUM_BANKFSM        = 16,
+      |                   ^~~~~~~~~~~
+                    /workspaces/DDRMemoryController/scripts/../rtl/common/MemoryController_Definitions.sv:44:19: ... Location of original declaration
+   44 |     parameter int NUM_BANKFSM                    = NUMBANKGROUP * NUMBANK;
+      |                   ^~~~~~~~~~~
+%Warning-VARHIDDEN: /workspaces/DDRMemoryController/scripts/../rtl/backend/ChannelController/ChannelController.sv:232:19: Declaration of signal hides declaration in upper scope: 'NUM_BANKFSM_BIT'
+  232 |     parameter int NUM_BANKFSM_BIT    = 4,
+      |                   ^~~~~~~~~~~~~~~
+                    /workspaces/DDRMemoryController/scripts/../rtl/common/MemoryController_Definitions.sv:45:19: ... Location of original declaration
+   45 |     parameter int NUM_BANKFSM_BIT                = $clog2(NUM_BANKFSM);
+      |                   ^~~~~~~~~~~~~~~
+%Warning-VARHIDDEN: /workspaces/DDRMemoryController/scripts/../rtl/backend/ChannelController/ChannelController.sv:233:19: Declaration of signal hides declaration in upper scope: 'MEM_IDWIDTH'
+  233 |     parameter int MEM_IDWIDTH        = 4,
+      |                   ^~~~~~~~~~~
+                    /workspaces/DDRMemoryController/scripts/../rtl/common/MemoryController_Definitions.sv:9:19: ... Location of original declaration
+    9 |     parameter int MEM_IDWIDTH   = 4;                                           
+      |                   ^~~~~~~~~~~
+%Warning-VARHIDDEN: /workspaces/DDRMemoryController/scripts/../rtl/backend/ChannelController/ChannelController.sv:234:19: Declaration of signal hides declaration in upper scope: 'MEM_USERWIDTH'
+  234 |     parameter int MEM_USERWIDTH      = 1,
+      |                   ^~~~~~~~~~~~~
+                    /workspaces/DDRMemoryController/scripts/../rtl/common/MemoryController_Definitions.sv:10:19: ... Location of original declaration
+   10 |     parameter int MEM_USERWIDTH = 1;                                         
+      |                   ^~~~~~~~~~~~~
+%Warning-VARHIDDEN: /workspaces/DDRMemoryController/scripts/../rtl/backend/ChannelController/ChannelController.sv:235:19: Declaration of signal hides declaration in upper scope: 'NUMRANK'
+  235 |     parameter int NUMRANK            = 4, 
+      |                   ^~~~~~~
+                    /workspaces/DDRMemoryController/scripts/../rtl/common/MemoryController_Definitions.sv:40:19: ... Location of original declaration
+   40 |     parameter int NUMRANK       = 4;                               
+      |                   ^~~~~~~
+%Warning-VARHIDDEN: /workspaces/DDRMemoryController/scripts/../rtl/backend/ChannelController/ChannelController.sv:236:19: Declaration of signal hides declaration in upper scope: 'NUMBANK'
+  236 |     parameter int NUMBANK            = 4, 
+      |                   ^~~~~~~
+                    /workspaces/DDRMemoryController/scripts/../rtl/common/MemoryController_Definitions.sv:42:19: ... Location of original declaration
+   42 |     parameter int NUMBANK       = 4;                               
+      |                   ^~~~~~~
+%Warning-VARHIDDEN: /workspaces/DDRMemoryController/scripts/../rtl/backend/ChannelController/ChannelController.sv:237:19: Declaration of signal hides declaration in upper scope: 'NUMBANKGROUP'
+  237 |     parameter int NUMBANKGROUP       = 4,
+      |                   ^~~~~~~~~~~~
+                    /workspaces/DDRMemoryController/scripts/../rtl/common/MemoryController_Definitions.sv:41:19: ... Location of original declaration
+   41 |     parameter int NUMBANKGROUP  = 4;                               
+      |                   ^~~~~~~~~~~~
+%Warning-VARHIDDEN: /workspaces/DDRMemoryController/scripts/../rtl/backend/ChannelController/ChannelController.sv:238:19: Declaration of signal hides declaration in upper scope: 'BGWIDTH'
+  238 |     parameter int BGWIDTH            = 2, 
+      |                   ^~~~~~~
+                    /workspaces/DDRMemoryController/scripts/../rtl/common/MemoryController_Definitions.sv:19:19: ... Location of original declaration
+   19 |     parameter int BGWIDTH = 2;                               
+      |                   ^~~~~~~
+%Warning-VARHIDDEN: /workspaces/DDRMemoryController/scripts/../rtl/backend/ChannelController/ChannelController.sv:239:19: Declaration of signal hides declaration in upper scope: 'BKWIDTH'
+  239 |     parameter int BKWIDTH            = 2,
+      |                   ^~~~~~~
+                    /workspaces/DDRMemoryController/scripts/../rtl/common/MemoryController_Definitions.sv:20:19: ... Location of original declaration
+   20 |     parameter int BKWIDTH = 2;                               
+      |                   ^~~~~~~
+%Warning-VARHIDDEN: /workspaces/DDRMemoryController/scripts/../rtl/backend/ChannelController/ChannelController.sv:240:19: Declaration of signal hides declaration in upper scope: 'RWIDTH'
+  240 |     parameter int RWIDTH             = 2, 
+      |                   ^~~~~~
+                    /workspaces/DDRMemoryController/scripts/../rtl/common/MemoryController_Definitions.sv:17:19: ... Location of original declaration
+   17 |     parameter int RWIDTH  = 15;                              
+      |                   ^~~~~~
+%Warning-VARHIDDEN: /workspaces/DDRMemoryController/scripts/../rtl/backend/ChannelController/ChannelController.sv:241:19: Declaration of signal hides declaration in upper scope: 'CWIDTH'
+  241 |     parameter int CWIDTH             = 10,
+      |                   ^~~~~~
+                    /workspaces/DDRMemoryController/scripts/../rtl/common/MemoryController_Definitions.sv:18:19: ... Location of original declaration
+   18 |     parameter int CWIDTH  = 10;                              
+      |                   ^~~~~~
+%Warning-VARHIDDEN: /workspaces/DDRMemoryController/scripts/../rtl/backend/ChannelController/ChannelController.sv:242:19: Declaration of signal hides declaration in upper scope: 'COMMAND_WIDTH'
+  242 |     parameter int COMMAND_WIDTH      = 18,
+      |                   ^~~~~~~~~~~~~
+                    /workspaces/DDRMemoryController/scripts/../rtl/common/MemoryController_Definitions.sv:11:19: ... Location of original declaration
+   11 |     parameter int COMMAND_WIDTH = 18;                      
+      |                   ^~~~~~~~~~~~~
+%Warning-VARHIDDEN: /workspaces/DDRMemoryController/scripts/../rtl/backend/ChannelController/ChannelController.sv:243:19: Declaration of signal hides declaration in upper scope: 'READCMDQUEUEDEPTH'
+  243 |     parameter int READCMDQUEUEDEPTH  = 8,
+      |                   ^~~~~~~~~~~~~~~~~
+                    /workspaces/DDRMemoryController/scripts/../rtl/common/MemoryController_Definitions.sv:32:19: ... Location of original declaration
+   32 |     parameter int READCMDQUEUEDEPTH  = 8;                          
+      |                   ^~~~~~~~~~~~~~~~~
+%Warning-VARHIDDEN: /workspaces/DDRMemoryController/scripts/../rtl/backend/ChannelController/ChannelController.sv:244:19: Declaration of signal hides declaration in upper scope: 'WRITECMDQUEUEDEPTH'
+  244 |     parameter int WRITECMDQUEUEDEPTH = 8,
+      |                   ^~~~~~~~~~~~~~~~~~
+                    /workspaces/DDRMemoryController/scripts/../rtl/common/MemoryController_Definitions.sv:33:19: ... Location of original declaration
+   33 |     parameter int WRITECMDQUEUEDEPTH = 8;                          
+      |                   ^~~~~~~~~~~~~~~~~~
+%Warning-VARHIDDEN: /workspaces/DDRMemoryController/scripts/../rtl/backend/ChannelController/ChannelController.sv:245:19: Declaration of signal hides declaration in upper scope: 'OPENPAGELISTDEPTH'
+  245 |     parameter int OPENPAGELISTDEPTH  = 16,
+      |                   ^~~~~~~~~~~~~~~~~
+                    /workspaces/DDRMemoryController/scripts/../rtl/common/MemoryController_Definitions.sv:36:19: ... Location of original declaration
+   36 |     parameter int OPENPAGELISTDEPTH  = 1 << (BKWIDTH+BGWIDTH);     
+      |                   ^~~~~~~~~~~~~~~~~
+%Warning-VARHIDDEN: /workspaces/DDRMemoryController/scripts/../rtl/backend/ChannelController/ChannelController.sv:246:19: Declaration of signal hides declaration in upper scope: 'AGINGWIDTH'
+  246 |     parameter int AGINGWIDTH         = 10,
+      |                   ^~~~~~~~~~
+                    /workspaces/DDRMemoryController/scripts/../rtl/common/MemoryController_Definitions.sv:56:19: ... Location of original declaration
+   56 |     parameter int AGINGWIDTH        = 10;                               
+      |                   ^~~~~~~~~~
+%Warning-VARHIDDEN: /workspaces/DDRMemoryController/scripts/../rtl/backend/ChannelController/ChannelController.sv:247:19: Declaration of signal hides declaration in upper scope: 'THRESHOLD'
+  247 |     parameter int THRESHOLD          = 512, 
+      |                   ^~~~~~~~~
+                    /workspaces/DDRMemoryController/scripts/../rtl/common/MemoryController_Definitions.sv:55:19: ... Location of original declaration
+   55 |     parameter int THRESHOLD         = 512;                               
+      |                   ^~~~~~~~~
+%Warning-VARHIDDEN: /workspaces/DDRMemoryController/scripts/../rtl/backend/ChannelController/ChannelController.sv:248:19: Declaration of signal hides declaration in upper scope: 'tRP'
+  248 |     parameter int tRP                = 16, 
+      |                   ^~~
+                    /workspaces/DDRMemoryController/scripts/../rtl/common/MemoryController_Definitions.sv:113:19: ... Location of original declaration
+  113 |     parameter int tRP   = 16;                                  
+      |                   ^~~
+%Warning-VARHIDDEN: /workspaces/DDRMemoryController/scripts/../rtl/backend/ChannelController/ChannelController.sv:249:19: Declaration of signal hides declaration in upper scope: 'tWR'
+  249 |     parameter int tWR                = 18, 
+      |                   ^~~
+                    /workspaces/DDRMemoryController/scripts/../rtl/common/MemoryController_Definitions.sv:121:19: ... Location of original declaration
+  121 |     parameter int tWR   = 18;                                  
+      |                   ^~~
+%Warning-VARHIDDEN: /workspaces/DDRMemoryController/scripts/../rtl/backend/ChannelController/ChannelController.sv:250:19: Declaration of signal hides declaration in upper scope: 'tRFC'
+  250 |     parameter int tRFC               = 256,
+      |                   ^~~~
+                    /workspaces/DDRMemoryController/scripts/../rtl/common/MemoryController_Definitions.sv:122:19: ... Location of original declaration
+  122 |     parameter int tRFC  = 256;                                
+      |                   ^~~~
+%Warning-VARHIDDEN: /workspaces/DDRMemoryController/scripts/../rtl/backend/ChannelController/ChannelController.sv:251:19: Declaration of signal hides declaration in upper scope: 'tRTRS'
+  251 |     parameter int tRTRS              = 2, 
+      |                   ^~~~~
+                    /workspaces/DDRMemoryController/scripts/../rtl/common/MemoryController_Definitions.sv:110:19: ... Location of original declaration
+  110 |     parameter int tRTRS = 2;                                 
+      |                   ^~~~~
+%Warning-VARHIDDEN: /workspaces/DDRMemoryController/scripts/../rtl/backend/ChannelController/ChannelController.sv:252:19: Declaration of signal hides declaration in upper scope: 'tCCDL'
+  252 |     parameter int tCCDL              = 6, 
+      |                   ^~~~~
+                    /workspaces/DDRMemoryController/scripts/../rtl/common/MemoryController_Definitions.sv:109:19: ... Location of original declaration
+  109 |     parameter int tCCDL = 6;                                 
+      |                   ^~~~~
+%Warning-VARHIDDEN: /workspaces/DDRMemoryController/scripts/../rtl/backend/ChannelController/ChannelController.sv:253:19: Declaration of signal hides declaration in upper scope: 'tCCDS'
+  253 |     parameter int tCCDS              = 4,
+      |                   ^~~~~
+                    /workspaces/DDRMemoryController/scripts/../rtl/common/MemoryController_Definitions.sv:108:19: ... Location of original declaration
+  108 |     parameter int tCCDS = 4;                                 
+      |                   ^~~~~
+%Warning-VARHIDDEN: /workspaces/DDRMemoryController/scripts/../rtl/backend/ChannelController/ChannelController.sv:254:19: Declaration of signal hides declaration in upper scope: 'tRTW'
+  254 |     parameter int tRTW               = 8, 
+      |                   ^~~~
+                    /workspaces/DDRMemoryController/scripts/../rtl/common/MemoryController_Definitions.sv:115:19: ... Location of original declaration
+  115 |     parameter int tRTW  = 8;                                  
+      |                   ^~~~
+%Warning-VARHIDDEN: /workspaces/DDRMemoryController/scripts/../rtl/backend/ChannelController/ChannelController.sv:255:19: Declaration of signal hides declaration in upper scope: 'tWTRS'
+  255 |     parameter int tWTRS              = 3, 
+      |                   ^~~~~
+                    /workspaces/DDRMemoryController/scripts/../rtl/common/MemoryController_Definitions.sv:119:19: ... Location of original declaration
+  119 |     parameter int tWTRS = 3;                                 
+      |                   ^~~~~
+%Warning-VARHIDDEN: /workspaces/DDRMemoryController/scripts/../rtl/backend/ChannelController/ChannelController.sv:256:19: Declaration of signal hides declaration in upper scope: 'tWTRL'
+  256 |     parameter int tWTRL              = 9,
+      |                   ^~~~~
+                    /workspaces/DDRMemoryController/scripts/../rtl/common/MemoryController_Definitions.sv:120:19: ... Location of original declaration
+  120 |     parameter int tWTRL = 9;                                 
+      |                   ^~~~~
+%Warning-VARHIDDEN: /workspaces/DDRMemoryController/scripts/../rtl/backend/ChannelController/ChannelController.sv:257:19: Declaration of signal hides declaration in upper scope: 'tREFI'
+  257 |     parameter int tREFI              = 8192, 
+      |                   ^~~~~
+                    /workspaces/DDRMemoryController/scripts/../rtl/common/MemoryController_Definitions.sv:123:19: ... Location of original declaration
+  123 |     parameter int tREFI = 8192;                              
+      |                   ^~~~~
+%Warning-VARHIDDEN: /workspaces/DDRMemoryController/scripts/../rtl/backend/ChannelController/ChannelController.sv:258:19: Declaration of signal hides declaration in upper scope: 'tRCD'
+  258 |     parameter int tRCD               = 16,
+      |                   ^~~~
+                    /workspaces/DDRMemoryController/scripts/../rtl/common/MemoryController_Definitions.sv:112:19: ... Location of original declaration
+  112 |     parameter int tRCD  = 16;                                 
+      |                   ^~~~
+%Warning-VARHIDDEN: /workspaces/DDRMemoryController/scripts/../rtl/backend/ChannelController/CMDGrantScheduler.sv:70:19: Declaration of signal hides declaration in upper scope: 'NUMRANK'
+   70 |     parameter int NUMRANK = 4,
+      |                   ^~~~~~~
+                    /workspaces/DDRMemoryController/scripts/../rtl/common/MemoryController_Definitions.sv:40:19: ... Location of original declaration
+   40 |     parameter int NUMRANK       = 4;                               
+      |                   ^~~~~~~
+%Warning-VARHIDDEN: /workspaces/DDRMemoryController/scripts/../rtl/backend/ChannelController/CMDGrantScheduler.sv:71:19: Declaration of signal hides declaration in upper scope: 'READCMDQUEUEDEPTH'
+   71 |     parameter int READCMDQUEUEDEPTH  = 8,
+      |                   ^~~~~~~~~~~~~~~~~
+                    /workspaces/DDRMemoryController/scripts/../rtl/common/MemoryController_Definitions.sv:32:19: ... Location of original declaration
+   32 |     parameter int READCMDQUEUEDEPTH  = 8;                          
+      |                   ^~~~~~~~~~~~~~~~~
+%Warning-VARHIDDEN: /workspaces/DDRMemoryController/scripts/../rtl/backend/ChannelController/CMDGrantScheduler.sv:72:19: Declaration of signal hides declaration in upper scope: 'WRITECMDQUEUEDEPTH'
+   72 |     parameter int WRITECMDQUEUEDEPTH = 8
+      |                   ^~~~~~~~~~~~~~~~~~
+                    /workspaces/DDRMemoryController/scripts/../rtl/common/MemoryController_Definitions.sv:33:19: ... Location of original declaration
+   33 |     parameter int WRITECMDQUEUEDEPTH = 8;                          
+      |                   ^~~~~~~~~~~~~~~~~~
+%Warning-VARHIDDEN: /workspaces/DDRMemoryController/scripts/../rtl/backend/ChannelController/CMDTurnaroundGrant.sv:51:23: Declaration of signal hides declaration in upper scope: 'tRTRS'
+   51 |         parameter int tRTRS = 2
+      |                       ^~~~~
+                    /workspaces/DDRMemoryController/scripts/../rtl/common/MemoryController_Definitions.sv:110:19: ... Location of original declaration
+  110 |     parameter int tRTRS = 2;                                 
+      |                   ^~~~~
+%Warning-VARHIDDEN: /workspaces/DDRMemoryController/scripts/../rtl/backend/ChannelController/DQTurnaroundGrant.sv:26:19: Declaration of signal hides declaration in upper scope: 'tRTW'
+   26 |     parameter int tRTW  = 8,
+      |                   ^~~~
+                    /workspaces/DDRMemoryController/scripts/../rtl/common/MemoryController_Definitions.sv:115:19: ... Location of original declaration
+  115 |     parameter int tRTW  = 8;                                  
+      |                   ^~~~
+%Warning-VARHIDDEN: /workspaces/DDRMemoryController/scripts/../rtl/backend/ChannelController/DQTurnaroundGrant.sv:27:19: Declaration of signal hides declaration in upper scope: 'tWTRS'
+   27 |     parameter int tWTRS = 3,
+      |                   ^~~~~
+                    /workspaces/DDRMemoryController/scripts/../rtl/common/MemoryController_Definitions.sv:119:19: ... Location of original declaration
+  119 |     parameter int tWTRS = 3;                                 
+      |                   ^~~~~
+%Warning-VARHIDDEN: /workspaces/DDRMemoryController/scripts/../rtl/backend/ChannelController/DQTurnaroundGrant.sv:28:19: Declaration of signal hides declaration in upper scope: 'tWTRL'
+   28 |     parameter int tWTRL = 9
+      |                   ^~~~~
+                    /workspaces/DDRMemoryController/scripts/../rtl/common/MemoryController_Definitions.sv:120:19: ... Location of original declaration
+  120 |     parameter int tWTRL = 9;                                 
+      |                   ^~~~~
+%Warning-VARHIDDEN: /workspaces/DDRMemoryController/scripts/../rtl/backend/ChannelController/DQRdWrCCDGrant.sv:25:19: Declaration of signal hides declaration in upper scope: 'tCCDS'
+   25 |     parameter int tCCDS = 4,
+      |                   ^~~~~
+                    /workspaces/DDRMemoryController/scripts/../rtl/common/MemoryController_Definitions.sv:108:19: ... Location of original declaration
+  108 |     parameter int tCCDS = 4;                                 
+      |                   ^~~~~
+%Warning-VARHIDDEN: /workspaces/DDRMemoryController/scripts/../rtl/backend/ChannelController/DQRdWrCCDGrant.sv:26:19: Declaration of signal hides declaration in upper scope: 'tCCDL'
+   26 |     parameter int tCCDL = 6
+      |                   ^~~~~
+                    /workspaces/DDRMemoryController/scripts/../rtl/common/MemoryController_Definitions.sv:109:19: ... Location of original declaration
+  109 |     parameter int tCCDL = 6;                                 
+      |                   ^~~~~
+%Warning-VARHIDDEN: /workspaces/DDRMemoryController/scripts/../rtl/backend/RankController/RankController.sv:189:19: Declaration of signal hides declaration in upper scope: 'NUM_BANKFSM'
+  189 |     parameter int NUM_BANKFSM        = 0,
+      |                   ^~~~~~~~~~~
+                    /workspaces/DDRMemoryController/scripts/../rtl/common/MemoryController_Definitions.sv:44:19: ... Location of original declaration
+   44 |     parameter int NUM_BANKFSM                    = NUMBANKGROUP * NUMBANK;
+      |                   ^~~~~~~~~~~
+%Warning-VARHIDDEN: /workspaces/DDRMemoryController/scripts/../rtl/backend/RankController/RankController.sv:190:19: Declaration of signal hides declaration in upper scope: 'NUM_BANKFSM_BIT'
+  190 |     parameter int NUM_BANKFSM_BIT    = 0,
+      |                   ^~~~~~~~~~~~~~~
+                    /workspaces/DDRMemoryController/scripts/../rtl/common/MemoryController_Definitions.sv:45:19: ... Location of original declaration
+   45 |     parameter int NUM_BANKFSM_BIT                = $clog2(NUM_BANKFSM);
+      |                   ^~~~~~~~~~~~~~~
+%Warning-VARHIDDEN: /workspaces/DDRMemoryController/scripts/../rtl/backend/RankController/RankController.sv:192:19: Declaration of signal hides declaration in upper scope: 'MEM_IDWIDTH'
+  192 |     parameter int MEM_IDWIDTH        = 4,
+      |                   ^~~~~~~~~~~
+                    /workspaces/DDRMemoryController/scripts/../rtl/common/MemoryController_Definitions.sv:9:19: ... Location of original declaration
+    9 |     parameter int MEM_IDWIDTH   = 4;                                           
+      |                   ^~~~~~~~~~~
+%Warning-VARHIDDEN: /workspaces/DDRMemoryController/scripts/../rtl/backend/RankController/RankController.sv:193:19: Declaration of signal hides declaration in upper scope: 'MEM_USERWIDTH'
+  193 |     parameter int MEM_USERWIDTH      = 1,
+      |                   ^~~~~~~~~~~~~
+                    /workspaces/DDRMemoryController/scripts/../rtl/common/MemoryController_Definitions.sv:10:19: ... Location of original declaration
+   10 |     parameter int MEM_USERWIDTH = 1;                                         
+      |                   ^~~~~~~~~~~~~
+%Warning-VARHIDDEN: /workspaces/DDRMemoryController/scripts/../rtl/backend/RankController/RankController.sv:194:19: Declaration of signal hides declaration in upper scope: 'READCMDQUEUEDEPTH'
+  194 |     parameter int READCMDQUEUEDEPTH  = 8,
+      |                   ^~~~~~~~~~~~~~~~~
+                    /workspaces/DDRMemoryController/scripts/../rtl/common/MemoryController_Definitions.sv:32:19: ... Location of original declaration
+   32 |     parameter int READCMDQUEUEDEPTH  = 8;                          
+      |                   ^~~~~~~~~~~~~~~~~
+%Warning-VARHIDDEN: /workspaces/DDRMemoryController/scripts/../rtl/backend/RankController/RankController.sv:195:19: Declaration of signal hides declaration in upper scope: 'WRITECMDQUEUEDEPTH'
+  195 |     parameter int WRITECMDQUEUEDEPTH = 8,
+      |                   ^~~~~~~~~~~~~~~~~~
+                    /workspaces/DDRMemoryController/scripts/../rtl/common/MemoryController_Definitions.sv:33:19: ... Location of original declaration
+   33 |     parameter int WRITECMDQUEUEDEPTH = 8;                          
+      |                   ^~~~~~~~~~~~~~~~~~
+%Warning-VARHIDDEN: /workspaces/DDRMemoryController/scripts/../rtl/backend/RankController/RankController.sv:196:19: Declaration of signal hides declaration in upper scope: 'OPENPAGELISTDEPTH'
+  196 |     parameter int OPENPAGELISTDEPTH  = 16,
+      |                   ^~~~~~~~~~~~~~~~~
+                    /workspaces/DDRMemoryController/scripts/../rtl/common/MemoryController_Definitions.sv:36:19: ... Location of original declaration
+   36 |     parameter int OPENPAGELISTDEPTH  = 1 << (BKWIDTH+BGWIDTH);     
+      |                   ^~~~~~~~~~~~~~~~~
+%Warning-VARHIDDEN: /workspaces/DDRMemoryController/scripts/../rtl/backend/RankController/RankController.sv:197:19: Declaration of signal hides declaration in upper scope: 'AGINGWIDTH'
+  197 |     parameter int AGINGWIDTH         = 10,
+      |                   ^~~~~~~~~~
+                    /workspaces/DDRMemoryController/scripts/../rtl/common/MemoryController_Definitions.sv:56:19: ... Location of original declaration
+   56 |     parameter int AGINGWIDTH        = 10;                               
+      |                   ^~~~~~~~~~
+%Warning-VARHIDDEN: /workspaces/DDRMemoryController/scripts/../rtl/backend/RankController/RankController.sv:198:19: Declaration of signal hides declaration in upper scope: 'COMMAND_WIDTH'
+  198 |     parameter int COMMAND_WIDTH      = 18,
+      |                   ^~~~~~~~~~~~~
+                    /workspaces/DDRMemoryController/scripts/../rtl/common/MemoryController_Definitions.sv:11:19: ... Location of original declaration
+   11 |     parameter int COMMAND_WIDTH = 18;                      
+      |                   ^~~~~~~~~~~~~
+%Warning-VARHIDDEN: /workspaces/DDRMemoryController/scripts/../rtl/backend/RankController/RankController.sv:199:19: Declaration of signal hides declaration in upper scope: 'BKWIDTH'
+  199 |     parameter int BKWIDTH            = 2,
+      |                   ^~~~~~~
+                    /workspaces/DDRMemoryController/scripts/../rtl/common/MemoryController_Definitions.sv:20:19: ... Location of original declaration
+   20 |     parameter int BKWIDTH = 2;                               
+      |                   ^~~~~~~
+%Warning-VARHIDDEN: /workspaces/DDRMemoryController/scripts/../rtl/backend/RankController/RankController.sv:200:19: Declaration of signal hides declaration in upper scope: 'BGWIDTH'
+  200 |     parameter int BGWIDTH            = 2,
+      |                   ^~~~~~~
+                    /workspaces/DDRMemoryController/scripts/../rtl/common/MemoryController_Definitions.sv:19:19: ... Location of original declaration
+   19 |     parameter int BGWIDTH = 2;                               
+      |                   ^~~~~~~
+%Warning-VARHIDDEN: /workspaces/DDRMemoryController/scripts/../rtl/backend/RankController/RankController.sv:201:19: Declaration of signal hides declaration in upper scope: 'RWIDTH'
+  201 |     parameter int RWIDTH             = 15,
+      |                   ^~~~~~
+                    /workspaces/DDRMemoryController/scripts/../rtl/common/MemoryController_Definitions.sv:17:19: ... Location of original declaration
+   17 |     parameter int RWIDTH  = 15;                              
+      |                   ^~~~~~
+%Warning-VARHIDDEN: /workspaces/DDRMemoryController/scripts/../rtl/backend/RankController/RankController.sv:202:19: Declaration of signal hides declaration in upper scope: 'CWIDTH'
+  202 |     parameter int CWIDTH             = 10,
+      |                   ^~~~~~
+                    /workspaces/DDRMemoryController/scripts/../rtl/common/MemoryController_Definitions.sv:18:19: ... Location of original declaration
+   18 |     parameter int CWIDTH  = 10;                              
+      |                   ^~~~~~
+%Warning-VARHIDDEN: /workspaces/DDRMemoryController/scripts/../rtl/backend/RankController/RankController.sv:203:19: Declaration of signal hides declaration in upper scope: 'THRESHOLD'
+  203 |     parameter int THRESHOLD          = 512,
+      |                   ^~~~~~~~~
+                    /workspaces/DDRMemoryController/scripts/../rtl/common/MemoryController_Definitions.sv:55:19: ... Location of original declaration
+   55 |     parameter int THRESHOLD         = 512;                               
+      |                   ^~~~~~~~~
+%Warning-VARHIDDEN: /workspaces/DDRMemoryController/scripts/../rtl/backend/RankController/RankController.sv:204:19: Declaration of signal hides declaration in upper scope: 'NUMBANK'
+  204 |     parameter int NUMBANK            = 4,
+      |                   ^~~~~~~
+                    /workspaces/DDRMemoryController/scripts/../rtl/common/MemoryController_Definitions.sv:42:19: ... Location of original declaration
+   42 |     parameter int NUMBANK       = 4;                               
+      |                   ^~~~~~~
+%Warning-VARHIDDEN: /workspaces/DDRMemoryController/scripts/../rtl/backend/RankController/RankController.sv:205:19: Declaration of signal hides declaration in upper scope: 'NUMBANKGROUP'
+  205 |     parameter int NUMBANKGROUP       = 4,
+      |                   ^~~~~~~~~~~~
+                    /workspaces/DDRMemoryController/scripts/../rtl/common/MemoryController_Definitions.sv:41:19: ... Location of original declaration
+   41 |     parameter int NUMBANKGROUP  = 4;                               
+      |                   ^~~~~~~~~~~~
+%Warning-VARHIDDEN: /workspaces/DDRMemoryController/scripts/../rtl/backend/RankController/RankController.sv:206:19: Declaration of signal hides declaration in upper scope: 'tRP'
+  206 |     parameter int tRP                = 16,
+      |                   ^~~
+                    /workspaces/DDRMemoryController/scripts/../rtl/common/MemoryController_Definitions.sv:113:19: ... Location of original declaration
+  113 |     parameter int tRP   = 16;                                  
+      |                   ^~~
+%Warning-VARHIDDEN: /workspaces/DDRMemoryController/scripts/../rtl/backend/RankController/RankController.sv:207:19: Declaration of signal hides declaration in upper scope: 'tWR'
+  207 |     parameter int tWR                = 18,
+      |                   ^~~
+                    /workspaces/DDRMemoryController/scripts/../rtl/common/MemoryController_Definitions.sv:121:19: ... Location of original declaration
+  121 |     parameter int tWR   = 18;                                  
+      |                   ^~~
+%Warning-VARHIDDEN: /workspaces/DDRMemoryController/scripts/../rtl/backend/RankController/RankController.sv:208:19: Declaration of signal hides declaration in upper scope: 'tRFC'
+  208 |     parameter int tRFC               = 256,
+      |                   ^~~~
+                    /workspaces/DDRMemoryController/scripts/../rtl/common/MemoryController_Definitions.sv:122:19: ... Location of original declaration
+  122 |     parameter int tRFC  = 256;                                
+      |                   ^~~~
+%Warning-VARHIDDEN: /workspaces/DDRMemoryController/scripts/../rtl/backend/RankController/RankController.sv:209:19: Declaration of signal hides declaration in upper scope: 'tREFI'
+  209 |     parameter int tREFI              = 8192,
+      |                   ^~~~~
+                    /workspaces/DDRMemoryController/scripts/../rtl/common/MemoryController_Definitions.sv:123:19: ... Location of original declaration
+  123 |     parameter int tREFI = 8192;                              
+      |                   ^~~~~
+%Warning-VARHIDDEN: /workspaces/DDRMemoryController/scripts/../rtl/backend/RankController/RankController.sv:210:19: Declaration of signal hides declaration in upper scope: 'tRCD'
+  210 |     parameter int tRCD               = 16,
+      |                   ^~~~
+                    /workspaces/DDRMemoryController/scripts/../rtl/common/MemoryController_Definitions.sv:112:19: ... Location of original declaration
+  112 |     parameter int tRCD  = 16;                                 
+      |                   ^~~~
+%Warning-VARHIDDEN: /workspaces/DDRMemoryController/scripts/../rtl/backend/RankController/RankSched.sv:73:19: Declaration of signal hides declaration in upper scope: 'NUM_BANKFSM'
+   73 |     parameter int NUM_BANKFSM        = 16,
+      |                   ^~~~~~~~~~~
+                    /workspaces/DDRMemoryController/scripts/../rtl/common/MemoryController_Definitions.sv:44:19: ... Location of original declaration
+   44 |     parameter int NUM_BANKFSM                    = NUMBANKGROUP * NUMBANK;
+      |                   ^~~~~~~~~~~
+%Warning-VARHIDDEN: /workspaces/DDRMemoryController/scripts/../rtl/backend/RankController/RankSched.sv:74:19: Declaration of signal hides declaration in upper scope: 'NUM_BANKFSM_BIT'
+   74 |     parameter int NUM_BANKFSM_BIT    = 4,
+      |                   ^~~~~~~~~~~~~~~
+                    /workspaces/DDRMemoryController/scripts/../rtl/common/MemoryController_Definitions.sv:45:19: ... Location of original declaration
+   45 |     parameter int NUM_BANKFSM_BIT                = $clog2(NUM_BANKFSM);
+      |                   ^~~~~~~~~~~~~~~
+%Warning-VARHIDDEN: /workspaces/DDRMemoryController/scripts/../rtl/backend/RankController/RankSched.sv:76:19: Declaration of signal hides declaration in upper scope: 'MEM_IDWIDTH'
+   76 |     parameter int MEM_IDWIDTH        = 4,
+      |                   ^~~~~~~~~~~
+                    /workspaces/DDRMemoryController/scripts/../rtl/common/MemoryController_Definitions.sv:9:19: ... Location of original declaration
+    9 |     parameter int MEM_IDWIDTH   = 4;                                           
+      |                   ^~~~~~~~~~~
+%Warning-VARHIDDEN: /workspaces/DDRMemoryController/scripts/../rtl/backend/RankController/RankSched.sv:77:19: Declaration of signal hides declaration in upper scope: 'MEM_USERWIDTH'
+   77 |     parameter int MEM_USERWIDTH      = 1,
+      |                   ^~~~~~~~~~~~~
+                    /workspaces/DDRMemoryController/scripts/../rtl/common/MemoryController_Definitions.sv:10:19: ... Location of original declaration
+   10 |     parameter int MEM_USERWIDTH = 1;                                         
+      |                   ^~~~~~~~~~~~~
+%Warning-VARHIDDEN: /workspaces/DDRMemoryController/scripts/../rtl/backend/RankController/RankSched.sv:78:19: Declaration of signal hides declaration in upper scope: 'READCMDQUEUEDEPTH'
+   78 |     parameter int READCMDQUEUEDEPTH  = 8,
+      |                   ^~~~~~~~~~~~~~~~~
+                    /workspaces/DDRMemoryController/scripts/../rtl/common/MemoryController_Definitions.sv:32:19: ... Location of original declaration
+   32 |     parameter int READCMDQUEUEDEPTH  = 8;                          
+      |                   ^~~~~~~~~~~~~~~~~
+%Warning-VARHIDDEN: /workspaces/DDRMemoryController/scripts/../rtl/backend/RankController/RankSched.sv:79:19: Declaration of signal hides declaration in upper scope: 'WRITECMDQUEUEDEPTH'
+   79 |     parameter int WRITECMDQUEUEDEPTH = 8,
+      |                   ^~~~~~~~~~~~~~~~~~
+                    /workspaces/DDRMemoryController/scripts/../rtl/common/MemoryController_Definitions.sv:33:19: ... Location of original declaration
+   33 |     parameter int WRITECMDQUEUEDEPTH = 8;                          
+      |                   ^~~~~~~~~~~~~~~~~~
+%Warning-VARHIDDEN: /workspaces/DDRMemoryController/scripts/../rtl/backend/RankController/RankSched.sv:80:19: Declaration of signal hides declaration in upper scope: 'OPENPAGELISTDEPTH'
+   80 |     parameter int OPENPAGELISTDEPTH  = 16,
+      |                   ^~~~~~~~~~~~~~~~~
+                    /workspaces/DDRMemoryController/scripts/../rtl/common/MemoryController_Definitions.sv:36:19: ... Location of original declaration
+   36 |     parameter int OPENPAGELISTDEPTH  = 1 << (BKWIDTH+BGWIDTH);     
+      |                   ^~~~~~~~~~~~~~~~~
+%Warning-VARHIDDEN: /workspaces/DDRMemoryController/scripts/../rtl/backend/RankController/RankSched.sv:81:19: Declaration of signal hides declaration in upper scope: 'AGINGWIDTH'
+   81 |     parameter int AGINGWIDTH         = 10,
+      |                   ^~~~~~~~~~
+                    /workspaces/DDRMemoryController/scripts/../rtl/common/MemoryController_Definitions.sv:56:19: ... Location of original declaration
+   56 |     parameter int AGINGWIDTH        = 10;                               
+      |                   ^~~~~~~~~~
+%Warning-VARHIDDEN: /workspaces/DDRMemoryController/scripts/../rtl/backend/RankController/RankSched.sv:82:19: Declaration of signal hides declaration in upper scope: 'RWIDTH'
+   82 |     parameter int RWIDTH             = 15,
+      |                   ^~~~~~
+                    /workspaces/DDRMemoryController/scripts/../rtl/common/MemoryController_Definitions.sv:17:19: ... Location of original declaration
+   17 |     parameter int RWIDTH  = 15;                              
+      |                   ^~~~~~
+%Warning-VARHIDDEN: /workspaces/DDRMemoryController/scripts/../rtl/backend/RankController/RankSched.sv:83:19: Declaration of signal hides declaration in upper scope: 'CWIDTH'
+   83 |     parameter int CWIDTH             = 10,
+      |                   ^~~~~~
+                    /workspaces/DDRMemoryController/scripts/../rtl/common/MemoryController_Definitions.sv:18:19: ... Location of original declaration
+   18 |     parameter int CWIDTH  = 10;                              
+      |                   ^~~~~~
+%Warning-VARHIDDEN: /workspaces/DDRMemoryController/scripts/../rtl/backend/RankController/RankSched.sv:84:19: Declaration of signal hides declaration in upper scope: 'THRESHOLD'
+   84 |     parameter int THRESHOLD          = 512,
+      |                   ^~~~~~~~~
+                    /workspaces/DDRMemoryController/scripts/../rtl/common/MemoryController_Definitions.sv:55:19: ... Location of original declaration
+   55 |     parameter int THRESHOLD         = 512;                               
+      |                   ^~~~~~~~~
+%Warning-VARHIDDEN: /workspaces/DDRMemoryController/scripts/../rtl/backend/RankController/RankSched.sv:85:19: Declaration of signal hides declaration in upper scope: 'tREFI'
+   85 |     parameter int tREFI              = 8192,
+      |                   ^~~~~
+                    /workspaces/DDRMemoryController/scripts/../rtl/common/MemoryController_Definitions.sv:123:19: ... Location of original declaration
+  123 |     parameter int tREFI = 8192;                              
+      |                   ^~~~~
+%Warning-VARHIDDEN: /workspaces/DDRMemoryController/scripts/../rtl/backend/RankController/RankExecutionUnit.sv:57:19: Declaration of signal hides declaration in upper scope: 'NUM_BANKFSM'
+   57 |     parameter int NUM_BANKFSM       = 16,
+      |                   ^~~~~~~~~~~
+                    /workspaces/DDRMemoryController/scripts/../rtl/common/MemoryController_Definitions.sv:44:19: ... Location of original declaration
+   44 |     parameter int NUM_BANKFSM                    = NUMBANKGROUP * NUMBANK;
+      |                   ^~~~~~~~~~~
+%Warning-VARHIDDEN: /workspaces/DDRMemoryController/scripts/../rtl/backend/RankController/RankExecutionUnit.sv:58:19: Declaration of signal hides declaration in upper scope: 'NUM_BANKFSM_BIT'
+   58 |     parameter int NUM_BANKFSM_BIT   = 4,
+      |                   ^~~~~~~~~~~~~~~
+                    /workspaces/DDRMemoryController/scripts/../rtl/common/MemoryController_Definitions.sv:45:19: ... Location of original declaration
+   45 |     parameter int NUM_BANKFSM_BIT                = $clog2(NUM_BANKFSM);
+      |                   ^~~~~~~~~~~~~~~
+%Warning-VARHIDDEN: /workspaces/DDRMemoryController/scripts/../rtl/backend/RankController/RankExecutionUnit.sv:60:19: Declaration of signal hides declaration in upper scope: 'MEM_IDWIDTH'
+   60 |     parameter int MEM_IDWIDTH       = 4,
+      |                   ^~~~~~~~~~~
+                    /workspaces/DDRMemoryController/scripts/../rtl/common/MemoryController_Definitions.sv:9:19: ... Location of original declaration
+    9 |     parameter int MEM_IDWIDTH   = 4;                                           
+      |                   ^~~~~~~~~~~
+%Warning-VARHIDDEN: /workspaces/DDRMemoryController/scripts/../rtl/backend/RankController/RankExecutionUnit.sv:61:19: Declaration of signal hides declaration in upper scope: 'MEM_USERWIDTH'
+   61 |     parameter int MEM_USERWIDTH     = 1,
+      |                   ^~~~~~~~~~~~~
+                    /workspaces/DDRMemoryController/scripts/../rtl/common/MemoryController_Definitions.sv:10:19: ... Location of original declaration
+   10 |     parameter int MEM_USERWIDTH = 1;                                         
+      |                   ^~~~~~~~~~~~~
+%Warning-VARHIDDEN: /workspaces/DDRMemoryController/scripts/../rtl/backend/RankController/RankExecutionUnit.sv:62:19: Declaration of signal hides declaration in upper scope: 'BKWIDTH'
+   62 |     parameter int BKWIDTH           = 2,
+      |                   ^~~~~~~
+                    /workspaces/DDRMemoryController/scripts/../rtl/common/MemoryController_Definitions.sv:20:19: ... Location of original declaration
+   20 |     parameter int BKWIDTH = 2;                               
+      |                   ^~~~~~~
+%Warning-VARHIDDEN: /workspaces/DDRMemoryController/scripts/../rtl/backend/RankController/RankExecutionUnit.sv:63:19: Declaration of signal hides declaration in upper scope: 'BGWIDTH'
+   63 |     parameter int BGWIDTH           = 2,
+      |                   ^~~~~~~
+                    /workspaces/DDRMemoryController/scripts/../rtl/common/MemoryController_Definitions.sv:19:19: ... Location of original declaration
+   19 |     parameter int BGWIDTH = 2;                               
+      |                   ^~~~~~~
+%Warning-VARHIDDEN: /workspaces/DDRMemoryController/scripts/../rtl/backend/RankController/RankExecutionUnit.sv:64:19: Declaration of signal hides declaration in upper scope: 'RWIDTH'
+   64 |     parameter int RWIDTH            = 15,
+      |                   ^~~~~~
+                    /workspaces/DDRMemoryController/scripts/../rtl/common/MemoryController_Definitions.sv:17:19: ... Location of original declaration
+   17 |     parameter int RWIDTH  = 15;                              
+      |                   ^~~~~~
+%Warning-VARHIDDEN: /workspaces/DDRMemoryController/scripts/../rtl/backend/RankController/RankExecutionUnit.sv:65:19: Declaration of signal hides declaration in upper scope: 'CWIDTH'
+   65 |     parameter int CWIDTH            = 10,
+      |                   ^~~~~~
+                    /workspaces/DDRMemoryController/scripts/../rtl/common/MemoryController_Definitions.sv:18:19: ... Location of original declaration
+   18 |     parameter int CWIDTH  = 10;                              
+      |                   ^~~~~~
+%Warning-VARHIDDEN: /workspaces/DDRMemoryController/scripts/../rtl/backend/RankController/RankExecutionUnit.sv:66:19: Declaration of signal hides declaration in upper scope: 'NUMBANK'
+   66 |     parameter int NUMBANK           = 4,
+      |                   ^~~~~~~
+                    /workspaces/DDRMemoryController/scripts/../rtl/common/MemoryController_Definitions.sv:42:19: ... Location of original declaration
+   42 |     parameter int NUMBANK       = 4;                               
+      |                   ^~~~~~~
+%Warning-VARHIDDEN: /workspaces/DDRMemoryController/scripts/../rtl/backend/RankController/RankExecutionUnit.sv:67:19: Declaration of signal hides declaration in upper scope: 'NUMBANKGROUP'
+   67 |     parameter int NUMBANKGROUP      = 4,
+      |                   ^~~~~~~~~~~~
+                    /workspaces/DDRMemoryController/scripts/../rtl/common/MemoryController_Definitions.sv:41:19: ... Location of original declaration
+   41 |     parameter int NUMBANKGROUP  = 4;                               
+      |                   ^~~~~~~~~~~~
+%Warning-VARHIDDEN: /workspaces/DDRMemoryController/scripts/../rtl/backend/RankController/RankExecutionUnit.sv:68:19: Declaration of signal hides declaration in upper scope: 'COMMAND_WIDTH'
+   68 |     parameter int COMMAND_WIDTH     = 18,
+      |                   ^~~~~~~~~~~~~
+                    /workspaces/DDRMemoryController/scripts/../rtl/common/MemoryController_Definitions.sv:11:19: ... Location of original declaration
+   11 |     parameter int COMMAND_WIDTH = 18;                      
+      |                   ^~~~~~~~~~~~~
+%Warning-VARHIDDEN: /workspaces/DDRMemoryController/scripts/../rtl/backend/RankController/RankExecutionUnit.sv:70:19: Declaration of signal hides declaration in upper scope: 'tRP'
+   70 |     parameter int tRP               = 16,
+      |                   ^~~
+                    /workspaces/DDRMemoryController/scripts/../rtl/common/MemoryController_Definitions.sv:113:19: ... Location of original declaration
+  113 |     parameter int tRP   = 16;                                  
+      |                   ^~~
+%Warning-VARHIDDEN: /workspaces/DDRMemoryController/scripts/../rtl/backend/RankController/RankExecutionUnit.sv:71:19: Declaration of signal hides declaration in upper scope: 'tWR'
+   71 |     parameter int tWR               = 18,
+      |                   ^~~
+                    /workspaces/DDRMemoryController/scripts/../rtl/common/MemoryController_Definitions.sv:121:19: ... Location of original declaration
+  121 |     parameter int tWR   = 18;                                  
+      |                   ^~~
+%Warning-VARHIDDEN: /workspaces/DDRMemoryController/scripts/../rtl/backend/RankController/RankExecutionUnit.sv:72:19: Declaration of signal hides declaration in upper scope: 'tRFC'
+   72 |     parameter int tRFC              = 256,
+      |                   ^~~~
+                    /workspaces/DDRMemoryController/scripts/../rtl/common/MemoryController_Definitions.sv:122:19: ... Location of original declaration
+  122 |     parameter int tRFC  = 256;                                
+      |                   ^~~~
+%Warning-VARHIDDEN: /workspaces/DDRMemoryController/scripts/../rtl/backend/RankController/RankExecutionUnit.sv:73:19: Declaration of signal hides declaration in upper scope: 'tRCD'
+   73 |     parameter int tRCD              = 16,
+      |                   ^~~~
+                    /workspaces/DDRMemoryController/scripts/../rtl/common/MemoryController_Definitions.sv:112:19: ... Location of original declaration
+  112 |     parameter int tRCD  = 16;                                 
+      |                   ^~~~
+%Warning-VARHIDDEN: /workspaces/DDRMemoryController/scripts/../rtl/backend/RankController/APTimingScheduler.sv:34:19: Declaration of signal hides declaration in upper scope: 'NUMBANK'
+   34 |     parameter int NUMBANK       = 4,
+      |                   ^~~~~~~
+                    /workspaces/DDRMemoryController/scripts/../rtl/common/MemoryController_Definitions.sv:42:19: ... Location of original declaration
+   42 |     parameter int NUMBANK       = 4;                               
+      |                   ^~~~~~~
+%Warning-VARHIDDEN: /workspaces/DDRMemoryController/scripts/../rtl/backend/RankController/APTimingScheduler.sv:35:19: Declaration of signal hides declaration in upper scope: 'NUMBANKGROUP'
+   35 |     parameter int NUMBANKGROUP  = 4,
+      |                   ^~~~~~~~~~~~
+                    /workspaces/DDRMemoryController/scripts/../rtl/common/MemoryController_Definitions.sv:41:19: ... Location of original declaration
+   41 |     parameter int NUMBANKGROUP  = 4;                               
+      |                   ^~~~~~~~~~~~
+%Warning-VARHIDDEN: /workspaces/DDRMemoryController/scripts/../rtl/backend/RankController/APTimingScheduler.sv:37:19: Declaration of signal hides declaration in upper scope: 'tRP'
+   37 |     parameter int tRP           = 16,
+      |                   ^~~
+                    /workspaces/DDRMemoryController/scripts/../rtl/common/MemoryController_Definitions.sv:113:19: ... Location of original declaration
+  113 |     parameter int tRP   = 16;                                  
+      |                   ^~~
+%Warning-VARHIDDEN: /workspaces/DDRMemoryController/scripts/../rtl/backend/RankController/APTimingScheduler.sv:38:19: Declaration of signal hides declaration in upper scope: 'tWR'
+   38 |     parameter int tWR           = 18
+      |                   ^~~
+                    /workspaces/DDRMemoryController/scripts/../rtl/common/MemoryController_Definitions.sv:121:19: ... Location of original declaration
+  121 |     parameter int tWR   = 18;                                  
+      |                   ^~~
+%Warning-VARHIDDEN: /workspaces/DDRMemoryController/scripts/../rtl/backend/RWBufferController/ReadBufferController.sv:52:19: Declaration of signal hides declaration in upper scope: 'MEM_DATAWIDTH'
+   52 |     parameter int MEM_DATAWIDTH         = 64,
+      |                   ^~~~~~~~~~~~~
+                    /workspaces/DDRMemoryController/scripts/../rtl/common/MemoryController_Definitions.sv:8:19: ... Location of original declaration
+    8 |     parameter int MEM_DATAWIDTH = 64;                                        
+      |                   ^~~~~~~~~~~~~
+%Warning-VARHIDDEN: /workspaces/DDRMemoryController/scripts/../rtl/backend/RWBufferController/ReadBufferController.sv:53:19: Declaration of signal hides declaration in upper scope: 'MEM_ADDRWIDTH'
+   53 |     parameter int MEM_ADDRWIDTH         = 32,
+      |                   ^~~~~~~~~~~~~
+                    /workspaces/DDRMemoryController/scripts/../rtl/common/MemoryController_Definitions.sv:7:19: ... Location of original declaration
+    7 |     parameter int MEM_ADDRWIDTH = 32;                                        
+      |                   ^~~~~~~~~~~~~
+%Warning-VARHIDDEN: /workspaces/DDRMemoryController/scripts/../rtl/backend/RWBufferController/ReadBufferController.sv:54:19: Declaration of signal hides declaration in upper scope: 'MEM_IDWIDTH'
+   54 |     parameter int MEM_IDWIDTH           = 4,
+      |                   ^~~~~~~~~~~
+                    /workspaces/DDRMemoryController/scripts/../rtl/common/MemoryController_Definitions.sv:9:19: ... Location of original declaration
+    9 |     parameter int MEM_IDWIDTH   = 4;                                           
+      |                   ^~~~~~~~~~~
+%Warning-VARHIDDEN: /workspaces/DDRMemoryController/scripts/../rtl/backend/RWBufferController/ReadBufferController.sv:55:19: Declaration of signal hides declaration in upper scope: 'MEM_USERWIDTH'
+   55 |     parameter int MEM_USERWIDTH         = 1,
+      |                   ^~~~~~~~~~~~~
+                    /workspaces/DDRMemoryController/scripts/../rtl/common/MemoryController_Definitions.sv:10:19: ... Location of original declaration
+   10 |     parameter int MEM_USERWIDTH = 1;                                         
+      |                   ^~~~~~~~~~~~~
+%Warning-VARHIDDEN: /workspaces/DDRMemoryController/scripts/../rtl/backend/RWBufferController/ReadBufferController.sv:56:19: Declaration of signal hides declaration in upper scope: 'NUMRANK'
+   56 |     parameter int NUMRANK               = 4,
+      |                   ^~~~~~~
+                    /workspaces/DDRMemoryController/scripts/../rtl/common/MemoryController_Definitions.sv:40:19: ... Location of original declaration
+   40 |     parameter int NUMRANK       = 4;                               
+      |                   ^~~~~~~
+%Warning-VARHIDDEN: /workspaces/DDRMemoryController/scripts/../rtl/backend/RWBufferController/ReadBufferController.sv:57:19: Declaration of signal hides declaration in upper scope: 'READBUFFERDEPTH'
+   57 |     parameter int READBUFFERDEPTH       = 128,
+      |                   ^~~~~~~~~~~~~~~
+                    /workspaces/DDRMemoryController/scripts/../rtl/common/MemoryController_Definitions.sv:34:19: ... Location of original declaration
+   34 |     parameter int READBUFFERDEPTH    = 128;                        
+      |                   ^~~~~~~~~~~~~~~
+%Warning-VARHIDDEN: /workspaces/DDRMemoryController/scripts/../rtl/backend/RWBufferController/ReadBufferController.sv:58:19: Declaration of signal hides declaration in upper scope: 'BURST_LENGTH'
+   58 |     parameter int BURST_LENGTH          = 8,
+      |                   ^~~~~~~~~~~~
+                    /workspaces/DDRMemoryController/scripts/../rtl/common/MemoryController_Definitions.sv:12:19: ... Location of original declaration
+   12 |     parameter int BURST_LENGTH  = 8;
+      |                   ^~~~~~~~~~~~
+%Warning-VARHIDDEN: /workspaces/DDRMemoryController/scripts/../rtl/backend/RWBufferController/WriteBufferController.sv:51:19: Declaration of signal hides declaration in upper scope: 'MEM_DATAWIDTH'
+   51 |     parameter int MEM_DATAWIDTH          = 64,
+      |                   ^~~~~~~~~~~~~
+                    /workspaces/DDRMemoryController/scripts/../rtl/common/MemoryController_Definitions.sv:8:19: ... Location of original declaration
+    8 |     parameter int MEM_DATAWIDTH = 64;                                        
+      |                   ^~~~~~~~~~~~~
+%Warning-VARHIDDEN: /workspaces/DDRMemoryController/scripts/../rtl/backend/RWBufferController/WriteBufferController.sv:52:19: Declaration of signal hides declaration in upper scope: 'MEM_USERWIDTH'
+   52 |     parameter int MEM_USERWIDTH          = 1,
+      |                   ^~~~~~~~~~~~~
+                    /workspaces/DDRMemoryController/scripts/../rtl/common/MemoryController_Definitions.sv:10:19: ... Location of original declaration
+   10 |     parameter int MEM_USERWIDTH = 1;                                         
+      |                   ^~~~~~~~~~~~~
+%Warning-VARHIDDEN: /workspaces/DDRMemoryController/scripts/../rtl/backend/RWBufferController/WriteBufferController.sv:53:19: Declaration of signal hides declaration in upper scope: 'MEM_IDWIDTH'
+   53 |     parameter int MEM_IDWIDTH            = 4,
+      |                   ^~~~~~~~~~~
+                    /workspaces/DDRMemoryController/scripts/../rtl/common/MemoryController_Definitions.sv:9:19: ... Location of original declaration
+    9 |     parameter int MEM_IDWIDTH   = 4;                                           
+      |                   ^~~~~~~~~~~
+%Warning-VARHIDDEN: /workspaces/DDRMemoryController/scripts/../rtl/backend/RWBufferController/WriteBufferController.sv:54:19: Declaration of signal hides declaration in upper scope: 'NUMRANK'
+   54 |     parameter int NUMRANK                = 4,
+      |                   ^~~~~~~
+                    /workspaces/DDRMemoryController/scripts/../rtl/common/MemoryController_Definitions.sv:40:19: ... Location of original declaration
+   40 |     parameter int NUMRANK       = 4;                               
+      |                   ^~~~~~~
+%Warning-VARHIDDEN: /workspaces/DDRMemoryController/scripts/../rtl/backend/RWBufferController/WriteBufferController.sv:55:19: Declaration of signal hides declaration in upper scope: 'WRITEBUFFERDEPTH'
+   55 |     parameter int WRITEBUFFERDEPTH       = 128,
+      |                   ^~~~~~~~~~~~~~~~
+                    /workspaces/DDRMemoryController/scripts/../rtl/common/MemoryController_Definitions.sv:35:19: ... Location of original declaration
+   35 |     parameter int WRITEBUFFERDEPTH   = 128;                        
+      |                   ^~~~~~~~~~~~~~~~
+%Warning-VARHIDDEN: /workspaces/DDRMemoryController/scripts/../rtl/backend/RWBufferController/WriteBufferController.sv:56:19: Declaration of signal hides declaration in upper scope: 'BURST_LENGTH'
+   56 |     parameter int BURST_LENGTH           = 8,
+      |                   ^~~~~~~~~~~~
+                    /workspaces/DDRMemoryController/scripts/../rtl/common/MemoryController_Definitions.sv:12:19: ... Location of original declaration
+   12 |     parameter int BURST_LENGTH  = 8;
+      |                   ^~~~~~~~~~~~
+%Warning-VARHIDDEN: /workspaces/DDRMemoryController/scripts/../rtl/backend/PHYController/PHYController.sv:106:19: Declaration of signal hides declaration in upper scope: 'MEM_DATAWIDTH'
+  106 |     parameter int MEM_DATAWIDTH         = 64,
+      |                   ^~~~~~~~~~~~~
+                    /workspaces/DDRMemoryController/scripts/../rtl/common/MemoryController_Definitions.sv:8:19: ... Location of original declaration
+    8 |     parameter int MEM_DATAWIDTH = 64;                                        
+      |                   ^~~~~~~~~~~~~
+%Warning-VARHIDDEN: /workspaces/DDRMemoryController/scripts/../rtl/backend/PHYController/PHYController.sv:107:19: Declaration of signal hides declaration in upper scope: 'NUMRANK'
+  107 |     parameter int NUMRANK               = 4,
+      |                   ^~~~~~~
+                    /workspaces/DDRMemoryController/scripts/../rtl/common/MemoryController_Definitions.sv:40:19: ... Location of original declaration
+   40 |     parameter int NUMRANK       = 4;                               
+      |                   ^~~~~~~
+%Warning-VARHIDDEN: /workspaces/DDRMemoryController/scripts/../rtl/backend/PHYController/PHYController.sv:108:19: Declaration of signal hides declaration in upper scope: 'BURST_LENGTH'
+  108 |     parameter int BURST_LENGTH          = 8,
+      |                   ^~~~~~~~~~~~
+                    /workspaces/DDRMemoryController/scripts/../rtl/common/MemoryController_Definitions.sv:12:19: ... Location of original declaration
+   12 |     parameter int BURST_LENGTH  = 8;
+      |                   ^~~~~~~~~~~~
+%Warning-VARHIDDEN: /workspaces/DDRMemoryController/scripts/../rtl/backend/PHYController/PHYController.sv:109:19: Declaration of signal hides declaration in upper scope: 'PHYFIFOMAXENTRY'
+  109 |     parameter int PHYFIFOMAXENTRY       = 4,
+      |                   ^~~~~~~~~~~~~~~
+                    /workspaces/DDRMemoryController/scripts/../rtl/common/MemoryController_Definitions.sv:49:19: ... Location of original declaration
+   49 |     parameter int PHYFIFOMAXENTRY       = 4;                                 
+      |                   ^~~~~~~~~~~~~~~
+%Warning-VARHIDDEN: /workspaces/DDRMemoryController/scripts/../rtl/backend/PHYController/PHYController.sv:110:19: Declaration of signal hides declaration in upper scope: 'PHYFIFOREQUESTWINDOW'
+  110 |     parameter int PHYFIFOREQUESTWINDOW  = 8,
+      |                   ^~~~~~~~~~~~~~~~~~~~
+                    /workspaces/DDRMemoryController/scripts/../rtl/common/MemoryController_Definitions.sv:51:19: ... Location of original declaration
+   51 |     parameter int PHYFIFOREQUESTWINDOW  = 8;                                 
+      |                   ^~~~~~~~~~~~~~~~~~~~
+%Warning-VARHIDDEN: /workspaces/DDRMemoryController/scripts/../rtl/backend/PHYController/PHYController.sv:111:19: Declaration of signal hides declaration in upper scope: 'PHYFIFODEPTH'
+  111 |     parameter int PHYFIFODEPTH          = 32,
+      |                   ^~~~~~~~~~~~
+                    /workspaces/DDRMemoryController/scripts/../rtl/common/MemoryController_Definitions.sv:50:19: ... Location of original declaration
+   50 |     parameter int PHYFIFODEPTH          = PHYFIFOMAXENTRY * BURST_LENGTH;    
+      |                   ^~~~~~~~~~~~
+%Warning-VARHIDDEN: /workspaces/DDRMemoryController/scripts/../rtl/backend/PHYController/PHYController.sv:112:19: Declaration of signal hides declaration in upper scope: 'tCL'
+  112 |     parameter int tCL                   = 16,
+      |                   ^~~
+                    /workspaces/DDRMemoryController/scripts/../rtl/common/MemoryController_Definitions.sv:111:19: ... Location of original declaration
+  111 |     parameter int tCL   = 16;                                  
+      |                   ^~~
+%Warning-VARHIDDEN: /workspaces/DDRMemoryController/scripts/../rtl/backend/PHYController/PHYController.sv:113:19: Declaration of signal hides declaration in upper scope: 'tCWL'
+  113 |     parameter int tCWL                  = 12,
+      |                   ^~~~
+                    /workspaces/DDRMemoryController/scripts/../rtl/common/MemoryController_Definitions.sv:114:19: ... Location of original declaration
+  114 |     parameter int tCWL  = 12;                                 
+      |                   ^~~~
+%Warning-VARHIDDEN: /workspaces/DDRMemoryController/scripts/../rtl/backend/PHYController/PHYReadMode.sv:148:19: Declaration of signal hides declaration in upper scope: 'MEM_DATAWIDTH'
+  148 |     parameter int MEM_DATAWIDTH     = 64,
+      |                   ^~~~~~~~~~~~~
+                    /workspaces/DDRMemoryController/scripts/../rtl/common/MemoryController_Definitions.sv:8:19: ... Location of original declaration
+    8 |     parameter int MEM_DATAWIDTH = 64;                                        
+      |                   ^~~~~~~~~~~~~
+%Warning-VARHIDDEN: /workspaces/DDRMemoryController/scripts/../rtl/backend/PHYController/PHYReadMode.sv:149:19: Declaration of signal hides declaration in upper scope: 'PHYFIFODEPTH'
+  149 |     parameter int PHYFIFODEPTH      = 32,
+      |                   ^~~~~~~~~~~~
+                    /workspaces/DDRMemoryController/scripts/../rtl/common/MemoryController_Definitions.sv:50:19: ... Location of original declaration
+   50 |     parameter int PHYFIFODEPTH          = PHYFIFOMAXENTRY * BURST_LENGTH;    
+      |                   ^~~~~~~~~~~~
+%Warning-VARHIDDEN: /workspaces/DDRMemoryController/scripts/../rtl/backend/PHYController/PHYReadMode.sv:150:19: Declaration of signal hides declaration in upper scope: 'PHYFIFOMAXENTRY'
+  150 |     parameter int PHYFIFOMAXENTRY   = 4,
+      |                   ^~~~~~~~~~~~~~~
+                    /workspaces/DDRMemoryController/scripts/../rtl/common/MemoryController_Definitions.sv:49:19: ... Location of original declaration
+   49 |     parameter int PHYFIFOMAXENTRY       = 4;                                 
+      |                   ^~~~~~~~~~~~~~~
+%Warning-VARHIDDEN: /workspaces/DDRMemoryController/scripts/../rtl/backend/PHYController/PHYReadMode.sv:151:19: Declaration of signal hides declaration in upper scope: 'BURST_LENGTH'
+  151 |     parameter int BURST_LENGTH      = 8
+      |                   ^~~~~~~~~~~~
+                    /workspaces/DDRMemoryController/scripts/../rtl/common/MemoryController_Definitions.sv:12:19: ... Location of original declaration
+   12 |     parameter int BURST_LENGTH  = 8;
+      |                   ^~~~~~~~~~~~
+%Warning-VARHIDDEN: /workspaces/DDRMemoryController/scripts/../rtl/backend/PHYController/PHYWriteMode.sv:144:19: Declaration of signal hides declaration in upper scope: 'MEM_DATAWIDTH'
+  144 |     parameter int MEM_DATAWIDTH = 64,
+      |                   ^~~~~~~~~~~~~
+                    /workspaces/DDRMemoryController/scripts/../rtl/common/MemoryController_Definitions.sv:8:19: ... Location of original declaration
+    8 |     parameter int MEM_DATAWIDTH = 64;                                        
+      |                   ^~~~~~~~~~~~~
+%Warning-VARHIDDEN: /workspaces/DDRMemoryController/scripts/../rtl/backend/PHYController/PHYWriteMode.sv:145:19: Declaration of signal hides declaration in upper scope: 'PHYFIFODEPTH'
+  145 |     parameter int PHYFIFODEPTH  = 32,
+      |                   ^~~~~~~~~~~~
+                    /workspaces/DDRMemoryController/scripts/../rtl/common/MemoryController_Definitions.sv:50:19: ... Location of original declaration
+   50 |     parameter int PHYFIFODEPTH          = PHYFIFOMAXENTRY * BURST_LENGTH;    
+      |                   ^~~~~~~~~~~~
+%Warning-VARHIDDEN: /workspaces/DDRMemoryController/scripts/../rtl/backend/PHYController/PHYWriteMode.sv:146:19: Declaration of signal hides declaration in upper scope: 'BURST_LENGTH'
+  146 |     parameter int BURST_LENGTH  = 8
+      |                   ^~~~~~~~~~~~
+                    /workspaces/DDRMemoryController/scripts/../rtl/common/MemoryController_Definitions.sv:12:19: ... Location of original declaration
+   12 |     parameter int BURST_LENGTH  = 8;
+      |                   ^~~~~~~~~~~~
+%Warning-VARHIDDEN: /workspaces/DDRMemoryController/scripts/../bfm/MemoryBFM.sv:96:19: Declaration of signal hides declaration in upper scope: 'NUMCHANNEL'
+   96 |     parameter int NUMCHANNEL    = 2,
+      |                   ^~~~~~~~~~
+                    /workspaces/DDRMemoryController/scripts/../rtl/common/MemoryController_Definitions.sv:39:19: ... Location of original declaration
+   39 |     parameter int NUMCHANNEL    = 2;                               
+      |                   ^~~~~~~~~~
+%Warning-VARHIDDEN: /workspaces/DDRMemoryController/scripts/../bfm/MemoryBFM.sv:97:19: Declaration of signal hides declaration in upper scope: 'NUMRANK'
+   97 |     parameter int NUMRANK       = 4,
+      |                   ^~~~~~~
+                    /workspaces/DDRMemoryController/scripts/../rtl/common/MemoryController_Definitions.sv:40:19: ... Location of original declaration
+   40 |     parameter int NUMRANK       = 4;                               
+      |                   ^~~~~~~
+%Warning-VARHIDDEN: /workspaces/DDRMemoryController/scripts/../bfm/MemoryBFM.sv:98:19: Declaration of signal hides declaration in upper scope: 'IOWIDTH'
+   98 |     parameter int IOWIDTH       = 8,
+      |                   ^~~~~~~
+                    /workspaces/DDRMemoryController/scripts/../rtl/common/MemoryController_Definitions.sv:23:19: ... Location of original declaration
+   23 |     parameter int IOWIDTH = 8;                               
+      |                   ^~~~~~~
+%Warning-VARHIDDEN: /workspaces/DDRMemoryController/scripts/../bfm/MemoryBFM.sv:99:19: Declaration of signal hides declaration in upper scope: 'DEVICEPERRANK'
+   99 |     parameter int DEVICEPERRANK = 4,
+      |                   ^~~~~~~~~~~~~
+                    /workspaces/DDRMemoryController/scripts/../rtl/common/MemoryController_Definitions.sv:28:19: ... Location of original declaration
+   28 |     parameter int DEVICEPERRANK = 8;
+      |                   ^~~~~~~~~~~~~
+%Warning-VARHIDDEN: /workspaces/DDRMemoryController/scripts/../bfm/MemoryBFM.sv:100:19: Declaration of signal hides declaration in upper scope: 'CWIDTH'
+  100 |     parameter int CWIDTH        = 10,
+      |                   ^~~~~~
+                    /workspaces/DDRMemoryController/scripts/../rtl/common/MemoryController_Definitions.sv:18:19: ... Location of original declaration
+   18 |     parameter int CWIDTH  = 10;                              
+      |                   ^~~~~~
+%Warning-VARHIDDEN: /workspaces/DDRMemoryController/scripts/../bfm/MemoryBFM.sv:101:19: Declaration of signal hides declaration in upper scope: 'RWIDTH'
+  101 |     parameter int RWIDTH        = 15,
+      |                   ^~~~~~
+                    /workspaces/DDRMemoryController/scripts/../rtl/common/MemoryController_Definitions.sv:17:19: ... Location of original declaration
+   17 |     parameter int RWIDTH  = 15;                              
+      |                   ^~~~~~
+%Warning-VARHIDDEN: /workspaces/DDRMemoryController/scripts/../bfm/MemoryBFM.sv:102:19: Declaration of signal hides declaration in upper scope: 'BGWIDTH'
+  102 |     parameter int BGWIDTH       = 2,
+      |                   ^~~~~~~
+                    /workspaces/DDRMemoryController/scripts/../rtl/common/MemoryController_Definitions.sv:19:19: ... Location of original declaration
+   19 |     parameter int BGWIDTH = 2;                               
+      |                   ^~~~~~~
+%Warning-VARHIDDEN: /workspaces/DDRMemoryController/scripts/../bfm/MemoryBFM.sv:103:19: Declaration of signal hides declaration in upper scope: 'BKWIDTH'
+  103 |     parameter int BKWIDTH       = 2,
+      |                   ^~~~~~~
+                    /workspaces/DDRMemoryController/scripts/../rtl/common/MemoryController_Definitions.sv:20:19: ... Location of original declaration
+   20 |     parameter int BKWIDTH = 2;                               
+      |                   ^~~~~~~
+%Warning-VARHIDDEN: /workspaces/DDRMemoryController/scripts/../bfm/MemoryBFM.sv:104:19: Declaration of signal hides declaration in upper scope: 'COMMAND_WIDTH'
+  104 |     parameter int COMMAND_WIDTH = 18,
+      |                   ^~~~~~~~~~~~~
+                    /workspaces/DDRMemoryController/scripts/../rtl/common/MemoryController_Definitions.sv:11:19: ... Location of original declaration
+   11 |     parameter int COMMAND_WIDTH = 18;                      
+      |                   ^~~~~~~~~~~~~
+%Warning-VARHIDDEN: /workspaces/DDRMemoryController/scripts/../bfm/MemoryBFM.sv:105:19: Declaration of signal hides declaration in upper scope: 'BURST_LENGTH'
+  105 |     parameter int BURST_LENGTH  = 8,
+      |                   ^~~~~~~~~~~~
+                    /workspaces/DDRMemoryController/scripts/../rtl/common/MemoryController_Definitions.sv:12:19: ... Location of original declaration
+   12 |     parameter int BURST_LENGTH  = 8;
+      |                   ^~~~~~~~~~~~
+%Warning-VARHIDDEN: /workspaces/DDRMemoryController/scripts/../bfm/MemoryBFM.sv:106:19: Declaration of signal hides declaration in upper scope: 'MEM_DATAWIDTH'
+  106 |     parameter int MEM_DATAWIDTH = 64,
+      |                   ^~~~~~~~~~~~~
+                    /workspaces/DDRMemoryController/scripts/../rtl/common/MemoryController_Definitions.sv:8:19: ... Location of original declaration
+    8 |     parameter int MEM_DATAWIDTH = 64;                                        
+      |                   ^~~~~~~~~~~~~
+%Warning-VARHIDDEN: /workspaces/DDRMemoryController/scripts/../bfm/MemoryBFM.sv:107:19: Declaration of signal hides declaration in upper scope: 'tCWL'
+  107 |     parameter int tCWL          = 12,
+      |                   ^~~~
+                    /workspaces/DDRMemoryController/scripts/../rtl/common/MemoryController_Definitions.sv:114:19: ... Location of original declaration
+  114 |     parameter int tCWL  = 12;                                 
+      |                   ^~~~
+%Warning-VARHIDDEN: /workspaces/DDRMemoryController/scripts/../bfm/MemoryBFM.sv:108:19: Declaration of signal hides declaration in upper scope: 'tCL'
+  108 |     parameter int tCL           = 16,
+      |                   ^~~
+                    /workspaces/DDRMemoryController/scripts/../rtl/common/MemoryController_Definitions.sv:111:19: ... Location of original declaration
+  111 |     parameter int tCL   = 16;                                  
+      |                   ^~~
+%Warning-VARHIDDEN: /workspaces/DDRMemoryController/scripts/../bfm/MemoryBFM.sv:109:19: Declaration of signal hides declaration in upper scope: 'tRCD'
+  109 |     parameter int tRCD          = 16,
+      |                   ^~~~
+                    /workspaces/DDRMemoryController/scripts/../rtl/common/MemoryController_Definitions.sv:112:19: ... Location of original declaration
+  112 |     parameter int tRCD  = 16;                                 
+      |                   ^~~~
+%Warning-VARHIDDEN: /workspaces/DDRMemoryController/scripts/../bfm/MemoryBFM.sv:110:19: Declaration of signal hides declaration in upper scope: 'tRP'
+  110 |     parameter int tRP           = 16,
+      |                   ^~~
+                    /workspaces/DDRMemoryController/scripts/../rtl/common/MemoryController_Definitions.sv:113:19: ... Location of original declaration
+  113 |     parameter int tRP   = 16;                                  
+      |                   ^~~
+%Warning-VARHIDDEN: /workspaces/DDRMemoryController/scripts/../bfm/MemoryBFM.sv:111:19: Declaration of signal hides declaration in upper scope: 'tRFC'
+  111 |     parameter int tRFC          = 256
+      |                   ^~~~
+                    /workspaces/DDRMemoryController/scripts/../rtl/common/MemoryController_Definitions.sv:122:19: ... Location of original declaration
+  122 |     parameter int tRFC  = 256;                                
+      |                   ^~~~
+%Warning-VARHIDDEN: /workspaces/DDRMemoryController/scripts/../bfm/MemoryChannel.sv:102:19: Declaration of signal hides declaration in upper scope: 'NUMRANK'
+  102 |     parameter int NUMRANK        = 4,
+      |                   ^~~~~~~
+                    /workspaces/DDRMemoryController/scripts/../rtl/common/MemoryController_Definitions.sv:40:19: ... Location of original declaration
+   40 |     parameter int NUMRANK       = 4;                               
+      |                   ^~~~~~~
+%Warning-VARHIDDEN: /workspaces/DDRMemoryController/scripts/../bfm/MemoryChannel.sv:103:19: Declaration of signal hides declaration in upper scope: 'IOWIDTH'
+  103 |     parameter int IOWIDTH        = 8,
+      |                   ^~~~~~~
+                    /workspaces/DDRMemoryController/scripts/../rtl/common/MemoryController_Definitions.sv:23:19: ... Location of original declaration
+   23 |     parameter int IOWIDTH = 8;                               
+      |                   ^~~~~~~
+%Warning-VARHIDDEN: /workspaces/DDRMemoryController/scripts/../bfm/MemoryChannel.sv:104:19: Declaration of signal hides declaration in upper scope: 'DEVICEPERRANK'
+  104 |     parameter int DEVICEPERRANK  = 4,
+      |                   ^~~~~~~~~~~~~
+                    /workspaces/DDRMemoryController/scripts/../rtl/common/MemoryController_Definitions.sv:28:19: ... Location of original declaration
+   28 |     parameter int DEVICEPERRANK = 8;
+      |                   ^~~~~~~~~~~~~
+%Warning-VARHIDDEN: /workspaces/DDRMemoryController/scripts/../bfm/MemoryChannel.sv:105:19: Declaration of signal hides declaration in upper scope: 'CWIDTH'
+  105 |     parameter int CWIDTH         = 10,
+      |                   ^~~~~~
+                    /workspaces/DDRMemoryController/scripts/../rtl/common/MemoryController_Definitions.sv:18:19: ... Location of original declaration
+   18 |     parameter int CWIDTH  = 10;                              
+      |                   ^~~~~~
+%Warning-VARHIDDEN: /workspaces/DDRMemoryController/scripts/../bfm/MemoryChannel.sv:106:19: Declaration of signal hides declaration in upper scope: 'RWIDTH'
+  106 |     parameter int RWIDTH         = 15,
+      |                   ^~~~~~
+                    /workspaces/DDRMemoryController/scripts/../rtl/common/MemoryController_Definitions.sv:17:19: ... Location of original declaration
+   17 |     parameter int RWIDTH  = 15;                              
+      |                   ^~~~~~
+%Warning-VARHIDDEN: /workspaces/DDRMemoryController/scripts/../bfm/MemoryChannel.sv:107:19: Declaration of signal hides declaration in upper scope: 'BGWIDTH'
+  107 |     parameter int BGWIDTH        = 2,
+      |                   ^~~~~~~
+                    /workspaces/DDRMemoryController/scripts/../rtl/common/MemoryController_Definitions.sv:19:19: ... Location of original declaration
+   19 |     parameter int BGWIDTH = 2;                               
+      |                   ^~~~~~~
+%Warning-VARHIDDEN: /workspaces/DDRMemoryController/scripts/../bfm/MemoryChannel.sv:108:19: Declaration of signal hides declaration in upper scope: 'BKWIDTH'
+  108 |     parameter int BKWIDTH        = 2,
+      |                   ^~~~~~~
+                    /workspaces/DDRMemoryController/scripts/../rtl/common/MemoryController_Definitions.sv:20:19: ... Location of original declaration
+   20 |     parameter int BKWIDTH = 2;                               
+      |                   ^~~~~~~
+%Warning-VARHIDDEN: /workspaces/DDRMemoryController/scripts/../bfm/MemoryChannel.sv:109:19: Declaration of signal hides declaration in upper scope: 'COMMAND_WIDTH'
+  109 |     parameter int COMMAND_WIDTH  = 18,
+      |                   ^~~~~~~~~~~~~
+                    /workspaces/DDRMemoryController/scripts/../rtl/common/MemoryController_Definitions.sv:11:19: ... Location of original declaration
+   11 |     parameter int COMMAND_WIDTH = 18;                      
+      |                   ^~~~~~~~~~~~~
+%Warning-VARHIDDEN: /workspaces/DDRMemoryController/scripts/../bfm/MemoryChannel.sv:110:19: Declaration of signal hides declaration in upper scope: 'BURST_LENGTH'
+  110 |     parameter int BURST_LENGTH   = 8,
+      |                   ^~~~~~~~~~~~
+                    /workspaces/DDRMemoryController/scripts/../rtl/common/MemoryController_Definitions.sv:12:19: ... Location of original declaration
+   12 |     parameter int BURST_LENGTH  = 8;
+      |                   ^~~~~~~~~~~~
+%Warning-VARHIDDEN: /workspaces/DDRMemoryController/scripts/../bfm/MemoryChannel.sv:111:19: Declaration of signal hides declaration in upper scope: 'MEM_DATAWIDTH'
+  111 |     parameter int MEM_DATAWIDTH  = 64,
+      |                   ^~~~~~~~~~~~~
+                    /workspaces/DDRMemoryController/scripts/../rtl/common/MemoryController_Definitions.sv:8:19: ... Location of original declaration
+    8 |     parameter int MEM_DATAWIDTH = 64;                                        
+      |                   ^~~~~~~~~~~~~
+%Warning-VARHIDDEN: /workspaces/DDRMemoryController/scripts/../bfm/MemoryChannel.sv:112:19: Declaration of signal hides declaration in upper scope: 'tCWL'
+  112 |     parameter int tCWL           = 12,
+      |                   ^~~~
+                    /workspaces/DDRMemoryController/scripts/../rtl/common/MemoryController_Definitions.sv:114:19: ... Location of original declaration
+  114 |     parameter int tCWL  = 12;                                 
+      |                   ^~~~
+%Warning-VARHIDDEN: /workspaces/DDRMemoryController/scripts/../bfm/MemoryChannel.sv:113:19: Declaration of signal hides declaration in upper scope: 'tCL'
+  113 |     parameter int tCL            = 16,
+      |                   ^~~
+                    /workspaces/DDRMemoryController/scripts/../rtl/common/MemoryController_Definitions.sv:111:19: ... Location of original declaration
+  111 |     parameter int tCL   = 16;                                  
+      |                   ^~~
+%Warning-VARHIDDEN: /workspaces/DDRMemoryController/scripts/../bfm/MemoryChannel.sv:114:19: Declaration of signal hides declaration in upper scope: 'tRCD'
+  114 |     parameter int tRCD           = 16,
+      |                   ^~~~
+                    /workspaces/DDRMemoryController/scripts/../rtl/common/MemoryController_Definitions.sv:112:19: ... Location of original declaration
+  112 |     parameter int tRCD  = 16;                                 
+      |                   ^~~~
+%Warning-VARHIDDEN: /workspaces/DDRMemoryController/scripts/../bfm/MemoryChannel.sv:115:19: Declaration of signal hides declaration in upper scope: 'tRFC'
+  115 |     parameter int tRFC           = 256,
+      |                   ^~~~
+                    /workspaces/DDRMemoryController/scripts/../rtl/common/MemoryController_Definitions.sv:122:19: ... Location of original declaration
+  122 |     parameter int tRFC  = 256;                                
+      |                   ^~~~
+%Warning-VARHIDDEN: /workspaces/DDRMemoryController/scripts/../bfm/MemoryChannel.sv:116:19: Declaration of signal hides declaration in upper scope: 'tRP'
+  116 |     parameter int tRP            = 16
+      |                   ^~~
+                    /workspaces/DDRMemoryController/scripts/../rtl/common/MemoryController_Definitions.sv:113:19: ... Location of original declaration
+  113 |     parameter int tRP   = 16;                                  
+      |                   ^~~
+%Warning-VARHIDDEN: /workspaces/DDRMemoryController/scripts/../bfm/MemoryRank.sv:104:19: Declaration of signal hides declaration in upper scope: 'IOWIDTH'
+  104 |     parameter int IOWIDTH       = 0,
+      |                   ^~~~~~~
+                    /workspaces/DDRMemoryController/scripts/../rtl/common/MemoryController_Definitions.sv:23:19: ... Location of original declaration
+   23 |     parameter int IOWIDTH = 8;                               
+      |                   ^~~~~~~
+%Warning-VARHIDDEN: /workspaces/DDRMemoryController/scripts/../bfm/MemoryRank.sv:105:19: Declaration of signal hides declaration in upper scope: 'DEVICEPERRANK'
+  105 |     parameter int DEVICEPERRANK = 4,
+      |                   ^~~~~~~~~~~~~
+                    /workspaces/DDRMemoryController/scripts/../rtl/common/MemoryController_Definitions.sv:28:19: ... Location of original declaration
+   28 |     parameter int DEVICEPERRANK = 8;
+      |                   ^~~~~~~~~~~~~
+%Warning-VARHIDDEN: /workspaces/DDRMemoryController/scripts/../bfm/MemoryRank.sv:106:19: Declaration of signal hides declaration in upper scope: 'CWIDTH'
+  106 |     parameter int CWIDTH        = 10,
+      |                   ^~~~~~
+                    /workspaces/DDRMemoryController/scripts/../rtl/common/MemoryController_Definitions.sv:18:19: ... Location of original declaration
+   18 |     parameter int CWIDTH  = 10;                              
+      |                   ^~~~~~
+%Warning-VARHIDDEN: /workspaces/DDRMemoryController/scripts/../bfm/MemoryRank.sv:107:19: Declaration of signal hides declaration in upper scope: 'RWIDTH'
+  107 |     parameter int RWIDTH        = 15,
+      |                   ^~~~~~
+                    /workspaces/DDRMemoryController/scripts/../rtl/common/MemoryController_Definitions.sv:17:19: ... Location of original declaration
+   17 |     parameter int RWIDTH  = 15;                              
+      |                   ^~~~~~
+%Warning-VARHIDDEN: /workspaces/DDRMemoryController/scripts/../bfm/MemoryRank.sv:108:19: Declaration of signal hides declaration in upper scope: 'BGWIDTH'
+  108 |     parameter int BGWIDTH       = 2,
+      |                   ^~~~~~~
+                    /workspaces/DDRMemoryController/scripts/../rtl/common/MemoryController_Definitions.sv:19:19: ... Location of original declaration
+   19 |     parameter int BGWIDTH = 2;                               
+      |                   ^~~~~~~
+%Warning-VARHIDDEN: /workspaces/DDRMemoryController/scripts/../bfm/MemoryRank.sv:109:19: Declaration of signal hides declaration in upper scope: 'BKWIDTH'
+  109 |     parameter int BKWIDTH       = 2,
+      |                   ^~~~~~~
+                    /workspaces/DDRMemoryController/scripts/../rtl/common/MemoryController_Definitions.sv:20:19: ... Location of original declaration
+   20 |     parameter int BKWIDTH = 2;                               
+      |                   ^~~~~~~
+%Warning-VARHIDDEN: /workspaces/DDRMemoryController/scripts/../bfm/MemoryRank.sv:110:19: Declaration of signal hides declaration in upper scope: 'COMMAND_WIDTH'
+  110 |     parameter int COMMAND_WIDTH = 18,
+      |                   ^~~~~~~~~~~~~
+                    /workspaces/DDRMemoryController/scripts/../rtl/common/MemoryController_Definitions.sv:11:19: ... Location of original declaration
+   11 |     parameter int COMMAND_WIDTH = 18;                      
+      |                   ^~~~~~~~~~~~~
+%Warning-VARHIDDEN: /workspaces/DDRMemoryController/scripts/../bfm/MemoryRank.sv:111:19: Declaration of signal hides declaration in upper scope: 'BURST_LENGTH'
+  111 |     parameter int BURST_LENGTH  = 8,
+      |                   ^~~~~~~~~~~~
+                    /workspaces/DDRMemoryController/scripts/../rtl/common/MemoryController_Definitions.sv:12:19: ... Location of original declaration
+   12 |     parameter int BURST_LENGTH  = 8;
+      |                   ^~~~~~~~~~~~
+%Warning-VARHIDDEN: /workspaces/DDRMemoryController/scripts/../bfm/MemoryRank.sv:112:19: Declaration of signal hides declaration in upper scope: 'MEM_DATAWIDTH'
+  112 |     parameter int MEM_DATAWIDTH = 64,
+      |                   ^~~~~~~~~~~~~
+                    /workspaces/DDRMemoryController/scripts/../rtl/common/MemoryController_Definitions.sv:8:19: ... Location of original declaration
+    8 |     parameter int MEM_DATAWIDTH = 64;                                        
+      |                   ^~~~~~~~~~~~~
+%Warning-VARHIDDEN: /workspaces/DDRMemoryController/scripts/../bfm/MemoryRank.sv:113:19: Declaration of signal hides declaration in upper scope: 'tCWL'
+  113 |     parameter int tCWL          = 12,
+      |                   ^~~~
+                    /workspaces/DDRMemoryController/scripts/../rtl/common/MemoryController_Definitions.sv:114:19: ... Location of original declaration
+  114 |     parameter int tCWL  = 12;                                 
+      |                   ^~~~
+%Warning-VARHIDDEN: /workspaces/DDRMemoryController/scripts/../bfm/MemoryRank.sv:114:19: Declaration of signal hides declaration in upper scope: 'tCL'
+  114 |     parameter int tCL           = 16,
+      |                   ^~~
+                    /workspaces/DDRMemoryController/scripts/../rtl/common/MemoryController_Definitions.sv:111:19: ... Location of original declaration
+  111 |     parameter int tCL   = 16;                                  
+      |                   ^~~
+%Warning-VARHIDDEN: /workspaces/DDRMemoryController/scripts/../bfm/MemoryRank.sv:115:19: Declaration of signal hides declaration in upper scope: 'tRCD'
+  115 |     parameter int tRCD          = 16,
+      |                   ^~~~
+                    /workspaces/DDRMemoryController/scripts/../rtl/common/MemoryController_Definitions.sv:112:19: ... Location of original declaration
+  112 |     parameter int tRCD  = 16;                                 
+      |                   ^~~~
+%Warning-VARHIDDEN: /workspaces/DDRMemoryController/scripts/../bfm/MemoryRank.sv:116:19: Declaration of signal hides declaration in upper scope: 'tRFC'
+  116 |     parameter int tRFC          = 256,
+      |                   ^~~~
+                    /workspaces/DDRMemoryController/scripts/../rtl/common/MemoryController_Definitions.sv:122:19: ... Location of original declaration
+  122 |     parameter int tRFC  = 256;                                
+      |                   ^~~~
+%Warning-VARHIDDEN: /workspaces/DDRMemoryController/scripts/../bfm/MemoryRank.sv:117:19: Declaration of signal hides declaration in upper scope: 'tRP'
+  117 |     parameter int tRP           = 16
+      |                   ^~~
+                    /workspaces/DDRMemoryController/scripts/../rtl/common/MemoryController_Definitions.sv:113:19: ... Location of original declaration
+  113 |     parameter int tRP   = 16;                                  
+      |                   ^~~
+%Warning-VARHIDDEN: /workspaces/DDRMemoryController/scripts/../bfm/MemoryBankFSM.sv:71:19: Declaration of signal hides declaration in upper scope: 'IOWIDTH'
+   71 |     parameter int IOWIDTH       = 8,
+      |                   ^~~~~~~
+                    /workspaces/DDRMemoryController/scripts/../rtl/common/MemoryController_Definitions.sv:23:19: ... Location of original declaration
+   23 |     parameter int IOWIDTH = 8;                               
+      |                   ^~~~~~~
+%Warning-VARHIDDEN: /workspaces/DDRMemoryController/scripts/../bfm/MemoryBankFSM.sv:72:19: Declaration of signal hides declaration in upper scope: 'DEVICEPERRANK'
+   72 |     parameter int DEVICEPERRANK = 4,
+      |                   ^~~~~~~~~~~~~
+                    /workspaces/DDRMemoryController/scripts/../rtl/common/MemoryController_Definitions.sv:28:19: ... Location of original declaration
+   28 |     parameter int DEVICEPERRANK = 8;
+      |                   ^~~~~~~~~~~~~
+%Warning-VARHIDDEN: /workspaces/DDRMemoryController/scripts/../bfm/MemoryBankFSM.sv:73:19: Declaration of signal hides declaration in upper scope: 'CWIDTH'
+   73 |     parameter int CWIDTH        = 10,
+      |                   ^~~~~~
+                    /workspaces/DDRMemoryController/scripts/../rtl/common/MemoryController_Definitions.sv:18:19: ... Location of original declaration
+   18 |     parameter int CWIDTH  = 10;                              
+      |                   ^~~~~~
+%Warning-VARHIDDEN: /workspaces/DDRMemoryController/scripts/../bfm/MemoryBankFSM.sv:74:19: Declaration of signal hides declaration in upper scope: 'RWIDTH'
+   74 |     parameter int RWIDTH        = 15,
+      |                   ^~~~~~
+                    /workspaces/DDRMemoryController/scripts/../rtl/common/MemoryController_Definitions.sv:17:19: ... Location of original declaration
+   17 |     parameter int RWIDTH  = 15;                              
+      |                   ^~~~~~
+%Warning-VARHIDDEN: /workspaces/DDRMemoryController/scripts/../bfm/MemoryBankFSM.sv:75:19: Declaration of signal hides declaration in upper scope: 'BGWIDTH'
+   75 |     parameter int BGWIDTH       = 2,
+      |                   ^~~~~~~
+                    /workspaces/DDRMemoryController/scripts/../rtl/common/MemoryController_Definitions.sv:19:19: ... Location of original declaration
+   19 |     parameter int BGWIDTH = 2;                               
+      |                   ^~~~~~~
+%Warning-VARHIDDEN: /workspaces/DDRMemoryController/scripts/../bfm/MemoryBankFSM.sv:76:19: Declaration of signal hides declaration in upper scope: 'BKWIDTH'
+   76 |     parameter int BKWIDTH       = 2,
+      |                   ^~~~~~~
+                    /workspaces/DDRMemoryController/scripts/../rtl/common/MemoryController_Definitions.sv:20:19: ... Location of original declaration
+   20 |     parameter int BKWIDTH = 2;                               
+      |                   ^~~~~~~
+%Warning-VARHIDDEN: /workspaces/DDRMemoryController/scripts/../bfm/MemoryBankFSM.sv:77:19: Declaration of signal hides declaration in upper scope: 'COMMAND_WIDTH'
+   77 |     parameter int COMMAND_WIDTH = 18,
+      |                   ^~~~~~~~~~~~~
+                    /workspaces/DDRMemoryController/scripts/../rtl/common/MemoryController_Definitions.sv:11:19: ... Location of original declaration
+   11 |     parameter int COMMAND_WIDTH = 18;                      
+      |                   ^~~~~~~~~~~~~
+%Warning-VARHIDDEN: /workspaces/DDRMemoryController/scripts/../bfm/MemoryBankFSM.sv:78:19: Declaration of signal hides declaration in upper scope: 'BURST_LENGTH'
+   78 |     parameter int BURST_LENGTH  = 8,
+      |                   ^~~~~~~~~~~~
+                    /workspaces/DDRMemoryController/scripts/../rtl/common/MemoryController_Definitions.sv:12:19: ... Location of original declaration
+   12 |     parameter int BURST_LENGTH  = 8;
+      |                   ^~~~~~~~~~~~
+%Warning-VARHIDDEN: /workspaces/DDRMemoryController/scripts/../bfm/MemoryBankFSM.sv:79:19: Declaration of signal hides declaration in upper scope: 'MEM_DATAWIDTH'
+   79 |     parameter int MEM_DATAWIDTH = 64,
+      |                   ^~~~~~~~~~~~~
+                    /workspaces/DDRMemoryController/scripts/../rtl/common/MemoryController_Definitions.sv:8:19: ... Location of original declaration
+    8 |     parameter int MEM_DATAWIDTH = 64;                                        
+      |                   ^~~~~~~~~~~~~
+%Warning-VARHIDDEN: /workspaces/DDRMemoryController/scripts/../bfm/MemoryBankFSM.sv:81:19: Declaration of signal hides declaration in upper scope: 'tCWL'
+   81 |     parameter int tCWL = 12,
+      |                   ^~~~
+                    /workspaces/DDRMemoryController/scripts/../rtl/common/MemoryController_Definitions.sv:114:19: ... Location of original declaration
+  114 |     parameter int tCWL  = 12;                                 
+      |                   ^~~~
+%Warning-VARHIDDEN: /workspaces/DDRMemoryController/scripts/../bfm/MemoryBankFSM.sv:82:19: Declaration of signal hides declaration in upper scope: 'tCL'
+   82 |     parameter int tCL  = 16,
+      |                   ^~~
+                    /workspaces/DDRMemoryController/scripts/../rtl/common/MemoryController_Definitions.sv:111:19: ... Location of original declaration
+  111 |     parameter int tCL   = 16;                                  
+      |                   ^~~
+%Warning-VARHIDDEN: /workspaces/DDRMemoryController/scripts/../bfm/MemoryBankFSM.sv:83:19: Declaration of signal hides declaration in upper scope: 'tRCD'
+   83 |     parameter int tRCD = 16,
+      |                   ^~~~
+                    /workspaces/DDRMemoryController/scripts/../rtl/common/MemoryController_Definitions.sv:112:19: ... Location of original declaration
+  112 |     parameter int tRCD  = 16;                                 
+      |                   ^~~~
+%Warning-VARHIDDEN: /workspaces/DDRMemoryController/scripts/../bfm/MemoryBankFSM.sv:84:19: Declaration of signal hides declaration in upper scope: 'tRFC'
+   84 |     parameter int tRFC = 256,
+      |                   ^~~~
+                    /workspaces/DDRMemoryController/scripts/../rtl/common/MemoryController_Definitions.sv:122:19: ... Location of original declaration
+  122 |     parameter int tRFC  = 256;                                
+      |                   ^~~~
+%Warning-VARHIDDEN: /workspaces/DDRMemoryController/scripts/../bfm/MemoryBankFSM.sv:85:19: Declaration of signal hides declaration in upper scope: 'tRP'
+   85 |     parameter int tRP  = 16
+      |                   ^~~
+                    /workspaces/DDRMemoryController/scripts/../rtl/common/MemoryController_Definitions.sv:113:19: ... Location of original declaration
+  113 |     parameter int tRP   = 16;                                  
+      |                   ^~~
+%Warning-VARHIDDEN: /workspaces/DDRMemoryController/scripts/../tb/uvm/driver.sv:7:19: Declaration of signal hides declaration in upper scope: 'AXI_DATAWIDTH'
+    7 |     parameter int AXI_DATAWIDTH = 64,
+      |                   ^~~~~~~~~~~~~
+                    /workspaces/DDRMemoryController/scripts/../rtl/common/MemoryController_Definitions.sv:128:19: ... Location of original declaration
+  128 |     parameter int AXI_DATAWIDTH = 64;
+      |                   ^~~~~~~~~~~~~
+%Warning-VARHIDDEN: /workspaces/DDRMemoryController/scripts/../tb/uvm/driver.sv:8:19: Declaration of signal hides declaration in upper scope: 'AXI_ADDRWIDTH'
+    8 |     parameter int AXI_ADDRWIDTH = 32,
+      |                   ^~~~~~~~~~~~~
+                    /workspaces/DDRMemoryController/scripts/../rtl/common/MemoryController_Definitions.sv:129:19: ... Location of original declaration
+  129 |     parameter int AXI_ADDRWIDTH = 32;
+      |                   ^~~~~~~~~~~~~
+%Warning-VARHIDDEN: /workspaces/DDRMemoryController/scripts/../tb/uvm/driver.sv:9:19: Declaration of signal hides declaration in upper scope: 'AXI_IDWIDTH'
+    9 |     parameter int AXI_IDWIDTH   = 4,
+      |                   ^~~~~~~~~~~
+                    /workspaces/DDRMemoryController/scripts/../rtl/common/MemoryController_Definitions.sv:130:19: ... Location of original declaration
+  130 |     parameter int AXI_IDWIDTH   = 4;
+      |                   ^~~~~~~~~~~
+%Warning-VARHIDDEN: /workspaces/DDRMemoryController/scripts/../tb/uvm/driver.sv:10:19: Declaration of signal hides declaration in upper scope: 'AXI_USERWIDTH'
+   10 |     parameter int AXI_USERWIDTH = 1,
+      |                   ^~~~~~~~~~~~~
+                    /workspaces/DDRMemoryController/scripts/../rtl/common/MemoryController_Definitions.sv:131:19: ... Location of original declaration
+  131 |     parameter int AXI_USERWIDTH = 1;
+      |                   ^~~~~~~~~~~~~
+%Warning-VARHIDDEN: /workspaces/DDRMemoryController/scripts/../tb/uvm/driver.sv:12:19: Declaration of signal hides declaration in upper scope: 'BURST_LENGTH'
+   12 |     parameter int BURST_LENGTH  = 8
+      |                   ^~~~~~~~~~~~
+                    /workspaces/DDRMemoryController/scripts/../rtl/common/MemoryController_Definitions.sv:12:19: ... Location of original declaration
+   12 |     parameter int BURST_LENGTH  = 8;
+      |                   ^~~~~~~~~~~~
+%Warning-VARHIDDEN: /workspaces/DDRMemoryController/scripts/../tb/uvm/scoreboard.sv:5:19: Declaration of signal hides declaration in upper scope: 'DEADLOCKCNT'
+    5 |     parameter int DEADLOCKCNT   = 1000,
+      |                   ^~~~~~~~~~~
+                    /workspaces/DDRMemoryController/scripts/../tb/uvm/svut_if.sv:6:19: ... Location of original declaration
+    6 |     parameter int DEADLOCKCNT     = 1024;
+      |                   ^~~~~~~~~~~
+%Warning-VARHIDDEN: /workspaces/DDRMemoryController/scripts/../tb/uvm/scoreboard.sv:6:19: Declaration of signal hides declaration in upper scope: 'AXI_DATAWIDTH'
+    6 |     parameter int AXI_DATAWIDTH = 64,
+      |                   ^~~~~~~~~~~~~
+                    /workspaces/DDRMemoryController/scripts/../rtl/common/MemoryController_Definitions.sv:128:19: ... Location of original declaration
+  128 |     parameter int AXI_DATAWIDTH = 64;
+      |                   ^~~~~~~~~~~~~
+%Warning-VARHIDDEN: /workspaces/DDRMemoryController/scripts/../tb/uvm/scoreboard.sv:7:19: Declaration of signal hides declaration in upper scope: 'AXI_ADDRWIDTH'
+    7 |     parameter int AXI_ADDRWIDTH = 32,
+      |                   ^~~~~~~~~~~~~
+                    /workspaces/DDRMemoryController/scripts/../rtl/common/MemoryController_Definitions.sv:129:19: ... Location of original declaration
+  129 |     parameter int AXI_ADDRWIDTH = 32;
+      |                   ^~~~~~~~~~~~~
+%Warning-VARHIDDEN: /workspaces/DDRMemoryController/scripts/../tb/uvm/scoreboard.sv:8:19: Declaration of signal hides declaration in upper scope: 'AXI_IDWIDTH'
+    8 |     parameter int AXI_IDWIDTH   = 4,
+      |                   ^~~~~~~~~~~
+                    /workspaces/DDRMemoryController/scripts/../rtl/common/MemoryController_Definitions.sv:130:19: ... Location of original declaration
+  130 |     parameter int AXI_IDWIDTH   = 4;
+      |                   ^~~~~~~~~~~
+%Warning-VARHIDDEN: /workspaces/DDRMemoryController/scripts/../tb/uvm/scoreboard.sv:9:19: Declaration of signal hides declaration in upper scope: 'AXI_USERWIDTH'
+    9 |     parameter int AXI_USERWIDTH = 1,
+      |                   ^~~~~~~~~~~~~
+                    /workspaces/DDRMemoryController/scripts/../rtl/common/MemoryController_Definitions.sv:131:19: ... Location of original declaration
+  131 |     parameter int AXI_USERWIDTH = 1;
+      |                   ^~~~~~~~~~~~~
+%Warning-VARHIDDEN: /workspaces/DDRMemoryController/scripts/../tb/uvm/scoreboard.sv:10:19: Declaration of signal hides declaration in upper scope: 'BURST_LENGTH'
+   10 |     parameter int BURST_LENGTH  = 8,
+      |                   ^~~~~~~~~~~~
+                    /workspaces/DDRMemoryController/scripts/../rtl/common/MemoryController_Definitions.sv:12:19: ... Location of original declaration
+   12 |     parameter int BURST_LENGTH  = 8;
+      |                   ^~~~~~~~~~~~
+%Warning-VARHIDDEN: /workspaces/DDRMemoryController/scripts/../tb/uvm/scoreboard.sv:12:19: Declaration of signal hides declaration in upper scope: 'TBREADREQWIDTH'
+   12 |     parameter int TBREADREQWIDTH  = 8,
+      |                   ^~~~~~~~~~~~~~
+                    /workspaces/DDRMemoryController/scripts/../tb/uvm/svut_if.sv:7:19: ... Location of original declaration
+    7 |     parameter int TBREADREQWIDTH  = 10;
+      |                   ^~~~~~~~~~~~~~
+%Warning-VARHIDDEN: /workspaces/DDRMemoryController/scripts/../tb/uvm/scoreboard.sv:13:19: Declaration of signal hides declaration in upper scope: 'TBWRITEREQWIDTH'
+   13 |     parameter int TBWRITEREQWIDTH = 8,
+      |                   ^~~~~~~~~~~~~~~
+                    /workspaces/DDRMemoryController/scripts/../tb/uvm/svut_if.sv:8:19: ... Location of original declaration
+    8 |     parameter int TBWRITEREQWIDTH = 10;
+      |                   ^~~~~~~~~~~~~~~
+%Warning-VARHIDDEN: /workspaces/DDRMemoryController/scripts/../tb/uvm/scoreboard.sv:14:19: Declaration of signal hides declaration in upper scope: 'ERRORCNTWIDTH'
+   14 |     parameter int ERRORCNTWIDTH   = 100,
+      |                   ^~~~~~~~~~~~~
+                    /workspaces/DDRMemoryController/scripts/../tb/uvm/svut_if.sv:5:19: ... Location of original declaration
+    5 |     parameter int ERRORCNTWIDTH   = 10;
+      |                   ^~~~~~~~~~~~~
+%Warning-VARHIDDEN: /workspaces/DDRMemoryController/scripts/../tb/uvm/scoreboard.sv:16:20: Declaration of signal hides declaration in upper scope: 'tCL'
+   16 |     parameter int  tCL  = 16,
+      |                    ^~~
+                    /workspaces/DDRMemoryController/scripts/../rtl/common/MemoryController_Definitions.sv:111:19: ... Location of original declaration
+  111 |     parameter int tCL   = 16;                                  
+      |                   ^~~
+%Warning-VARHIDDEN: /workspaces/DDRMemoryController/scripts/../tb/uvm/scoreboard.sv:17:19: Declaration of signal hides declaration in upper scope: 'tCWL'
+   17 |     parameter int tCWL  = 12,
+      |                   ^~~~
+                    /workspaces/DDRMemoryController/scripts/../rtl/common/MemoryController_Definitions.sv:114:19: ... Location of original declaration
+  114 |     parameter int tCWL  = 12;                                 
+      |                   ^~~~
+%Warning-VARHIDDEN: /workspaces/DDRMemoryController/scripts/../tb/uvm/scoreboard.sv:18:19: Declaration of signal hides declaration in upper scope: 'tRCD'
+   18 |     parameter int tRCD  = 16,
+      |                   ^~~~
+                    /workspaces/DDRMemoryController/scripts/../rtl/common/MemoryController_Definitions.sv:112:19: ... Location of original declaration
+  112 |     parameter int tRCD  = 16;                                 
+      |                   ^~~~
+%Warning-VARHIDDEN: /workspaces/DDRMemoryController/scripts/../tb/uvm/scoreboard.sv:19:19: Declaration of signal hides declaration in upper scope: 'tCCDS'
+   19 |     parameter int tCCDS = 4,
+      |                   ^~~~~
+                    /workspaces/DDRMemoryController/scripts/../rtl/common/MemoryController_Definitions.sv:108:19: ... Location of original declaration
+  108 |     parameter int tCCDS = 4;                                 
+      |                   ^~~~~
+%Warning-VARHIDDEN: /workspaces/DDRMemoryController/scripts/../tb/uvm/scoreboard.sv:20:19: Declaration of signal hides declaration in upper scope: 'tCCDL'
+   20 |     parameter int tCCDL = 6
+      |                   ^~~~~
+                    /workspaces/DDRMemoryController/scripts/../rtl/common/MemoryController_Definitions.sv:109:19: ... Location of original declaration
+  109 |     parameter int tCCDL = 6;                                 
+      |                   ^~~~~
+%Error-UNSUPPORTED: /workspaces/DDRMemoryController/scripts/../rtl/backend/PHYController/PHYController.sv:226:29: Unsupported LHS tristate construct: VARXREF 'dm_n'
+                                                                                                                : ... note: In instance 'Top_xsim.MemoryController_Instance.CH1_MemoryControllerBackend_Instance.PHYController_Instance'
+  226 |         .outDM(ddr4_dataBus.dm_n),
+      |                             ^~~~
+%Error-UNSUPPORTED: /workspaces/DDRMemoryController/scripts/../rtl/backend/PHYController/PHYController.sv:234:25: Unsupported LHS tristate construct: VARXREF 'dqs_t'
+                                                                                                                : ... note: In instance 'Top_xsim.MemoryController_Instance.CH1_MemoryControllerBackend_Instance.PHYController_Instance'
+  234 |     assign ddr4_dataBus.dqs_t  = (readInFlag == 1) ? 'z :  (writeOutFlag) ? WriteModeDqs_t : 'z;
+      |                         ^~~~~
+%Error-UNSUPPORTED: /workspaces/DDRMemoryController/scripts/../rtl/backend/PHYController/PHYController.sv:236:25: Unsupported LHS tristate construct: VARXREF 'dqs_c'
+                                                                                                                : ... note: In instance 'Top_xsim.MemoryController_Instance.CH1_MemoryControllerBackend_Instance.PHYController_Instance'
+  236 |     assign ddr4_dataBus.dqs_c  = (readInFlag == 1) ? 'z :  (writeOutFlag) ? WriteModeDqs_c : 'z;
+      |                         ^~~~~
+%Error-UNSUPPORTED: /workspaces/DDRMemoryController/scripts/../rtl/backend/PHYController/PHYController.sv:238:25: Unsupported LHS tristate construct: VARXREF 'pin_dq'
+                                                                                                                : ... note: In instance 'Top_xsim.MemoryController_Instance.CH1_MemoryControllerBackend_Instance.PHYController_Instance'
+  238 |     assign ddr4_dataBus.pin_dq = (readInFlag == 1) ? 'z :  (writeOutFlag) ? WriteModeData  : 'z;
+      |                         ^~~~~~
+%Error: /workspaces/DDRMemoryController/scripts/../rtl/backend/PHYController/PHYController.sv:234:25: Unsupported tristate construct (in graph; not converted): VARXREF 'dqs_t'
+                                                                                                    : ... note: In instance 'Top_xsim.MemoryController_Instance.CH1_MemoryControllerBackend_Instance.PHYController_Instance'
+  234 |     assign ddr4_dataBus.dqs_t  = (readInFlag == 1) ? 'z :  (writeOutFlag) ? WriteModeDqs_t : 'z;
+      |                         ^~~~~
+%Error: /workspaces/DDRMemoryController/scripts/../rtl/backend/PHYController/PHYController.sv:236:25: Unsupported tristate construct (in graph; not converted): VARXREF 'dqs_c'
+                                                                                                    : ... note: In instance 'Top_xsim.MemoryController_Instance.CH1_MemoryControllerBackend_Instance.PHYController_Instance'
+  236 |     assign ddr4_dataBus.dqs_c  = (readInFlag == 1) ? 'z :  (writeOutFlag) ? WriteModeDqs_c : 'z;
+      |                         ^~~~~
+%Error: /workspaces/DDRMemoryController/scripts/../rtl/backend/PHYController/PHYController.sv:238:25: Unsupported tristate construct (in graph; not converted): VARXREF 'pin_dq'
+                                                                                                    : ... note: In instance 'Top_xsim.MemoryController_Instance.CH1_MemoryControllerBackend_Instance.PHYController_Instance'
+  238 |     assign ddr4_dataBus.pin_dq = (readInFlag == 1) ? 'z :  (writeOutFlag) ? WriteModeData  : 'z;
+      |                         ^~~~~~
+%Error-UNSUPPORTED: /workspaces/DDRMemoryController/scripts/../bfm/MemoryChannel.sv:214:23: Unsupported LHS tristate construct: VARXREF 'dqs_t'
+                                                                                          : ... note: In instance 'Top_xsim.MemoryBFM_Instance.MemoryChannel_Ch1'
+  214 |     assign ddr4_dq_if.dqs_t = (channelDQRdValid) ?  channelDQS_t : 'z;
+      |                       ^~~~~
+%Error-UNSUPPORTED: /workspaces/DDRMemoryController/scripts/../bfm/MemoryChannel.sv:215:23: Unsupported LHS tristate construct: VARXREF 'dqs_c'
+                                                                                          : ... note: In instance 'Top_xsim.MemoryBFM_Instance.MemoryChannel_Ch1'
+  215 |     assign ddr4_dq_if.dqs_c = (channelDQRdValid) ?  channelDQS_c : 'z;
+      |                       ^~~~~
+%Error-UNSUPPORTED: /workspaces/DDRMemoryController/scripts/../bfm/MemoryChannel.sv:243:28: Unsupported LHS tristate construct: ARRAYSEL
+                                                                                          : ... note: In instance 'Top_xsim.MemoryBFM_Instance.MemoryChannel_Ch1'
+  243 |             assign rankWrDQ[j] = rankDQWrValid[j] ? ddr4_dq_if.pin_dq : 'z;
+      |                            ^
+%Error-UNSUPPORTED: /workspaces/DDRMemoryController/scripts/../bfm/MemoryChannel.sv:247:23: Unsupported LHS tristate construct: VARXREF 'pin_dq'
+                                                                                          : ... note: In instance 'Top_xsim.MemoryBFM_Instance.MemoryChannel_Ch1'
+  247 |     assign ddr4_dq_if.pin_dq = channelDQRdValid ? rankDQValue : 'z;
+      |                       ^~~~~~
+%Error-UNSUPPORTED: /workspaces/DDRMemoryController/scripts/../bfm/MemoryChannel.sv:172:39: Unsupported LHS tristate construct: VARXREF 'dqs_c'
+                                                                                          : ... note: In instance 'Top_xsim.MemoryBFM_Instance.MemoryChannel_Ch1'
+  172 |                 .rankDQS_c(ddr4_dq_if.dqs_c),
+      |                                       ^~~~~
+%Error-UNSUPPORTED: /workspaces/DDRMemoryController/scripts/../bfm/MemoryChannel.sv:171:39: Unsupported LHS tristate construct: VARXREF 'dqs_t'
+                                                                                          : ... note: In instance 'Top_xsim.MemoryBFM_Instance.MemoryChannel_Ch1'
+  171 |                 .rankDQS_t(ddr4_dq_if.dqs_t),
+      |                                       ^~~~~
+%Error: /workspaces/DDRMemoryController/scripts/../bfm/MemoryChannel.sv:214:23: Unsupported tristate construct (in graph; not converted): VARXREF 'dqs_t'
+                                                                              : ... note: In instance 'Top_xsim.MemoryBFM_Instance.MemoryChannel_Ch1'
+  214 |     assign ddr4_dq_if.dqs_t = (channelDQRdValid) ?  channelDQS_t : 'z;
+      |                       ^~~~~
+%Error: /workspaces/DDRMemoryController/scripts/../bfm/MemoryChannel.sv:215:23: Unsupported tristate construct (in graph; not converted): VARXREF 'dqs_c'
+                                                                              : ... note: In instance 'Top_xsim.MemoryBFM_Instance.MemoryChannel_Ch1'
+  215 |     assign ddr4_dq_if.dqs_c = (channelDQRdValid) ?  channelDQS_c : 'z;
+      |                       ^~~~~
+%Error: /workspaces/DDRMemoryController/scripts/../bfm/MemoryChannel.sv:243:28: Unsupported tristate construct (in graph; not converted): ARRAYSEL
+                                                                              : ... note: In instance 'Top_xsim.MemoryBFM_Instance.MemoryChannel_Ch1'
+  243 |             assign rankWrDQ[j] = rankDQWrValid[j] ? ddr4_dq_if.pin_dq : 'z;
+      |                            ^
+%Error: /workspaces/DDRMemoryController/scripts/../bfm/MemoryChannel.sv:247:23: Unsupported tristate construct (in graph; not converted): VARXREF 'pin_dq'
+                                                                              : ... note: In instance 'Top_xsim.MemoryBFM_Instance.MemoryChannel_Ch1'
+  247 |     assign ddr4_dq_if.pin_dq = channelDQRdValid ? rankDQValue : 'z;
+      |                       ^~~~~~
+%Error: Exiting due to 17 error(s), 331 warning(s)

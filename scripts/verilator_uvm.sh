@@ -45,7 +45,29 @@ fi
 printf "%bINFO:%b Verilator found at %s\n" "$Blue" "$NC" "$VERILATOR_PATH"
 printf "%bINFO:%b Memory Controller Lint START\n" "$Blue" "$NC"
 
+if ! "$VERILATOR_PATH" --sc +1800-2017ext+sv \
+    --timing \
+    -Wall -Wpedantic \
+    -Wno-WIDTHEXPAND \
+    -Wno-UNUSEDPARAM \
+    -Wno-UNUSEDSIGNAL \
+    -Wno-UNOPTFLAT  \
+    -Wno-WIDTHTRUNC \
+    -I"$SCRIPT_DIR" \
+    -I"$RTL_PATH/common" \
+    -I"$RTL_PATH/backend" \
+    -I"$RTL_PATH/frontend" \
+    -f "$SCRIPT_DIR/verilator_filelist.f" \
+    --top-module Top_xsim \
+    2> "$LOG_FILE"; then
+  printf "%bERROR:%b Lint failed. See %s\n" "$Red" "$NC" "$LOG_FILE"
+  exit 1;
+else 
+  rm $LOG_FILE
+  printf "%bINFO:%b Lint Succeeded! Check %s\n" "$Blue" "$NC" "$LOG_FILE"
+fi
 
+exit
 # ------------------------------------------------------------------------------
 # Lint policy note:
 #
