@@ -145,17 +145,13 @@ module PHYController #(
     output MemoryAddress ReadAutoPrechargeAddr,  // 2. ReadCMD+AP ACK Address to RankFSM             
     output logic WriteAutoPrechargeACK,          // 3. WriteCMD+AP Acknowledge to RankFSM            
     output MemoryAddress WriteAutoPrechargeAddr, // 4. WriteCMD+AP ACK Address to RankFSM                                                                                       
-
                                                                                 
-                                                                                //           OUTPUT TO MemoryController BackEnd       //
-    output logic ModeTransitionReady,                                           //  1. Channel Mode Transition Ready                  //
+    /* OUTPUT TO MemoryController BackEnd */
+    output logic ModeTransitionReady, // 1. Channel Mode Transition Ready                                                                                                
                                                                                 
-
-                                                                                
-                                                                                //          INPUT/OUTPUT FROM/TO DRAM-SIDE            //
-    DDR4Interface ddr4_dataBus                                                  // 1. INPUT/OUTPUT FOR DQ BUS                         //                                                                          
+    /* INPUT/OUTPUT FROM/TO DRAM-SIDE */
+    DDR4Interface ddr4_dataBus // 1. INPUT/OUTPUT FOR DQ BUS                                                                                            
 );
-
 
     //              From/To ReadMode                //
     logic readInFlag, readOutFlag;                              //  ReadInFlag : DRAM -> PHY, ReadOutFlag : PHY -> READ BUFFER
