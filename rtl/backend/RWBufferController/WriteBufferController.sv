@@ -1,7 +1,7 @@
 `timescale 1ns / 1ps
 
 //------------------------------------------------------------------------------
-//      WriteBufferController
+// WriteBufferController
 //
 //      Role:
 //          Write data buffer between cache-side frontend and DDR PHY.
@@ -21,7 +21,7 @@
 //      Created : 2026.02
 //------------------------------------------------------------------------------
 //------------------------------------------------------------------------------
-//      WriteBufferController
+// WriteBufferController
 //
 //      역할(Role):
 //          캐시 측 프런트엔드와 DDR PHY 사이에 위치한
@@ -60,29 +60,26 @@ module WriteBufferController #(
     parameter type MemoryAddress         = logic
 
 ) (
-    // common
+    /* common */
     input logic clk, rst,
 
-    // Input Cache-side
-                                                                        //////////////////////////////////////////////////
-                                                                        //        Input from MC FrontEnd (Cache-side)   //
-    input logic [MEM_DATAWIDTH-1:0] writeData,                          // 1. Write Data for Write Request              //
-    input logic [MEM_USERWIDTH-1:0] writeDataUser,                      // 2. Write Data User for Write Request         //
-    input logic [MEM_IDWIDTH-1:0] writeDataID,                          // 3. Write Data ID for Write Request           //
-    input logic [MEM_DATAWIDTH/BURST_LENGTH -1 : 0] writeDataStrb,      // 4. Write Data Strb for Write Request         //
-    input MemoryAddress writeDataAddr,                                  // 5. Write Data Addr for Write Request         //
-    input logic writeDataLast,                                          // 6. Write Data Last for Write Request         //
-    input logic writeDataValid,                                         // 7. Write Data Valid for Write Request        //
-    input logic writeDataACKReady,                                      // 8. Write Data ACK Ready for AXI-WRITE Resp.  //
-                                                                        //////////////////////////////////////////////////
-
-                                                                        //////////////////////////////////////////////////
-                                                                        //    Output to MC FrontEnd   (Cache-side)      //
-    output logic writeDataACKValid,                                     // 1. Write Data ACK Valid for AXI-WRITE Resp.  //
-    output logic [MEM_USERWIDTH-1:0] writeDataACKUser,                  // 2. Write Data ACK User for AXI-WRITE Resp.   //
-    output logic [MEM_IDWIDTH-1:0] writeDataACKID,                      // 3. Write Data ACK ID for AXI-WRITE Resp.     //      
-    output logic writeBufferFull,                                       // 4. Write Buffer Ready for MC-FrontEnd Phase  //
-                                                                        //////////////////////////////////////////////////
+    /* Input Cache-side */                                                                        
+    /* Input from MC FrontEnd (Cache-side) */
+    input logic [MEM_DATAWIDTH - 1 : 0] writeData,                    // 1. Write Data for Write Request              
+    input logic [MEM_USERWIDTH - 1 : 0] writeDataUser,                // 2. Write Data User for Write Request         
+    input logic [MEM_IDWIDTH   - 1 : 0] writeDataID,                  // 3. Write Data ID for Write Request           
+    input logic [MEM_DATAWIDTH / BURST_LENGTH - 1 : 0] writeDataStrb, // 4. Write Data Strb for Write Request         
+    input MemoryAddress writeDataAddr,                                // 5. Write Data Addr for Write Request         
+    input logic writeDataLast,                                        // 6. Write Data Last for Write Request         
+    input logic writeDataValid,                                       // 7. Write Data Valid for Write Request        
+    input logic writeDataACKReady,                                    // 8. Write Data ACK Ready for AXI-WRITE Resp.                                                                                                                                                 
+                                                                        
+    /* Output to MC FrontEnd (Cache-side) */
+    output logic writeDataACKValid,                        // 1. Write Data ACK Valid for AXI-WRITE Resp.  //
+    output logic [MEM_USERWIDTH - 1 : 0] writeDataACKUser, // 2. Write Data ACK User for AXI-WRITE Resp.   //
+    output logic [MEM_IDWIDTH - 1 : 0] writeDataACKID,     // 3. Write Data ACK ID for AXI-WRITE Resp.     //      
+    output logic writeBufferFull,                          // 4. Write Buffer Ready for MC-FrontEnd Phase  //
+                                                                        
                                                                         
                                                                         ////////////////////////////////////////////////
                                                                         //              INPUT FROM DQ-BUS             //
@@ -355,4 +352,5 @@ module WriteBufferController #(
     assign writeDataACKValid = writeDataValid && writeDataLast && writeDataACKReady;
     assign writeDataACKUser = writeDataUser;
     assign writeDataACKID = writeDataID;
+
 endmodule
