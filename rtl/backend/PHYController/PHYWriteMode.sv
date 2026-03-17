@@ -192,7 +192,6 @@ module PHYWriteMode #(
             end
         end
     end : FIFOPOPCntAndDiff
-
     /////////////////////////////////////////////////////////////
 
     assign outACK = (burst_cnt_dram[2:0] == BURST_LENGTH-1) ? 1: 0;
