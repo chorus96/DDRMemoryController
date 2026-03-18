@@ -1,7 +1,7 @@
 `timescale 1ns / 1ps
 
 //------------------------------------------------------------------------------
-//      ReadBufferController
+// ReadBufferController
 //
 //      Role:
 //          Read data buffer between DDR PHY and Memory controller frontend.
