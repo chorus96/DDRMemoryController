@@ -62,12 +62,12 @@ module ReadBufferController#(
     parameter type MemoryAddress        = logic
 )(
     input logic clk, rst,
-                                                            ////////////////////////////////////////////////
+                                                            
                                                             //        Input from MC FrontEnd (Cache-side) //
     input logic readDataReady,                              //  1. Read data Ready Signal from LLC        //
-                                                            ////////////////////////////////////////////////
+                                                            
 
-                                                            ////////////////////////////////////////////////
+                                                            
                                                             //    Output to MC FrontEnd   (Cache-side)    //
     output logic [MEM_DATAWIDTH - 1:0] readData,            //  1. Read Data to MC FrontEnd               //
     output logic [MEM_USERWIDTH-1:0] readDataUser,          //  2. User of Read data to MC FrontEnd       //
@@ -75,35 +75,35 @@ module ReadBufferController#(
     output logic readDataLast,                              //  4. Last signal for Read Data              //
     output logic readDataValid,                             //  5. Valid signal for Read data             //
     output logic readBufferFull,                            //  6. Ready signal for Read Buffer           //
-                                                            ////////////////////////////////////////////////
+                                                            
 
-                                                            ////////////////////////////////////////////////
+                                                            
                                                             //        Input from DQ-BUS (PHY-side)        // 
     input logic [MEM_DATAWIDTH-1:0] writeData,              //  1. Write Data from DQ-Bus (64-B)          //
     input logic [NUMRANK-1:0] writeDataTag,                 //  2. Write Data Tag from PHY-side           //
     input logic writeDataValid,                             //  3. Write Data Valid from PHY-side         //
     input logic writeDataLast,                              //  4. Write Data Last from PHY-side          //
     input logic phyReadModeFIFOReady,                       //  5. PHYReadMode FIFO Ready from PHY-side   //
-                                                            ////////////////////////////////////////////////
+                                                            
 
-                                                            ////////////////////////////////////////////////
+                                                            
                                                             //          Input from Channel Scheduler      //
     input logic [MEM_IDWIDTH-1:0] readBufferAllocID,        //  1. Read Buffer Entry Allocation ID        //
     input logic [MEM_USERWIDTH-1:0] readBufferAllocUser,    //  2. Read Buffer Entry Allocation User      //
     input MemoryAddress readBufferAllocAddr,                //  3. Read Buffer Entry Allocation Addr      //
     input logic readBufferAllocValid,                       //  4. Read Buffer Entry Allocation Valid     //
-                                                            ////////////////////////////////////////////////
+                                                            
 
-                                                            /////////////////////////////////////////////////
+                                                            
                                                             //       Output to Channel Scheduler           //
     output logic readBufferAvailable,                       //  1. Read Buffer Availability (Dir/Data Buf) //
     output logic [NUMRANK-1:0] readRankWindowAvailable,
-                                                            /////////////////////////////////////////////////
+                                                            
 
-                                                                    /////////////////////////////////////////////////
+                                                                    
                                                                     //       Output to Top Scheduler               //
     output logic [$clog2(READBUFFERDEPTH) - 1:0] readBufferCnt      // 1. Read Buffer Entry Count for Ch. MODE     //
-                                                                    /////////////////////////////////////////////////
+                                                                    
 );
 
     //------------------------------------------------------------------------------
