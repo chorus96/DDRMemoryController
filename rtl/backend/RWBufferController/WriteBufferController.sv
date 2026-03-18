@@ -75,43 +75,34 @@ module WriteBufferController #(
     input logic writeDataACKReady,                                    // 8. Write Data ACK Ready for AXI-WRITE Resp.                                                                                                                                                 
                                                                         
     /* Output to MC FrontEnd (Cache-side) */
-    output logic writeDataACKValid,                        // 1. Write Data ACK Valid for AXI-WRITE Resp.  //
-    output logic [MEM_USERWIDTH - 1 : 0] writeDataACKUser, // 2. Write Data ACK User for AXI-WRITE Resp.   //
-    output logic [MEM_IDWIDTH - 1 : 0] writeDataACKID,     // 3. Write Data ACK ID for AXI-WRITE Resp.     //      
-    output logic writeBufferFull,                          // 4. Write Buffer Ready for MC-FrontEnd Phase  //
+    output logic writeDataACKValid,                        // 1. Write Data ACK Valid for AXI-WRITE Resp.  
+    output logic [MEM_USERWIDTH - 1 : 0] writeDataACKUser, // 2. Write Data ACK User for AXI-WRITE Resp.   
+    output logic [MEM_IDWIDTH - 1 : 0] writeDataACKID,     // 3. Write Data ACK ID for AXI-WRITE Resp.          
+    output logic writeBufferFull,                          // 4. Write Buffer Ready for MC-FrontEnd Phase                                                                    
                                                                         
-                                                                        
-                                                                        ////////////////////////////////////////////////
-                                                                        //              INPUT FROM DQ-BUS             //
-    input logic phyWriteModeFIFOReady,                                  //  1. PHYWriteMode FIFO Ready from PHY-side  //
-    input logic WriteModeACK,                                           //  2. PHYWriteMode ACK                       //
-                                                                        ////////////////////////////////////////////////
-
-                                                                        ////////////////////////////////////////////////
-                                                                        //              Output to DQ-BUS              //
-    output logic [MEM_DATAWIDTH-1:0] readData,                          // 1. Read Data to DQ-Bus (64-B)              //
-    output logic readDataLast,                                          // 2. Read Data Last to DQ-Bus                //
-    output logic readDataValid,                                         // 3. Read Data Valid to DQ-Bus               //
-    output logic [MEM_DATAWIDTH/BURST_LENGTH -1 : 0]  readDataStrb,     // 4. Read Data Strb to DQ-BUs                //
-                                                                        ////////////////////////////////////////////////
-
-                                                                        ////////////////////////////////////////////////
-                                                                        //          Input from Channel Scheduler      //
-    input logic [MEM_IDWIDTH-1:0] writeBufferAllocID,                   //  1. Write Buffer Entry Allocation ID       //      
-    input logic [MEM_USERWIDTH-1:0] writeBufferAllocUser,               //  2. Write Buffer Entry Allocation USER     //
-    input MemoryAddress writeBufferAllocAddr,                           //  3. Write Buffer Entry Allocation Addr     //
-    input logic writeBufferAllocValid,                                  //  4. Write Buffer Entry Allocation Valid    //
-                                                                        ////////////////////////////////////////////////
+                                                
     
-                                                                        /////////////////////////////////////////////////
-                                                                        //       Output to Channel Scheduler           //
-    output logic [NUMRANK-1:0] writeBufferAvailable ,                   //  1. Write Buffer Available (Dir/Data Buf)   //
-                                                                        /////////////////////////////////////////////////
+    /* INPUT FROM DQ-BUS */
+    input logic phyWriteModeFIFOReady, // 1. PHYWriteMode FIFO Ready from PHY-side
+    input logic WriteModeACK,          // 2. PHYWriteMode ACK                                                                                                                                                             
+                
+    /* Output to DQ-BUS */
+    output logic [MEM_DATAWIDTH - 1 : 0] readData,                    // 1. Read Data to DQ-Bus (64-B)             
+    output logic readDataLast,                                        // 2. Read Data Last to DQ-Bus                
+    output logic readDataValid,                                       // 3. Read Data Valid to DQ-Bus               
+    output logic [MEM_DATAWIDTH / BURST_LENGTH - 1 : 0] readDataStrb, // 4. Read Data Strb to DQ-BUs                                                                                        
 
-                                                                        /////////////////////////////////////////////////
-                                                                        //       Output to Top Scheduler               //
-    output logic [$clog2(WRITEBUFFERDEPTH)- 1:0] WriteRequestWindow     // 1. Write Buffer Entry Count for Ch. MODE    //
-                                                                        /////////////////////////////////////////////////
+    /* Input from Channel Scheduler */
+    input logic [MEM_IDWIDTH - 1 : 0] writeBufferAllocID,     // 1. Write Buffer Entry Allocation ID            
+    input logic [MEM_USERWIDTH - 1 : 0] writeBufferAllocUser, // 2. Write Buffer Entry Allocation USER    
+    input MemoryAddress writeBufferAllocAddr,                 // 3. Write Buffer Entry Allocation Addr   
+    input logic writeBufferAllocValid,                        // 4. Write Buffer Entry Allocation Valid                                                                       
+                                                                        
+    /* Output to Channel Scheduler */
+    output logic [NUMRANK - 1 : 0] writeBufferAvailable, // 1. Write Buffer Available (Dir/Data Buf)                                                                    
+                                                                        
+    /* Output to Top Scheduler */
+    output logic [$clog2(WRITEBUFFERDEPTH) - 1 : 0] WriteRequestWindow // 1. Write Buffer Entry Count for Ch. MODE                                                                       
 );
 
     //------------------------------------------------------------------------------
