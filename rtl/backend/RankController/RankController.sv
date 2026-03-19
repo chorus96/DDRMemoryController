@@ -250,24 +250,23 @@ module RankController #(
     input logic bufWritePreACK, // Valid when Write data (last) is sent.
     input logic [BKWIDTH + BGWIDTH - 1 : 0] bufBankPre, // AutoPrecharge-related BankGroup, Bank Information to FSM.
 
-                                                                //        Output to MEM Buffer        //
-    output logic [MEM_IDWIDTH-1:0] bufReadReqId,                // When RankExecutionUnit sends RD Req., it sends Req. ID to RD MEM Buffer for ready to receive.
-    output logic [MEM_IDWIDTH-1:0] bufWriteReqId,               // When RankExecutionUnit sends WR Req., it sends Req. ID to WR MEM Buffer for ready to send.
-    output logic [MEM_USERWIDTH-1:0] bufReadReqUser,            // When RankExecutionUnit sends RD Req., it sends Req. User to RD MEM Buffer for ready to receive.
-    output logic [MEM_USERWIDTH-1:0] bufWriteReqUser,           // When RankExecutionUnit sends WR Req., it sends Req. User to WR MEM Buffer for ready to send.
-    output logic bufReadReqACK,                                 // When RankExecutionUnit sends RD Req., it sends Req. valid to RD MEM Buffer for ready to receive.
-    output logic bufWriteReqACK,                                // When RankExecutionUnit sends WR Req., it sends Req. valid to WR MEM Buffer for ready to send.    
-    output MemoryAddress bufReqACKAddr,                         // When RankExecutionUnit sends RD/WR Req., it sends Req. Addr. to RD/WR Mem Buffer.
-
+    /* Output to MEM Buffer */
+    output logic [MEM_IDWIDTH.  - 1 : 0] bufReadReqId,    // When RankExecutionUnit sends RD Req., it sends Req. ID to RD MEM Buffer for ready to receive.
+    output logic [MEM_IDWIDTH   - 1 : 0] bufWriteReqId,   // When RankExecutionUnit sends WR Req., it sends Req. ID to WR MEM Buffer for ready to send.
+    output logic [MEM_USERWIDTH - 1 : 0] bufReadReqUser,  // When RankExecutionUnit sends RD Req., it sends Req. User to RD MEM Buffer for ready to receive.
+    output logic [MEM_USERWIDTH - 1 : 0] bufWriteReqUser, // When RankExecutionUnit sends WR Req., it sends Req. User to WR MEM Buffer for ready to send.
+    output logic bufReadReqACK,         // When RankExecutionUnit sends RD Req., it sends Req. valid to RD MEM Buffer for ready to receive.
+    output logic bufWriteReqACK,        // When RankExecutionUnit sends WR Req., it sends Req. valid to WR MEM Buffer for ready to send.    
+    output MemoryAddress bufReqACKAddr, // When RankExecutionUnit sends RD/WR Req., it sends Req. Addr. to RD/WR Mem Buffer.
 
     output logic issuable,
 
-    // Memory channel, PHY - side 
+    /* Memory channel, PHY - side */
     output logic cke, cs_n, par, act_n,
-    output logic [COMMAND_WIDTH-1:0] pin_A,
-    output logic [BGWIDTH-1:0] bg,
-    output logic [BKWIDTH-1:0] b
-    );
+    output logic [COMMAND_WIDTH - 1 : 0] pin_A,
+    output logic [BGWIDTH - 1 : 0] bg,
+    output logic [BKWIDTH - 1 : 0] b
+);
     
     //----------- Internal Wires for RankSched <-> RankExecutionUnit --------------//
     logic [NUM_BANKFSM-1:0] fsmWait;
