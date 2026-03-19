@@ -98,7 +98,7 @@
 //                      V
 //        +---------------------------+
 //        |     RankController        |
-//        |  (채널별, 랭크별 1개)     |
+//        |  (채널별, 랭크별 1개)        |
 //        +---------------------------+
 //                      |
 //                      V
@@ -211,7 +211,7 @@ module RankController #(
 
     parameter type MemoryAddress = logic,
     parameter type FSMRequest = logic
-)(
+) (
     input logic clk, rst,
     
     /* Input from MC FrontEnd */
@@ -302,30 +302,56 @@ module RankController #(
     ) RankScheduler(
         .clk(clk), .rst(rst),
 
-        .RankReqMemAddr(RankReqMemAddr), .RankReqId(RankReqId), .RankReqUser(RankReqUser),
-        .RankReqType(RankReqType), .RankReqValid(RankReqValid), .RankReadReqReady(RankReadReqReady),
+        .RankReqMemAddr(RankReqMemAddr), 
+        .RankReqId(RankReqId), 
+        .RankReqUser(RankReqUser),
+        .RankReqType(RankReqType), 
+        .RankReqValid(RankReqValid),
+        .RankReadReqReady(RankReadReqReady),
         .RankWriteReqReady(RankWriteReqReady),
 
-        .chSchedCMDOnlyValid(chSchedCMDGranted), .chSchedCMDDQValid(chSchedDQGranted),
+        .chSchedCMDOnlyValid(chSchedCMDGranted), 
+        .chSchedCMDDQValid(chSchedDQGranted),
         .WriteMode(chSchedWriteMode),
-        .chSchedRdReady(chSchedRdReady), .chSchedWrReady(chSchedWrReady), .chSchedACK(chSchedRdWrACK), .chSchedIdle(chSchedFSMWait),
-        .chSchedReadReqCnt(ReadReqCnt), .chSchedWriteReqCnt(WriteReqCnt),
+        .chSchedRdReady(chSchedRdReady),
+        .chSchedWrReady(chSchedWrReady), 
+        .chSchedACK(chSchedRdWrACK), 
+        .chSchedIdle(chSchedFSMWait),
+        .chSchedReadReqCnt(ReadReqCnt), 
+        .chSchedWriteReqCnt(WriteReqCnt),
 
-        .rdBufAvailable(rdBufAvailable), .wrBufAvailable(wrBufAvailable),
+        .rdBufAvailable(rdBufAvailable), 
+        .wrBufAvailable(wrBufAvailable),
 
-        .readBufReqId(bufReadReqId), .readBufReqUser(bufReadReqUser), .readBufReqACK(bufReadReqACK),
-        .writeBufReqId(bufWriteReqId), .writeBufReqUser(bufWriteReqUser), .writeBufReqACK(bufWriteReqACK),
+        .readBufReqId(bufReadReqId), 
+        .readBufReqUser(bufReadReqUser),
+        .readBufReqACK(bufReadReqACK),
+        .writeBufReqId(bufWriteReqId),
+        .writeBufReqUser(bufWriteReqUser),
+        .writeBufReqACK(bufWriteReqACK),
 
-        .fsmIdle(fsmIdle), .fsmWait(fsmWait),  .chSchedTransReady(chSchedTransReady),
-        .fsmRefreshAck(fsmRefreshACK), .fsmChSchedAck(fsmChSchedAck),
+        .fsmIdle(fsmIdle),
+        .fsmWait(fsmWait), 
+        .chSchedTransReady(chSchedTransReady),
+        .fsmRefreshAck(fsmRefreshACK), 
+        .fsmChSchedAck(fsmChSchedAck),
 
-        .fsmBufWrReqId(fsmBufWrReqId), .fsmBufWrReqUser(fsmBufWrReqUser), .fsmBufRdReqId(fsmBufRdReqId), .fsmBufRdReqUser(fsmBufRdReqUser), 
-        .fsmBufWrReqIssued(fsmBufWrReqIssued), .fsmBufRdReqIssued(fsmBufRdReqIssued),
+        .fsmBufWrReqId(fsmBufWrReqId),
+        .fsmBufWrReqUser(fsmBufWrReqUser), 
+        .fsmBufRdReqId(fsmBufRdReqId), 
+        .fsmBufRdReqUser(fsmBufRdReqUser), 
+        .fsmBufWrReqIssued(fsmBufWrReqIssued),
+        .fsmBufRdReqIssued(fsmBufRdReqIssued),
 
-        .fsmWrBufValid(fsmWrBufValid), .fsmRdBufValid(fsmRdBufValid),
-        .fsmIssue(fsmIssue), .fsmIssuedReq(fsmIssuedReq), .issuable(issuable),
+        .fsmWrBufValid(fsmWrBufValid), 
+        .fsmRdBufValid(fsmRdBufValid),
+        .fsmIssue(fsmIssue), 
+        .fsmIssuedReq(fsmIssuedReq), 
+        .issuable(issuable),
         
-        .refresh(refresh), .chSchedAvailableCMD(chSchedAvailableCMD), .chSchedAvailableCMDDQ(chSchedAvailableCMDDQ)
+        .refresh(refresh),
+        .chSchedAvailableCMD(chSchedAvailableCMD),
+        .chSchedAvailableCMDDQ(chSchedAvailableCMDDQ)
     );
 
     RankExecutionUnit #(
@@ -351,23 +377,40 @@ module RankController #(
     ) RankExecutionUnit_Instance(
         .clk(clk), .rst(rst), .chMode(chSchedWriteMode),
         
-        .ReadPreAck(bufReadPreACK), .WritePreAck(bufWritePreACK),
+        .ReadPreAck(bufReadPreACK),
+        .WritePreAck(bufWritePreACK),
         .rbuf_available(fsmRdBufValid), .rbufWindowAvailable(rdBufRankAvailable),
-        .bufBankPre(bufBankPre), .wbuf_available(fsmWrBufValid), 
+        .bufBankPre(bufBankPre), 
+        .wbuf_available(fsmWrBufValid), 
 
-        .bufWriteReqIssued(fsmBufWrReqIssued), .bufWriteReqId(fsmBufWrReqId), .bufWriteReqUser(fsmBufWrReqUser),
-        .bufReadReqIssued(fsmBufRdReqIssued), .bufReadReqId(fsmBufRdReqId) , .bufReadReqUser(fsmBufRdReqUser),
+        .bufWriteReqIssued(fsmBufWrReqIssued),
+        .bufWriteReqId(fsmBufWrReqId),
+        .bufWriteReqUser(fsmBufWrReqUser),
+        .bufReadReqIssued(fsmBufRdReqIssued), 
+        .bufReadReqId(fsmBufRdReqId),
+        .bufReadReqUser(fsmBufRdReqUser),
 
-        .schedReq(fsmIssuedReq), .schedValid(fsmIssue), .refresh(refresh), 
-        .schedIdle(fsmIdle), .schedRefACK(fsmRefreshACK),
+        .schedReq(fsmIssuedReq), 
+        .schedValid(fsmIssue), 
+        .refresh(refresh), 
+        .schedIdle(fsmIdle), 
+        .schedRefACK(fsmRefreshACK),
 
-        .chCMDAvailable(chSchedAvailableCMD), .chCMDDQAvailable(chSchedAvailableCMDDQ),
-        .fsmWait(fsmWait), .chSchedRdWrACK(fsmChSchedAck), .chSchedCMDACK(chSchedCMDACK),
+        .chCMDAvailable(chSchedAvailableCMD),
+        .chCMDDQAvailable(chSchedAvailableCMDDQ),
+        .fsmWait(fsmWait), 
+        .chSchedRdWrACK(fsmChSchedAck),
+        .chSchedCMDACK(chSchedCMDACK),
         .CCDShort(chSchedCCDType),
 
         .bufReqACKAddr(bufReqACKAddr),
-        .cke(cke), .cs_n(cs_n), .par(par), .act_n(act_n),
-        .pin_A(pin_A), .bg(bg), .b(b)
+        .cke(cke),
+        .cs_n(cs_n),
+        .par(par), 
+        .act_n(act_n),
+        .pin_A(pin_A), 
+        .bg(bg),
+        .b(b)
     );
 
     assign chSchedRankIdle = &fsmIdle;
