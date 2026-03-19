@@ -243,12 +243,12 @@ module RankController #(
     input  wire  chSchedTransReady,
 
     /* Input from MEM Buffer */
-    input rdBufAvailable,                           // Valid when there is any empty entry in read buffer
+    input rdBufAvailable,           // Valid when there is any empty entry in read buffer
     input logic rdBufRankAvailable,
-    input wrBufAvailable,                                       // Valid when there is any empty entry in write buffer
-    input logic bufReadPreACK,                                  // Valid when Read data (last) is received.
-    input logic bufWritePreACK,                                 // Valid when Write data (last) is sent.
-    input logic [BKWIDTH + BGWIDTH - 1 : 0] bufBankPre,         // AutoPrecharge-related BankGroup, Bank Information to FSM.
+    input wrBufAvailable,       // Valid when there is any empty entry in write buffer
+    input logic bufReadPreACK,  // Valid when Read data (last) is received.
+    input logic bufWritePreACK, // Valid when Write data (last) is sent.
+    input logic [BKWIDTH + BGWIDTH - 1 : 0] bufBankPre, // AutoPrecharge-related BankGroup, Bank Information to FSM.
 
                                                                 //        Output to MEM Buffer        //
     output logic [MEM_IDWIDTH-1:0] bufReadReqId,                // When RankExecutionUnit sends RD Req., it sends Req. ID to RD MEM Buffer for ready to receive.
