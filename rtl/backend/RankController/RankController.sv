@@ -213,35 +213,37 @@ module RankController #(
     parameter type FSMRequest = logic
 )(
     input logic clk, rst,
-                                                                  //        Input from MC FrontEnd       //
+    
+    /* Input from MC FrontEnd */
     input MemoryAddress RankReqMemAddr,                                            
-    input logic [MEM_IDWIDTH-1:0] RankReqId,                                 
-    input logic [MEM_USERWIDTH-1:0] RankReqUser,                             
+    input logic [MEM_IDWIDTH   - 1 : 0] RankReqId,                                 
+    input logic [MEM_USERWIDTH - 1 : 0] RankReqUser,                             
     input logic RankReqType,
     input logic RankReqValid,
-                                                                 //        Output to MC FrontEnd       //                                       
+    
+    /* Output to MC FrontEnd */                                       
     output logic RankReadReqReady, 
     output logic RankWriteReqReady,
 
-                                                                //   Input from Channel Scheduler     //
+    /* Input from Channel Scheduler */
     input logic chSchedCMDGranted,
     input logic chSchedDQGranted,
-    input logic chSchedWriteMode,                               // Channel Mode signal for Read / Write request
+    input logic chSchedWriteMode, // Channel Mode signal for Read / Write request
 
-                                                                //    Output to Channel Scheduler     //
-    output logic chSchedRdReady,                                // Read Ready signal, Valid when there is any Read request in Request Que.
-    output logic chSchedWrReady,                                // Write Ready signal, Valid when there is any Write request in Request Que.
-    output logic chSchedRdWrACK,                                // RD/WR ACK signal for Read/Write request, ACK when FSM issues Read/Write CMD.
-    output logic chSchedCMDACK,                                 // CMD ACK signal for any CMD, ACK when FSM issues any kind of CMD.
-    output logic chSchedFSMWait,                                // FSMWait signal, Valid when FSM waits for row timing constraints. (e.g., tRP, tRCD, tRFC)
-    output logic chSchedCCDType,                                // CAS-to-CAS timing type, 1 for tCCD_Short , 0 for tCCD_Long
-    output logic [$clog2(READCMDQUEUEDEPTH)-1:0] ReadReqCnt,    // Num. of read Requests in Request Que.
-    output logic [$clog2(WRITECMDQUEUEDEPTH)-1:0] WriteReqCnt,  // Num. of write Requests in Request Que.
-    output wire chSchedRankIdle,
-    input wire chSchedTransReady,
+    /* Output to Channel Scheduler */
+    output logic chSchedRdReady, // Read Ready signal, Valid when there is any Read request in Request Que.
+    output logic chSchedWrReady, // Write Ready signal, Valid when there is any Write request in Request Que.
+    output logic chSchedRdWrACK, // RD/WR ACK signal for Read/Write request, ACK when FSM issues Read/Write CMD.
+    output logic chSchedCMDACK,  // CMD ACK signal for any CMD, ACK when FSM issues any kind of CMD.
+    output logic chSchedFSMWait, // FSMWait signal, Valid when FSM waits for row timing constraints. (e.g., tRP, tRCD, tRFC)
+    output logic chSchedCCDType, // CAS-to-CAS timing type, 1 for tCCD_Short , 0 for tCCD_Long
+    output logic [$clog2(READCMDQUEUEDEPTH)  - 1 : 0] ReadReqCnt,  // Num. of read Requests in Request Que.
+    output logic [$clog2(WRITECMDQUEUEDEPTH) - 1 : 0] WriteReqCnt, // Num. of write Requests in Request Que.
+    output wire  chSchedRankIdle,
+    input  wire  chSchedTransReady,
 
-                                                                //        Input from MEM Buffer       //
-    input rdBufAvailable,                                       // Valid when there is any empty entry in read buffer
+    /* Input from MEM Buffer */
+    input rdBufAvailable,                           // Valid when there is any empty entry in read buffer
     input logic rdBufRankAvailable,
     input wrBufAvailable,                                       // Valid when there is any empty entry in write buffer
     input logic bufReadPreACK,                                  // Valid when Read data (last) is received.
@@ -272,7 +274,6 @@ module RankController #(
     wire  [NUM_BANKFSM-1:0] fsmIdle;
     logic [NUM_BANKFSM-1:0] fsmIssue;
 
-
     logic fsmRefreshACK, fsmChSchedAck;
     logic [MEM_IDWIDTH-1 :0] fsmBufWrReqId, fsmBufRdReqId;
     logic [MEM_USERWIDTH-1:0] fsmBufWrReqUser, fsmBufRdReqUser;
@@ -281,7 +282,6 @@ module RankController #(
     logic fsmWrBufValid, fsmRdBufValid;
     logic refresh, chSchedAvailableCMD, chSchedAvailableCMDDQ;
     FSMRequest fsmIssuedReq;
-
 
     RankSched #(
         .FSM_CHANNEL(FSM_CHANNEL),
@@ -349,7 +349,7 @@ module RankController #(
         .tRCD(tRCD),
         .FSMRequest(FSMRequest),
         .MemoryAddress(MemoryAddress)
-    ) RankExecutionUnit_Instance (
+    ) RankExecutionUnit_Instance(
         .clk(clk), .rst(rst), .chMode(chSchedWriteMode),
         
         .ReadPreAck(bufReadPreACK), .WritePreAck(bufWritePreACK),
