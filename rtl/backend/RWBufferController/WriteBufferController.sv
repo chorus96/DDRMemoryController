@@ -79,9 +79,7 @@ module WriteBufferController #(
     output logic [MEM_USERWIDTH - 1 : 0] writeDataACKUser, // 2. Write Data ACK User for AXI-WRITE Resp.   
     output logic [MEM_IDWIDTH - 1 : 0] writeDataACKID,     // 3. Write Data ACK ID for AXI-WRITE Resp.          
     output logic writeBufferFull,                          // 4. Write Buffer Ready for MC-FrontEnd Phase                                                                    
-                                                                        
-                                                
-    
+                                                                                                                       
     /* INPUT FROM DQ-BUS */
     input logic phyWriteModeFIFOReady, // 1. PHYWriteMode FIFO Ready from PHY-side
     input logic WriteModeACK,          // 2. PHYWriteMode ACK                                                                                                                                                             
@@ -130,7 +128,6 @@ module WriteBufferController #(
     WriteBufferDataEntry readDataData, writeDataData;
     //--------------------------------------------------------------------//
 
-
     //------------------------------------------------------------------------------
     //  Write Request Window Counter
     //
@@ -141,24 +138,21 @@ module WriteBufferController #(
     //
     //------------------------------------------------------------------------------
     logic [$clog2(WRITEBUFFERDEPTH+1)-1:0] WriteRequestWindow_Cnt;
-    always_ff@(posedge clk or negedge rst) begin
-        if(!rst)begin
+    always_ff @(posedge clk or negedge rst) begin
+        if (!rst) begin
             WriteRequestWindow_Cnt <= '0;
         end else begin
-            if(writeDataLast && !writeBufferFull && WriteModeACK) begin
+            if (writeDataLast && !writeBufferFull && WriteModeACK) begin
                 WriteRequestWindow_Cnt <= WriteRequestWindow_Cnt;
-            end
-            else if(writeDataLast && !writeBufferFull) begin
+            end else if (writeDataLast && !writeBufferFull) begin
                 WriteRequestWindow_Cnt <= WriteRequestWindow_Cnt + 1;
-            end 
-            else if(WriteModeACK) begin
+            end else if(WriteModeACK) begin
                 WriteRequestWindow_Cnt <= WriteRequestWindow_Cnt - 1;
             end
         end
     end
 
     assign WriteRequestWindow =  WriteRequestWindow_Cnt;
-
 
     //------------------------------------------------------------------------------
     //  Write Buffer Pointer Calculation
@@ -212,7 +206,7 @@ module WriteBufferController #(
     //  - Deallocation : After full burst is sent to PHY.
     //
     //------------------------------------------------------------------------------
-    always_ff@(posedge clk or negedge rst)begin
+    always_ff @(posedge clk or negedge rst)begin
         if(!rst) begin
             readDataStrb   <= 0;
             writeDirFree   <= '1;
@@ -264,13 +258,10 @@ module WriteBufferController #(
         end
     end
 
-
-
     //-------------- Write Buffer ACK for Auto-Precharge -----------------//
     assign data_write = writeDataValid && !writeBufferFull;          // Write Data Allocation, data comes from "MCFrontEnd"       (PUSH)
     assign PHYServing = |writeDirIssued && phyWriteModeFIFOReady;    // Read Data from Write Data Buffer, data goes to "PHY-side" (POP)
     
-
     //------------------------------------------------------------------------------
     //  Write Data Buffer (Burst-Level)
     //
@@ -328,7 +319,6 @@ module WriteBufferController #(
 
     assign writeDataData = writeData;
     assign readData      = readDataData;
-
     //--------------------------------------------------------------------//
 
     //------------------------------------------------------------------------------
