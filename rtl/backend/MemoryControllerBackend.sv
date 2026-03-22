@@ -553,5 +553,4 @@ module MemoryControllerBackend #(
         .ddr4_dataBus(ddr4_dq_bus)
     );
 
-
 endmodule
