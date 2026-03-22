@@ -24,19 +24,19 @@
 module DQRdWrCCDGrant #(
     parameter int tCCDS = 4,
     parameter int tCCDL = 6
-)(   // tCCD consideration -> CMDDQArbiter
+) ( // tCCD consideration -> CMDDQArbiter
     input logic clk, rst,
 
-    input logic chRdWrACK,
-    input logic CCDType, // 1  -> tCCDS / 0 -> tCCDL
+    input  logic chRdWrACK,
+    input  logic CCDType, // 1  -> tCCDS / 0 -> tCCDL
     output logic chRdWrAvailabe
-    );
+);
 
     localparam int CCD_CNT_WIDTH = $clog2(
         (tCCDS > tCCDL) ? tCCDS : tCCDL
     );
 
-    logic [CCD_CNT_WIDTH-1:0] count;
+    logic [CCD_CNT_WIDTH - 1 : 0] count;
     logic cnt_flag;
     logic DQAvailable;
 
@@ -51,11 +51,11 @@ module DQRdWrCCDGrant #(
                 cnt_flag    <= 1;
                 DQAvailable <= 0;
                                                 //  Subtract 2 cycles:
-                if(CCDType) count   <= tCCDS-2;   //  - 1 cycle for the issuing CAS itself
-                else count          <= tCCDL-2;          //  - 1 cycle for current cycle alignment
-                `ifdef DISPLAY
-                    $display("[%0t] DQRdWrCCDGrant | CCD Timing Constraint ON", $time);
-                `endif
+                if(CCDType) count   <= tCCDS-2; //  - 1 cycle for the issuing CAS itself
+                else count          <= tCCDL-2; //  - 1 cycle for current cycle alignment
+`ifdef DISPLAY
+                $display("[%0t] DQRdWrCCDGrant | CCD Timing Constraint ON", $time);
+`endif
             end else begin 
                 if(cnt_flag ==1)begin
                     count           <= count -1;
@@ -63,9 +63,9 @@ module DQRdWrCCDGrant #(
                         count       <= 0;
                         cnt_flag    <= 0;
                         DQAvailable <= 1;
-                        `ifdef DISPLAY
+`ifdef DISPLAY
                         $display("[%0t] DQRdWrCCDGrant | CCD Timing Constraint OFF", $time);
-                        `endif
+`endif
                     end
                 end
             end
