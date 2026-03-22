@@ -28,7 +28,7 @@ module DQRdWrCCDGrant #(
     input logic clk, rst,
 
     input  logic chRdWrACK,
-    input  logic CCDType, // 1  -> tCCDS / 0 -> tCCDL
+    input  logic CCDType, // 1 -> tCCDS / 0 -> tCCDL
     output logic chRdWrAvailabe
 );
 
@@ -40,8 +40,8 @@ module DQRdWrCCDGrant #(
     logic cnt_flag;
     logic DQAvailable;
 
-    //------------ CAS-to-CAS (Short/Long) Timing Scheduling --------------//
-    always_ff@(posedge clk or negedge rst) begin
+    /* CAS-to-CAS (Short/Long) Timing Scheduling */
+    always_ff @(posedge clk or negedge rst) begin
         if(!rst) begin
             cnt_flag    <= 0;
             DQAvailable <= 1;
@@ -57,7 +57,7 @@ module DQRdWrCCDGrant #(
                 $display("[%0t] DQRdWrCCDGrant | CCD Timing Constraint ON", $time);
 `endif
             end else begin 
-                if(cnt_flag ==1)begin
+                if(cnt_flag == 1)begin
                     count           <= count -1;
                     if(count == 0) begin
                         count       <= 0;
