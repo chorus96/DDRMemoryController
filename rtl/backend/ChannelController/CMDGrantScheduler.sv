@@ -70,7 +70,7 @@ module CMDGrantScheduler#(
     parameter int NUMRANK = 4,
     parameter int READCMDQUEUEDEPTH  = 8,
     parameter int WRITECMDQUEUEDEPTH = 8
-)(
+) (
     input logic clk, rst,       
 
     input logic [NUMRANK-1:0] readyRdVector,                                    //  1. Ready Singals from RankController (READ)      //
@@ -83,8 +83,7 @@ module CMDGrantScheduler#(
     input logic CMDRankTurnaround,                                              //  8. Rank Trunaround Available Signal (free tRTR)  //
     output logic [NUMRANK-1:0] CMDGrantVector,                                  //  9. Granted signal for specific RankCtrl.         //
     output logic rankTransition                                                 // 10. Rank Change signal                            //
-    
-    );
+);
 
     logic [NUMRANK-1:0] lfsr;                                                   // Linear Feedback Shift Register, Providing Randomess
     logic [NUMRANK-1:0] masked;                                                 // Masked bits for making randomess in valid vector 
@@ -98,7 +97,6 @@ module CMDGrantScheduler#(
     logic [$clog2(WRITECMDQUEUEDEPTH)-1:0] WRmaxCnt, WRminCnt;                  // Write Max Counter / Write Min Counter
 
     logic [$clog2(NUMRANK)-1:0] maxIndex;                                       // Max Req Depth Index / Min Req Depth Index
-
 
     //------------------------------------------------------------------------------
     //     Pseudo-Random Generator (LFSR)
@@ -169,7 +167,7 @@ module CMDGrantScheduler#(
                     next_cmd[maxIndex] = 1;
                 end
             end else begin
-                for(int i =0; i < NUMRANK; i++) begin
+                for(int i = 0; i < NUMRANK; i++) begin
                     if(avail[i]) begin
                         if(RDminCnt > readReqCnt[i]) begin
                             RDminCnt = readReqCnt[i];
@@ -206,7 +204,6 @@ module CMDGrantScheduler#(
         end
     end : CalculatingNextTargetRank
 
-
     //------------------------------------------------------------------------------
     //      Grant Register Update
     //
@@ -222,10 +219,8 @@ module CMDGrantScheduler#(
             if(CMDRankTurnaround) begin         // Change of arbitration is only valid when it is free from tRTR timing constraint.
                 if(CMDGrantVector == '0 && (next_cmd != '0)) begin     
                     CMDGrantVector <= next_cmd;                   // If there is no grant in current arbitration, but there is valid in next_cmd.    
-                end
-
-                else if(grantACK)begin          // GrantACK comes from the target rank controller.
-                    if(next_cmd != '0) begin    // If the grantACK comes, then we need to select new target rank for fairness.
+                end else if (grantACK) begin          // GrantACK comes from the target rank controller.
+                    if (next_cmd != '0) begin    // If the grantACK comes, then we need to select new target rank for fairness.
                         CMDGrantVector <= next_cmd;
                     end else begin
                         CMDGrantVector <= '0;
@@ -258,7 +253,6 @@ module CMDGrantScheduler#(
     end : RankTransitionDetecting
 
     assign rankTransition = (prev_cmd != CMDGrantVector);
-
     //-------------------------------------------------------------------//
 
 endmodule
