@@ -36,16 +36,16 @@ module APTimingScheduler#(
     parameter int TOTALBANKS    = NUMBANK * NUMBANKGROUP,
     parameter int tRP           = 16,
     parameter int tWR           = 18
-)(
-        input logic clk,
-        input logic rst,
-        input logic mode,
-        input logic apSetup,
-        input logic apACk,
-        input logic [$clog2(TOTALBANKS) - 1 : 0] BGBKfromFSM, 
-        input logic [$clog2(TOTALBANKS) - 1 : 0] BGBKfromBUF,
-        output logic bankState [TOTALBANKS - 1 : 0]
-    );
+) (
+    input logic clk,
+    input logic rst,
+    input logic mode,
+    input logic apSetup,
+    input logic apACk,
+    input logic [$clog2(TOTALBANKS) - 1 : 0] BGBKfromFSM, 
+    input logic [$clog2(TOTALBANKS) - 1 : 0] BGBKfromBUF,
+    output logic bankState [TOTALBANKS - 1 : 0]
+);
 
     localparam int COUNTER_WIDTH = $clog2(tRP+tWR+1);
     localparam int BK_W          = $clog2(NUMBANK);
@@ -58,7 +58,6 @@ module APTimingScheduler#(
     logic [COUNTER_WIDTH-1:0] load;
     logic [COUNTER_WIDTH-1:0] bankCounter [TOTALBANKS - 1 :0];
     logic countFlag [TOTALBANKS - 1 :0];
-
  
     always_ff@(posedge clk or negedge rst) begin : BankStateWindow
         if(!rst) begin
@@ -85,12 +84,12 @@ module APTimingScheduler#(
         end else begin
             if(apSetup)begin
                 bankCounter[BGBKfromFSM] <= load;           // If APSETUP comes from FSM, then Set up the counter.
-                `ifdef DISPLAY
-                    $display("[%0t] APTimingCounter | AP setup: BG=%0d BK=%0d",
-                            $time,
-                            BGBKfromFSM[BK_W+BG_W-1 : BK_W],
-                            BGBKfromFSM[BK_W-1 : 0]);
-                `endif
+`ifdef DISPLAY
+                $display("[%0t] APTimingCounter | AP setup: BG=%0d BK=%0d",
+                        $time,
+                         BGBKfromFSM[BK_W+BG_W - 1 : BK_W],
+                         BGBKfromFSM[BK_W - 1 : 0]);
+`endif
             end    
             for(int i = 0; i < TOTALBANKS; i++)begin
                 if(countFlag[i]) begin
@@ -112,27 +111,28 @@ module APTimingScheduler#(
         else begin
             if(bankReqState[BGBKfromBUF] == 1 && apACk)begin
                 countFlag[BGBKfromBUF] <= 1;            //  If APACK comes from FSM, then countFlag is on for counting.
-                `ifdef DISPLAY
-                    $display("[%0t] APTimingCounter | AP TIMING COUNTING START : BG=%0d BK=%0d",
-                            $time,
-                            BGBKfromBUF[BK_W+BG_W-1 : BK_W],
-                            BGBKfromBUF[BK_W-1 : 0]);
-                `endif
+`ifdef DISPLAY
+                $display("[%0t] APTimingCounter | AP TIMING COUNTING START : BG=%0d BK=%0d",
+                        $time,
+                        BGBKfromBUF[BK_W+BG_W-1 : BK_W],
+                        BGBKfromBUF[BK_W-1 : 0]);
+`endif
             end
             for(int i = 0; i <  TOTALBANKS; i++)begin
                 if(bankCounter[i] == 0)begin
                     countFlag[i] <= 0;                  // When bankCounter[i] ==0, then countFlag off.
-                    `ifdef DISPLAY
-                        if(countFlag[i] == 1) begin
-                            $display("[%0t] APTimingCounter | AP TIMING COUNTING END : BG=%0d bk=%0d", 
-                                    $time,
-                                    i / NUMBANK, i % NUMBANK);
-                        end
-                    `endif
+`ifdef DISPLAY
+                    if(countFlag[i] == 1) begin
+                        $display("[%0t] APTimingCounter | AP TIMING COUNTING END : BG=%0d bk=%0d", 
+                                $time,
+                                i / NUMBANK, i % NUMBANK);
+                    end
+`endif
                 end
             end
         end
     end : PerBankCounterFlagSetup
 
     assign bankState = bankReqState; 
+
 endmodule
