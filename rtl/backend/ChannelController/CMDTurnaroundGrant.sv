@@ -48,33 +48,33 @@
 //////////////////////////////////////////////////////////////////////////////////////////
 
 module CMDTurnaroundGrant #(
-        parameter int tRTRS = 2
-    )(
+    parameter int tRTRS = 2
+) (
     input  logic clk, rst,
     input  logic rankTransition,
     output logic CMDTurnaroundFree
 );
 
     logic flag;
-    logic [$clog2(tRTRS)-1:0] cnt;
+    logic [$clog2(tRTRS) - 1 : 0] cnt;
 
     //------------------------------------------------------------------------------
-    //      Rank-to-Rank Turnaround Counter
+    // Rank-to-Rank Turnaround Counter
     //
-    //       - Loaded with (tRTRS - 1) on rank transition.
-    //       - Decrements while flag is asserted.
+    //   - Loaded with (tRTRS - 1) on rank transition.
+    //   - Decrements while flag is asserted.
     //------------------------------------------------------------------------------   
-    always_ff@(posedge clk or negedge rst) begin :tRTRsCounterSetup
-        if(!rst) begin
+    always_ff @(posedge clk or negedge rst) begin :tRTRsCounterSetup
+        if (!rst) begin
             cnt <= 0;
         end else begin
-            if(flag) begin
-                cnt <= cnt -1;
-            end else if(rankTransition) begin
-                cnt <= tRTRS -1;
-                `ifdef DISPLAY
-                    $display("[%0t] CMDTurnaroundCalculator | tRTR TIMING CONSTRAINTS FREE", $time);
-                `endif
+            if (flag) begin
+                cnt <= cnt - 1;
+            end else if (rankTransition) begin
+                cnt <= tRTRS - 1;
+`ifdef DISPLAY
+                $display("[%0t] CMDTurnaroundCalculator | tRTR TIMING CONSTRAINTS FREE", $time);
+`endif
             end else begin
                 cnt <= 0;
             end
