@@ -1,7 +1,7 @@
 `timescale 1ns / 1ps
 
 //////////////////////////////////////////////////////////////////////////////////////////
-//      APTimingCounter
+// APTimingCounter
 //
 //      1) Manages Auto-Precharge (AP) timing based on tRP and tWR constraints
 //          in the Rank Scheduler.
