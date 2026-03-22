@@ -59,7 +59,7 @@ module APTimingScheduler#(
     logic [COUNTER_WIDTH-1:0] bankCounter [TOTALBANKS - 1 :0];
     logic countFlag [TOTALBANKS - 1 :0];
  
-    always_ff@(posedge clk or negedge rst) begin : BankStateWindow
+    always_ff @(posedge clk or negedge rst) begin : BankStateWindow
         if(!rst) begin
             for(int i = 0; i< TOTALBANKS; i++) begin
                 bankReqState[i] <= 0;                    // Initialization for BankState
@@ -76,13 +76,13 @@ module APTimingScheduler#(
         end
     end : BankStateWindow
 
-    always_ff@(posedge clk or negedge rst) begin : PerBankCounterSetup
+    always_ff @(posedge clk or negedge rst) begin : PerBankCounterSetup
         if(!rst) begin
             for(int i = 0; i < TOTALBANKS; i++)begin
                 bankCounter[i] <= 0;                        // Initialization for BankCounter
             end
         end else begin
-            if(apSetup)begin
+            if (apSetup) begin
                 bankCounter[BGBKfromFSM] <= load;           // If APSETUP comes from FSM, then Set up the counter.
 `ifdef DISPLAY
                 $display("[%0t] APTimingCounter | AP setup: BG=%0d BK=%0d",
@@ -99,16 +99,14 @@ module APTimingScheduler#(
         end
     end : PerBankCounterSetup
 
-    assign load = (mode) ? (tRP+tWR) - 1 : tRP-1;
+    assign load = (mode) ? (tRP + tWR) - 1 : tRP - 1;
 
-
-    always_ff@(posedge clk or negedge rst ) begin : PerBankCounterFlagSetup
+    always_ff @(posedge clk or negedge rst ) begin : PerBankCounterFlagSetup
         if(!rst) begin
             for(int i = 0; i< TOTALBANKS; i ++)begin
                 countFlag[i] <= 0;
             end
-        end
-        else begin
+        end else begin
             if(bankReqState[BGBKfromBUF] == 1 && apACk)begin
                 countFlag[BGBKfromBUF] <= 1;            //  If APACK comes from FSM, then countFlag is on for counting.
 `ifdef DISPLAY
