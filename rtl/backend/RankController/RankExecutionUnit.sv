@@ -248,8 +248,12 @@ module RankExecutionUnit #(
     genvar i;
     generate 
         for(i = 0; i < NUM_BANKFSM; i++)  begin
-            DRAMTimingCounter DRAMTimingCounter_Instance(             // Row Timing constraints
-                .clk(clk), .rst(rst), .setup(TimingSet[i]), .load(TimingLoad[i]), .timeUp(RowFree[i])
+            DRAMTimingCounter DRAMTimingCounter_Instance( // Row Timing constraints
+                .clk(clk), 
+                .rst(rst), 
+                .setup(TimingSet[i]),
+                .load(TimingLoad[i]), 
+                .timeUp(RowFree[i])
             );
         end
     endgenerate
@@ -293,11 +297,15 @@ module RankExecutionUnit #(
         .NUMBANKGROUP(NUMBANKGROUP),
         .tRP(tRP),
         .tWR(tWR)
-    ) APTimingScheduler_instance (
-        .clk(clk), .rst(rst), .mode(chMode), 
-        .apSetup(apSetup), .apACk(autoPrechargeACK), 
+    ) APTimingScheduler_instance(
+        .clk(clk), 
+        .rst(rst), 
+        .mode(chMode), 
+        .apSetup(apSetup), 
+        .apACk(autoPrechargeACK), 
         .BGBKfromFSM(BGBKfromFSM), 
-        .BGBKfromBUF(bufBankPre), .bankState(bankState)
+        .BGBKfromBUF(bufBankPre),
+        .bankState(bankState)
     );
     assign autoPrechargeACK = WritePreAck || ReadPreAck;
     //////////////////////////////////////////////////////////////////////////
