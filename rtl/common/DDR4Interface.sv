@@ -63,13 +63,10 @@ interface DDR4Interface #(
 	parameter int CWIDTH        = 10,
 	parameter int NUMRANK       = 4
 ) (
-        /* verilator lint_off UNUSEDSIGNAL */
 	input logic clk, rst
 );
 
-
-
-    //Definitions and LocalParameters
+    // Definitions and LocalParameters
     // RAS, CAS, ACT, WE, CS -> command OPCode
     // Row bits -> 15, Col bits -> 10, bg,bk -> 2 bits 
     // Pin signal requires: RAS, CAS, WE ,CS, ACT 
@@ -154,7 +151,4 @@ interface DDR4Interface #(
         output dm_n, udm_n, ldm_n, odt
     );
 
-    /* verilator lint_on UNUSEDSIGNAL */
-
-    endinterface
-
+endinterface
