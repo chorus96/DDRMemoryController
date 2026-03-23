@@ -49,41 +49,41 @@ module AddressTranslationUnit #(
     parameter int CHWIDTH                    = 1,
     parameter int RKWIDTH                    = 2,
     parameter type MemoryAddress             = logic
-    )(
-    input logic [AXI_ADDRWIDTH - 1 :0] readAddr, 
-    input logic [AXI_ADDRWIDTH - 1 :0] writeAddr, 
-    input logic [NUM_RANKEXECUTION_UNIT-1:0] readReady,
+) (
+    input logic [AXI_ADDRWIDTH - 1 : 0] readAddr, 
+    input logic [AXI_ADDRWIDTH - 1 : 0] writeAddr, 
+    input logic [NUM_RANKEXECUTION_UNIT - 1 : 0] readReady,
     input logic readValid,
-    input logic [NUM_RANKEXECUTION_UNIT-1:0] writeReady,
+    input logic [NUM_RANKEXECUTION_UNIT - 1 : 0] writeReady,
     input logic writeValid,
 
-    output logic [NUM_RANKEXECUTION_UNIT - 1:0] targetFSMVector, 
-    output logic [NUM_RANKEXECUTION_UNIT_BIT-1:0] targetFSMIndex,
+    output logic [NUM_RANKEXECUTION_UNIT - 1 : 0] targetFSMVector, 
+    output logic [NUM_RANKEXECUTION_UNIT_BIT - 1 : 0] targetFSMIndex,
     output MemoryAddress requestMemAddr
-    );
+);
 
-    
     localparam FSM_WIDTH = CHWIDTH + RKWIDTH;   // Number of Total FSM.
     // FSM resides on Per
 
     always_comb begin
         targetFSMVector = '0;
-        targetFSMIndex   = '0;
+        targetFSMIndex  = '0;
         requestMemAddr  = '0;
-        if(readValid) begin
+        if (readValid) begin
             {requestMemAddr.channel, requestMemAddr.rank, requestMemAddr.bankgroup, requestMemAddr.bank,
              requestMemAddr.row, requestMemAddr.col} = readAddr;
-             if(readReady[{requestMemAddr.channel ,requestMemAddr.rank}]) begin
+             if (readReady[{requestMemAddr.channel ,requestMemAddr.rank}]) begin
                 targetFSMIndex = readAddr[MEM_ADDRWIDTH-1 -: FSM_WIDTH];
                 targetFSMVector[targetFSMIndex] = 1'b1;
              end 
-        end else if(writeValid) begin
+        end else if (writeValid) begin
             {requestMemAddr.channel, requestMemAddr.rank, requestMemAddr.bankgroup, requestMemAddr.bank,
              requestMemAddr.row, requestMemAddr.col} = writeAddr;
-             if(writeReady[{requestMemAddr.channel ,requestMemAddr.rank}]) begin
+             if (writeReady[{requestMemAddr.channel ,requestMemAddr.rank}]) begin
                 targetFSMIndex = writeAddr[MEM_ADDRWIDTH-1 -: FSM_WIDTH];
                 targetFSMVector[targetFSMIndex] = 1'b1;
              end
         end
     end
+
 endmodule
