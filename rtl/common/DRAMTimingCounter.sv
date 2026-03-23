@@ -62,7 +62,7 @@ module DRAMTimingCounter(
     input  logic setup,
     input  logic [5:0] load,
     output logic timeUp
-    );
+);
 
     logic [5:0] countLoad;
     logic       countEnd;
